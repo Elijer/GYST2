@@ -6,7 +6,9 @@
   "dependencies": {
     "firebase": "^8.1.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sass": "^1.29.0"
+  },
   "scripts": {
     "test": "parcel index.html",
     "ems": "firebase emulators:start",
