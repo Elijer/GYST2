@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", event => {
 
     // Local Emulators Test
     var citiesRef = db.collection("firestore-collection");
-    citiesRef.doc("firestore-document").set({
-        name: "Some document", state: "VA", country: "USA?",
+    citiesRef.doc("firestore-documsent").set({
+        name: "Some document", state: "VA", country: "USsssZZZZsA?",
         capital: false,
         ridesBicycles: "sure",
         regions: ["west_coast", "norcal"]
