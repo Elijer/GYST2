@@ -1,4 +1,5 @@
 export function findGame(db, firebase){
+
     var matches = db.collection("pending");
 
     var query = matches.where("player2", "!=", null).limit(1);

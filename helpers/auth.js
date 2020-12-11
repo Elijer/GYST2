@@ -10,6 +10,9 @@ export function auth(firebase, db){
   var logout = document.getElementById("logout");
   var loader = document.getElementById("loader")
 
+  // FIND GAME BUTTON
+  const findGameButton = document.getElementById("find-game");
+
   // CHANGE USERNAME
   username.addEventListener('keydown', limitUsernameInput);
   username.addEventListener('focus', changeUsername(firebase, db), true);
@@ -36,8 +39,12 @@ export function auth(firebase, db){
 
       signedInOnce = true;
 
+      // If user is signed in, then the find game button can be displayed.
+      findGameButton.style.display = "inline";
+
     } else {
       disp("out");
+      findGameButton.style.display = "none";
 
       // This checks to see if user has logged out and then in again. If not,
       // It can be assumed that they are getting to the page for the first time.
