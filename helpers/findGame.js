@@ -12,8 +12,30 @@ export function findGame(db, firebase){
             // CREATE NEW GAME //////////////
             console.log("No games found");
             var newGame = createGame(db, firebase);
-            newGame.onSnapshot(function(doc){
-                console.log(doc.data());
+
+            var unsubscribe = newGame.onSnapshot(function(doc){
+                var progress = doc.data();
+
+                if (progress.game != null){
+                    // This is prevent new games from being created forever
+                    unsubscribe();
+                } else if (progress.player2 != null){
+
+                    const game = db.collection("games").doc();
+
+                    game.set({
+                        player1: doc.data().player1,
+                        player2: doc.data().player2
+                    })
+
+                    const gameID = game.id;
+
+                    doc.ref.update({
+                        game: gameID,
+                    })
+
+                }
+
             })
 
         } else {
@@ -26,6 +48,16 @@ export function findGame(db, firebase){
                 doc.ref.update({
                   player2: uid
                 })
+
+                var unsubscribe = doc.ref.onSnapshot(function(doc){
+                    var pend = doc.data();
+
+                    if (pend.game != null){
+                        console.log(pend.game);
+                        unsubscribe();
+                    }
+                })
+
             })
 
         }
