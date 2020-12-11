@@ -1,2 +1,4 @@
 dist/
 .cache/
+firebase-debug.log
+firestore-debug.log
