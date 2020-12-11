@@ -19,6 +19,7 @@ export function findGame(db, firebase){
                 if (progress.game != null){
                     // This is prevent new games from being created forever
                     console.log(progress.game);
+                    doc.ref.delete();
                     unsubscribe();
                 }
 
@@ -43,21 +44,8 @@ export function findGame(db, firebase){
                 const gameID = game.id;
 
                 doc.ref.update({
-                    // I don't even think I need to put in player2 but whatevs
-                  player2: uid,
                   game: gameID
                 })
-
-
-/* 
-                var unsubscribe = doc.ref.onSnapshot(function(doc){
-                    var pend = doc.data();
-
-                    if (pend.game != null){
-                        console.log(pend.game);
-                        unsubscribe();
-                    }
-                }) */
 
             })
 
