@@ -123,7 +123,7 @@ function signOut(firebase){
 }
 
 function name(uid, db){
-  let name =  whimsy('{{adjective}}_{{noun}}');
+  let name =  whimsy('{{adjective}} {{noun}}');
 
   const userRef = db.collection("users").doc(uid);
   userRef.set({
