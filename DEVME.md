@@ -1,0 +1,9 @@
+# Pending Matches
+I have created a collection called "pending" to hold the pending matches. There is another collection called "games", which will contain some comparable heft objects, so I'm glad I've split the pending and game collections. It should help a lot of performance. However, I think that I should **Use HTTPS functions for matchmaking**. Right now, all of the matchmaking is done through the following handshake on the two clients looking to play a game:
+
+* Player1 searches for a game with 1 out of 2 people. Doesn't found one. Player1 creates a game in the "pending" collection, adds its own UID to the Player1 field of the doc, and sets up a snapshot listener on the doc, waiting for it to have a "game" field that isn't null.
+* Player2 searches for a game with 1 out of 2 people. Finds the one created by Player1. Player2's client creates a new doc in the "games" collection with both player's ID's (which yes, it does have access to), gets the ID for that "games" doc, and then updates the "pending" doc to have a 'game' field with the value of the new game's id.
+* Player1 sees this new "game" field via it's snapshot listener, (and uses that ID to find the "games" doc, but at the moment I am just console.logging the games ID to prove I have it.) It deletes the "pending" document.
+* Voila! Both players have the ID for the game.
+
+My concern is that two people could join a game at the exact same time. Is that possible? I'm not sure if it is, but if so, I think it could be avoided by handling the actual matchmaking using cloud functions. This would also probably speed it up in the case that there are a gazillion.
