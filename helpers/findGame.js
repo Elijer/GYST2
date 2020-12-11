@@ -6,21 +6,28 @@ export function findGame(db, firebase){
 
     query.get()
     .then(function(querySnapshot){
-        console.log(querySnapshot);
-        if (querySnapshot.empty){
-            console.log("No games found");
 
-            createGame(db, firebase);
+        if (querySnapshot.empty){
+
+            // CREATE NEW GAME //////////////
+            console.log("No games found");
+            var newGame = createGame(db, firebase);
+            newGame.onSnapshot(function(doc){
+                console.log(doc.data());
+            })
 
         } else {
-            console.log("NOt empty");
+
+            // JOIN NEW GAME ///////////////
+            console.log("A game was found! Joining it presently.");
+
             querySnapshot.forEach(function(doc) {
                 let uid = firebase.auth().currentUser.uid;
-                // Difference between update and set(with merge option): https://stackoverflow.com/questions/46597327/difference-between-set-with-merge-true-and-update
                 doc.ref.update({
                   player2: uid
                 })
             })
+
         }
     })
 }
@@ -34,13 +41,6 @@ function createGame(db, firebase){
       player1: uid,
       player2: null
     })
-}
 
-function joinGame(db, firebase, doc){
-    
-    let uid = firebase.auth().currentUser.uid;
-    // Difference between update and set(with merge option): https://stackoverflow.com/questions/46597327/difference-between-set-with-merge-true-and-update
-    doc.update({
-      player2: uid
-    })
+    return gamesRef;
 }
