@@ -190,6 +190,10 @@ function changeUsername(firebase, db){
   })
 }
 
+
+// HERE is a function that is not yet used. The idea is, if a user logs off or something,
+// Any pending games they have need to be cleared. So does their user object, because that's
+// How anonymous auth works; you cannot log back in.
 function clearGamesWithUid(firebase, db){
 
     let uid = firebase.auth().currentUser.uid;
