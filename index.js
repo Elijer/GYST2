@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", event => {
     var db = firebase.firestore();
     handleEmulators(db);
     auth(firebase, db);
-    gameplay();
+    //gameplay();
 
     //// EVENT LISTENERS
     document.getElementById('find-game').addEventListener('click', function(){
-        findGame(db);
+        findGame(db, firebase);
     });
 
 });
