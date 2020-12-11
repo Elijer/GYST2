@@ -15,6 +15,8 @@
     <link href = "STYLE/style.scss" rel = "stylesheet" type = "text/css" />
     <link href = "STYLE/welcome.scss" rel = "stylesheet" type = "text/css" />
     <link href = "STYLE/animation.css" rel = "stylesheet" type = "text/css" />
+    <link href = "STYLE/auth.scss" rel = "stylesheet" type = "text/css" />
+    <link href = "STYLE/loader.scss" rel = "stylesheet" type = "text/css" />
     
     <!-- Font Awesome -->
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,6 +24,21 @@
   </head>
 
   <body id = "fade-in">
+
+    <!-- AUTH BAR -->
+    <div id = "auth-bar">
+      <div id = "login" class = "login-inviz">
+        <div id = "login-state">login-state</div>
+        <div id = "username" contenteditable="true" spellcheck="false">username</div>
+      </div>
+      <div id = "logout"> logout</div>
+      <div id = "loader-container">
+        <div class="spinner" id = "loader">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+      </div>
+    </div>
 
     <div id = "message">
       <div id = "message-content" > ( GYST )</div>

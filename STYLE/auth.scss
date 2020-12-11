@@ -1,0 +1,85 @@
+* {
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0px;
+    padding: 0px;
+}
+
+#auth-bar {
+    height: 60px;
+    background: grey;
+    color: white;
+    padding: 50px 80px 20px;
+
+    #login, #logout {
+        color: white;
+        transition: opacity .2s;
+        font-size: 30px;
+        text-align: center;
+        display: none;
+        text-shadow: 2px 2px rgb(108, 108, 108);
+    }
+
+    #logout:hover {
+        color: orange;
+    }
+
+    .login-inviz {
+        opacity: 0;
+        transition: opacity .2s;
+    }
+
+    #loader-container {
+        padding: 0px 20px 10px;
+        text-align: center;
+    }
+
+    #logout {
+        float: right;
+    }
+
+    #login {
+
+        .login-go:hover {
+            color: orange;
+        }
+
+        #login-state, #username {
+            display: inline;
+            text-align: left;
+            float: left;
+            padding-bottom: 4px;
+        }
+
+        #login-state {
+            padding-right: 12px;
+        }
+
+        #username {
+            color: orange;
+        }
+
+        #username:focus {
+            outline:0;
+        }
+
+        #username:hover, #username:focus {
+            color: rgb(210, 175, 175);
+            border-bottom: 2px solid rgb(210, 175, 175);
+        }
+    }
+
+}
+
+#content {
+    width: 50%;
+    margin-top: 6%;
+    margin-left: 80px;
+
+    h1 {
+        padding-bottom: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
