@@ -1,3 +1,5 @@
+@import "vars";
+
 * {
     font-family: 'JetBrains Mono', monospace;
     margin: 0px;
@@ -6,7 +8,7 @@
 
 #auth-bar {
     height: 60px;
-    background: grey;
+    background: $sq;
     color: white;
     padding: 50px 80px 20px;
 
