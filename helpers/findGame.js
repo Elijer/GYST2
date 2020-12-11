@@ -9,7 +9,7 @@ export function findGame(db, firebase){
 
         if (querySnapshot.empty){
 
-            // CREATE NEW GAME //////////////
+            // CREATE NEW PENDING GAME //////////////
             console.log("No games found");
             var newGame = createGame(db, firebase);
 
@@ -18,37 +18,38 @@ export function findGame(db, firebase){
 
                 if (progress.game != null){
                     // This is prevent new games from being created forever
+                    console.log(progress.game);
                     unsubscribe();
-                } else if (progress.player2 != null){
-
-                    const game = db.collection("games").doc();
-
-                    game.set({
-                        player1: doc.data().player1,
-                        player2: doc.data().player2
-                    })
-
-                    const gameID = game.id;
-
-                    doc.ref.update({
-                        game: gameID,
-                    })
-
                 }
 
             })
 
         } else {
 
-            // JOIN NEW GAME ///////////////
+            // JOIN NEW PENDING GAME ///////////////
             console.log("A game was found! Joining it presently.");
 
             querySnapshot.forEach(function(doc) {
+
                 let uid = firebase.auth().currentUser.uid;
-                doc.ref.update({
-                  player2: uid
+
+                // CREATE A GAME DOC
+                const game = db.collection("games").doc();
+                game.set({
+                    player1: doc.data().player1,
+                    player2: uid
                 })
 
+                const gameID = game.id;
+
+                doc.ref.update({
+                    // I don't even think I need to put in player2 but whatevs
+                  player2: uid,
+                  game: gameID
+                })
+
+
+/* 
                 var unsubscribe = doc.ref.onSnapshot(function(doc){
                     var pend = doc.data();
 
@@ -56,7 +57,7 @@ export function findGame(db, firebase){
                         console.log(pend.game);
                         unsubscribe();
                     }
-                })
+                }) */
 
             })
 
