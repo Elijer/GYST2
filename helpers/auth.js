@@ -20,6 +20,8 @@ export function auth(firebase, db){
     // NONE:    Not saved in browser. Cleared on page refresh.
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
+  var signedInOnce = false;
+
   // LISTEN FOR CHANGES IN AUTH (login, logout, etc)
   firebase.auth().onAuthStateChanged(function(user) {
     disp("loading");
@@ -32,8 +34,21 @@ export function auth(firebase, db){
         disp("in", name);
       })
 
+      signedInOnce = true;
+
     } else {
       disp("out");
+
+      // This checks to see if user has logged out and then in again. If not,
+      // It can be assumed that they are getting to the page for the first time.
+      // I want the user to be logged in by default so that they don't need to do so manually,
+      // Unless they CHOSE to log out to begin with. For some reason.
+      // It might very well make sense to just get rid of the login button completely
+      // And make the whole process more automatic.
+        if (signedInOnce === false){
+            anonLogin(firebase, db);
+        }
+
     }
   });
 
@@ -166,4 +181,30 @@ function changeUsername(firebase, db){
       name: newOne
     })
   })
+}
+
+function clearGamesWithUid(firebase, db){
+
+    let uid = firebase.auth().currentUser.uid;
+    var query = matches.where("player1", "===", uid).limit(1);
+
+    query.get()
+    .then(function(querySnapshot){
+        console.log(querySnapshot);
+        if (querySnapshot.empty){
+            console.log("No games to delete");
+        } else {
+
+            console.log("Games found to delete");
+
+            var batch = db.batch();
+
+            querySnapshot.forEach(function(doc) {
+                doc.delete().then(function(){
+                    console.log("document successfully deleted");
+                })
+            })
+        }
+    })
+
 }
