@@ -1,5 +1,9 @@
 export function findGame(db, firebase){
 
+    var welcomeMessage = document.getElementById("welcome-message");
+    welcomeMessage.innerHTML = "Waiting for another player";
+    animateElipsis(welcomeMessage);
+
     var matches = db.collection("pending");
 
     var query = matches.where("player2", "==", null).limit(1);
@@ -16,8 +20,9 @@ export function findGame(db, firebase){
             var findGameButton = document.getElementById("find-game");
             findGameButton.style.display = "none";
 
-            var welcomeMessage = document.getElementById("welcome-message");
-            welcomeMessage.innerHTML = "Waiting for another player...";
+/*             var welcomeMessage = document.getElementById("welcome-message");
+            welcomeMessage.innerHTML = "Waiting for another player";
+            animateElipsis(welcomeMessage); */
 
             var matchmakingLoader = document.getElementById("matchmaking-loader");
             matchmakingLoader.style.display = "block";
@@ -74,4 +79,23 @@ function createGame(db, firebase){
     })
 
     return gamesRef;
+}
+
+function animateElipsis(target){
+
+    var counter = 0;
+    const interval = 650;
+
+    setInterval(function(){
+        target.innerHTML = target.innerHTML + ".";
+        counter++;
+        if (counter > 3){
+            counter = 0;
+            target.innerHTML = "Waiting for another player"
+        }
+    }, interval);
+
+
+
+
 }
