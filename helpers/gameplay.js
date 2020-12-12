@@ -1,5 +1,8 @@
 export function gameplay(){
 
+  var target = document.getElementById("message");
+  target.style.display = "block";
+
     var
     E = "",
     B = "X",

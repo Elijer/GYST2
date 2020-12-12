@@ -10,52 +10,36 @@ html {
     background: $bg;
 }
 
-#grid-container{
+#welcome {
 
-    margin-top: 2%;
-    padding-left: 25%;
-    padding-right: 25%;
+    padding: 20px 25% 0px 25%;
     width: 50%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-
-}
-
-.sq, #message {
-
     font-family: 'Ubuntu', sans-serif;
-    color: white;
-    padding: 25px 20px 25px;
-    font-size: 50px;
-    text-align: center;
-    background: $sq;
-    box-shadow: 4px 4px 5px $shadow;
 
-}
+    #welcome-message {
+        color: $welcome;
+        font-size: 26px;
+        text-shadow: 2px 2px $message-shadow;
+    }
 
-.sq {
-    text-shadow: 2px 2px $type-shadow;
-}
+    #find-game {
 
-#message {
-    color: $message-text;
-    text-shadow: 2px 2px $message-shadow;
-    margin-top: 3%;
-    margin-left: 24%;
-    width: 50%;
-    background: none;
-    box-shadow: none;
-    margin-bottom: 20px;
-}
+        display: none;
+        padding: 16px;
+        margin: 40px 30% 0px;
+        font-size: 30px;
+    
+        color: white;
+        background: $sq;
+        text-shadow: 3px 3px $message-shadow;
+        box-shadow: 4px 4px 4px $shadow;
+        outline:0;
+        border: none;
+    }
 
-#message-content {
-    font-size: 35px;
-    position: absolute;
-}
-  
-.sq:hover {
-
-    background: $bg;
+    #find-game:hover {
+        color: orange;
+        box-shadow: none;
+    }
 
 }
