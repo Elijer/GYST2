@@ -21,7 +21,7 @@ export function auth(firebase, db){
     // LOCAL:   Persists in browser unless signed out.
     // SESSION: Auth state ends when tab or window is closed.
     // NONE:    Not saved in browser. Cleared on page refresh.
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 
   var signedInOnce = false;
 

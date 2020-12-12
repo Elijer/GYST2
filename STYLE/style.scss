@@ -12,11 +12,10 @@ html {
 
 #welcome {
 
-    padding: 20px 25% 0px 25%;
+    padding: 80px 25% 0px 25%;
     width: 50%;
-    font-family: 'Ubuntu', sans-serif;
 
-    #welcome-message {
+    .summary {
         color: $welcome;
         font-size: 26px;
         text-shadow: 2px 2px $message-shadow;
@@ -40,6 +39,12 @@ html {
     #find-game:hover {
         color: orange;
         box-shadow: none;
+    }
+        
+    #matchmaking-loader {
+        display: none;
+        top: 56px;
+        margin: auto;
     }
 
 }

@@ -13,6 +13,16 @@ export function findGame(db, firebase){
             console.log("No games found");
             var newGame = createGame(db, firebase);
 
+            var findGameButton = document.getElementById("find-game");
+            findGameButton.style.display = "none";
+
+            var welcomeMessage = document.getElementById("welcome-message");
+            welcomeMessage.innerHTML = "Waiting for another player...";
+
+            var matchmakingLoader = document.getElementById("matchmaking-loader");
+            matchmakingLoader.style.display = "block";
+
+
             var unsubscribe = newGame.onSnapshot(function(doc){
                 var progress = doc.data();
 
