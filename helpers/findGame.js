@@ -1,9 +1,5 @@
 export function findGame(db, firebase){
 
-    var welcomeMessage = document.getElementById("welcome-message");
-    welcomeMessage.innerHTML = "Waiting for another player";
-    animateElipsis(welcomeMessage);
-
     var matches = db.collection("pending");
 
     var query = matches.where("player2", "==", null).limit(1);
@@ -20,9 +16,9 @@ export function findGame(db, firebase){
             var findGameButton = document.getElementById("find-game");
             findGameButton.style.display = "none";
 
-/*             var welcomeMessage = document.getElementById("welcome-message");
+            var welcomeMessage = document.getElementById("welcome-message");
             welcomeMessage.innerHTML = "Waiting for another player";
-            animateElipsis(welcomeMessage); */
+            animateElipsis(welcomeMessage);
 
             var matchmakingLoader = document.getElementById("matchmaking-loader");
             matchmakingLoader.style.display = "block";
