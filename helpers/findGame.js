@@ -1,3 +1,5 @@
+import { showtime } from './showtime';
+
 export function findGame(db, firebase){
 
     var matches = db.collection("pending");
@@ -26,12 +28,14 @@ export function findGame(db, firebase){
 
 
             var unsubscribe = newGame.onSnapshot(function(doc){
-                var listenerFor = doc.data();
+                var gameFound = doc.data();
 
-                if (listenerFor.game != null){
+                if (gameFound.game != null){
 
                     // This is the game that's been created by player2!
-                    console.log(progress.game);
+                    var game = gameFound.game;
+
+                    showtime("player1", game);
 
                     // So we'll delete the "pending" document
                     doc.ref.delete();
@@ -56,16 +60,18 @@ export function findGame(db, firebase){
                 game.set({
                     player1: doc.data().player1,
                     player2: uid
+                }).then(function(){
+
+                    const gameID = game.id;
+
+                    doc.ref.update({
+                      game: gameID
+                    }).then(function(){
+                        showtime("player2", game);
+                    })
+
                 })
-
-                const gameID = game.id;
-
-                doc.ref.update({
-                  game: gameID
-                })
-
             })
-
         }
     })
 }
