@@ -26,12 +26,17 @@ export function findGame(db, firebase){
 
 
             var unsubscribe = newGame.onSnapshot(function(doc){
-                var progress = doc.data();
+                var listenerFor = doc.data();
 
-                if (progress.game != null){
-                    // This is prevent new games from being created forever
+                if (listenerFor.game != null){
+
+                    // This is the game that's been created by player2!
                     console.log(progress.game);
+
+                    // So we'll delete the "pending" document
                     doc.ref.delete();
+
+                    // And shut down this listener.
                     unsubscribe();
                 }
 

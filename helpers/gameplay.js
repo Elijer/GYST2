@@ -1,4 +1,4 @@
-export function gameplay(){
+export function gameplay(currentPlayer, board){
 
   var target = document.getElementById("message");
   target.style.display = "block";
@@ -9,7 +9,7 @@ export function gameplay(){
     O = "O",
     N = "N"
     
-    var player1 = {
+    var currentPlayer = {
         color: X
     }
     
@@ -25,15 +25,13 @@ export function gameplay(){
     
     var selection = null;
     
-    var options = [];
-    
     var movePiece = function(pieceRow, pieceCol, destRow, destCol){
     
         var position = board[pieceRow][pieceCol];
       var destination = board[destRow][destCol];
     
       if (position){
-        if (position === player1.color || position === N){
+        if (position === currentPlayer.color || position === N){
             if (destination === E){
           
             var verticalRange = destRow - pieceRow;
@@ -138,6 +136,8 @@ export function gameplay(){
     
     function ascendingWin(target){
       // When the X's ascend 4 in a row from around the bottom left to the top right
+      // I've put comments into this one to explain it since it's kind bonkers.
+      // descending win is a mirror-image of this function.
     
       var starts = [
         [1, 4],
@@ -149,7 +149,7 @@ export function gameplay(){
       var count = 0;
     
       for (var i = 0; i < starts.length; i++){ //iterate through possible starting coords
-        count = 0;
+        count = 0; // Count has to be reset every time a new starting point is considered
         for (var j = 0; j < 4; j++){ //probe for 4 consecutive positions with the player's piece
           if (board
     
@@ -191,7 +191,7 @@ export function gameplay(){
       var count = 0;
     
       for (var i = 0; i < starts.length; i++){
-        count = 0;
+        count = 0; // Count has to be reset every time a new starting point is considered
         for (var j = 0; j < 4; j++){
           if (board
     
