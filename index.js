@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", event => {
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
     handleEmulators(db);
-    auth(firebase, db);
-    //gameplay();
+    //auth(firebase, db);
+    gameplay();
 
     //// EVENT LISTENERS
     document.getElementById('find-game').addEventListener('click', function(){

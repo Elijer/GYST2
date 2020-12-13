@@ -4,7 +4,7 @@ export function gameplay(){
   target.style.display = "block";
 
     var
-    E = "",
+    E = " ",
     X = "X",
     O = "O",
     N = "N"
@@ -127,6 +127,9 @@ export function gameplay(){
     }
     
     var winner = function(){
+
+      // MAJOR BUG: a 3-in-a-row line can trigger a win if the center of the 3 is in the center square.
+
       straightWin(X, true);
       straightWin(X, false);
       descendingWin(X);
@@ -134,6 +137,7 @@ export function gameplay(){
     }
     
     function ascendingWin(target){
+      // When the X's ascend 4 in a row from around the bottom left to the top right
     
       var starts = [
         [1, 4],
@@ -144,24 +148,27 @@ export function gameplay(){
     
       var count = 0;
     
-      for (var i = 0; i < starts.length; i++){
-        for (var j = 0; j < 4; j++){
+      for (var i = 0; i < starts.length; i++){ //iterate through possible starting coords
+        count = 0;
+        for (var j = 0; j < 4; j++){ //probe for 4 consecutive positions with the player's piece
           if (board
     
-            [starts[i][0]]
-            [starts[i][1]]
+            [starts[i][0]] // first position in a start coord
+            [starts[i][1]] // second position in a start coord
     
              === target){
     
             count++;
             
           } else {
-            count = 0;
+            count = 0; // if that coord doesn't have the player's type (x or o), then start the count over.
+            // (a count of 4 validates in a row)
           }
     
           if (count === 4){
-            alert("You won!!")
+            alert("You won!! ascending")
           } else {
+            // if this coord is of the player's type, then keep moving up and left until i is 3 (must be <4 in loop definition)
             starts[i][0]++;
             starts[i][1]--;
           }
@@ -172,6 +179,7 @@ export function gameplay(){
     }
     
     function descendingWin(target){
+      // When the X's descend 4 in a row from around the top right towards the bottom left
     
       var starts = [
         [1, 0],
@@ -183,6 +191,7 @@ export function gameplay(){
       var count = 0;
     
       for (var i = 0; i < starts.length; i++){
+        count = 0;
         for (var j = 0; j < 4; j++){
           if (board
     
@@ -198,7 +207,7 @@ export function gameplay(){
           }
     
           if (count === 4){
-            alert("You won!!")
+            alert("You won!! descending")
           } else {
             starts[i][0]++;
             starts[i][1]++;
@@ -210,6 +219,7 @@ export function gameplay(){
     }
     
     function straightWin(target, horizontal){
+      // Describes a win that is either horizontal or vertical
       var count = 0;
     
       for (var i = 0; i < 5; i++){
