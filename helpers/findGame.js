@@ -18,6 +18,7 @@ export function findGame(db, firebase){
 
             var welcomeMessage = document.getElementById("welcome-message");
             welcomeMessage.innerHTML = "Waiting for another player";
+            //welcomeMessage.style.textAlign = "center";
             animateElipsis(welcomeMessage);
 
             var matchmakingLoader = document.getElementById("matchmaking-loader");

@@ -5,20 +5,20 @@ export function gameplay(){
 
     var
     E = "",
-    B = "X",
-    W = "O",
+    X = "X",
+    O = "O",
     N = "N"
     
     var player1 = {
-        color: B
+        color: X
     }
     
     var board = [
     
       [ E, E, E, E, E ],
-      [ E, B, W, B, E ],
-      [ E, W, N, W, E ],
-      [ E, B, W, B, E ],
+      [ E, X, O, X, E ],
+      [ E, O, N, O, E ],
+      [ E, X, O, X, E ],
       [ E, E, E, E, E ]
     
     ];
@@ -127,10 +127,10 @@ export function gameplay(){
     }
     
     var winner = function(){
-      straightWin(B, true);
-      straightWin(B, false);
-      descendingWin(B);
-      ascendingWin(B);
+      straightWin(X, true);
+      straightWin(X, false);
+      descendingWin(X);
+      ascendingWin(X);
     }
     
     function ascendingWin(target){
