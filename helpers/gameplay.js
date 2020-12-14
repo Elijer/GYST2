@@ -1,27 +1,13 @@
+import { E, X, O, N} from './startingBoard';
+
 export function gameplay(currentPlayer, board){
 
   var target = document.getElementById("message");
   target.style.display = "block";
-
-    var
-    E = " ",
-    X = "X",
-    O = "O",
-    N = "N"
     
     var currentPlayer = {
         color: X
     }
-    
-    var board = [
-    
-      [ E, E, E, E, E ],
-      [ E, X, O, X, E ],
-      [ E, O, N, O, E ],
-      [ E, X, O, X, E ],
-      [ E, E, E, E, E ]
-    
-    ];
     
     var selection = null;
     

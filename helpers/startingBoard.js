@@ -1,3 +1,9 @@
+export var
+E = " ",
+X = "X",
+O = "O",
+N = "N";
+
 export var startingBoard = [
     
     [ E, E, E, E, E ],
