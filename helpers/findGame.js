@@ -35,10 +35,11 @@ export function findGame(db, firebase){
                     // This is the game that's been created by player2!
                     var game = gameFound.game;
 
-                    showtime("player1", game);
+                    showtime("player1", doc.ref);
 
                     // So we'll delete the "pending" document
-                    doc.ref.delete();
+                    
+                    newGame.delete(); // But this is deleting the game, and that's no good.
 
                     // And cancel the ellipses loop used while looking for a game
                     clearInterval(loop);
