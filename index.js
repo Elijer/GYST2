@@ -7,6 +7,8 @@ import { handleEmulators } from "./helpers/handleEmulators";
 import { findGame } from './helpers/findGame';
 import { auth } from "./helpers/auth";
 
+    // IMPORTED FOR TESTING
+    import { showtime } from './helpers/showtime';
     //import { gameplay } from "./helpers/gameplay";
     //import { startingBoard } from './helpers/startingBoard';
 
@@ -17,6 +19,7 @@ document.addEventListener("DOMContentLoaded", event => {
     handleEmulators(db);
     auth(firebase, db);
     //gameplay("player1", startingBoard);
+    //showtime("player1");
 
     //// EVENT LISTENERS
     document.getElementById('find-game').addEventListener('click', function(){

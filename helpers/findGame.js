@@ -21,7 +21,7 @@ export function findGame(db, firebase){
             var welcomeMessage = document.getElementById("welcome-message");
             welcomeMessage.innerHTML = "Waiting for another player";
             //welcomeMessage.style.textAlign = "center";
-            animateElipsis(welcomeMessage);
+            var loop = animateElipsis(welcomeMessage);
 
             var matchmakingLoader = document.getElementById("matchmaking-loader");
             matchmakingLoader.style.display = "block";
@@ -39,6 +39,13 @@ export function findGame(db, firebase){
 
                     // So we'll delete the "pending" document
                     doc.ref.delete();
+
+                    // And cancel the ellipses loop used while looking for a game
+                    clearInterval(loop);
+
+                    // And make the loading stuff is hidden in general
+                    var welcome = document.getElementById("welcome");
+                    welcome.style.display = "none";
 
                     // And shut down this listener.
                     unsubscribe();
@@ -94,7 +101,7 @@ function animateElipsis(target){
     var counter = 0;
     const interval = 650;
 
-    setInterval(function(){
+    var loop = setInterval(function(){
         target.innerHTML = target.innerHTML + ".";
         counter++;
         if (counter > 3){
@@ -103,7 +110,6 @@ function animateElipsis(target){
         }
     }, interval);
 
-
-
+    return loop;
 
 }

@@ -6,9 +6,11 @@ export function showtime(player, game){
 
     if (player === "player1"){
         console.log("Playing as player 1");
+        gameplay("player1", startingBoard);
+
 
     } else if (player === "player2"){
         console.log("Playing as player 2");
-        
+
     }
 };
