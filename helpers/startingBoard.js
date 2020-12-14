@@ -1,4 +1,4 @@
-export var board = [
+export var startingBoard = [
     
     [ E, E, E, E, E ],
     [ E, X, O, X, E ],
