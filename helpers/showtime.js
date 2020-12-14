@@ -13,7 +13,23 @@ export function showtime(player, game){
     }
 
     function playerOne(board){
-        console.log(game);
+
+        var data = game.data();
+
+        var turns;
+
+        if (data.turns === null){
+            turns = 1
+        } else {
+            turns = data.turns + 1;
+        }
+
+        game.ref.update({
+            board: JSON.stringify(board),
+            turns: turns
+        }).then(function(){
+            console.log("updated history");
+        })
 /*         var lastHistory = game.data().history;
         var newHistory;
 
