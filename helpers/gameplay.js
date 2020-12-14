@@ -44,7 +44,7 @@ export function gameplay(currentPlayer, board, callback){
                 board[destRow][destCol] = position
                 board[pieceRow][pieceCol] = E;
                 //
-                callback();
+                callback(board);
   
             } else {
   
@@ -61,7 +61,7 @@ export function gameplay(currentPlayer, board, callback){
                     board[destRow][destCol] = position
                     board[pieceRow][pieceCol] = E;
                     //
-                    callback();
+                    callback(board);
                 } else {
                   say("That destination is too far away.")
                 }

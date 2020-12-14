@@ -15,7 +15,8 @@ export function showtime(player, game){
     }
 };
 
-function playerOne(){
-    console.log("Player one yadda yadda");
+function playerOne(board){
+
+    console.log(board);
 
 }
