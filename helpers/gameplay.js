@@ -1,6 +1,6 @@
 import { E, X, O, N} from './startingBoard';
 
-export function gameplay(currentPlayer, board){
+export function gameplay(currentPlayer, board, callback){
 
   var target = document.getElementById("message");
   target.style.display = "block";
@@ -40,6 +40,8 @@ export function gameplay(currentPlayer, board){
               say("You moved one square. Nice!");
                 board[destRow][destCol] = position
                 board[pieceRow][pieceCol] = E;
+                //
+                callback();
   
             } else {
   
@@ -55,6 +57,8 @@ export function gameplay(currentPlayer, board){
                     say("You skipped over another piece.");
                     board[destRow][destCol] = position
                     board[pieceRow][pieceCol] = E;
+                    //
+                    callback();
                 } else {
                   say("That destination is too far away.")
                 }
