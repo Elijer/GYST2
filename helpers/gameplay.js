@@ -4,10 +4,17 @@ export function gameplay(currentPlayer, board){
 
   var target = document.getElementById("message");
   target.style.display = "block";
-    
+
+  // Set the player's piece
+  if (currentPlayer === "player1"){
     var currentPlayer = {
-        color: X
+      color: X
     }
+  } else {
+    var currentPlayer = {
+      color: O
+    }
+  }
     
     var selection = null;
     
