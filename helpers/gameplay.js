@@ -1,6 +1,9 @@
 import { E, X, O, N} from './startingBoard';
 
 export function gameplay(currentPlayer, board, callback){
+  // CurrentPlayer should be "player1" or "player2"
+  // Board defines the state of the board for that turn before player plays
+  // Callback defines the function that will be run if a valid move is made.
 
   var target = document.getElementById("message");
   target.style.display = "block";
