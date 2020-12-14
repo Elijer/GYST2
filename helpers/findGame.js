@@ -34,8 +34,9 @@ export function findGame(db, firebase){
 
                     // This is the game that's been created by player2!
                     var game = gameFound.game;
+                    var gameRef = db.collection("games").doc(game);
 
-                    showtime("player1", doc);
+                    showtime("player1", gameRef);
 
                     // So we'll delete the "pending" document
                     

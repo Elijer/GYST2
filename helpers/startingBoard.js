@@ -13,3 +13,28 @@ export var startingBoard = [
     [ E, E, E, E, E ]
   
   ];
+
+
+  /*
+  
+var
+E = " ",
+X = "X",
+O = "O",
+N = "N";
+
+var startingBoard = [
+    
+    [ E, E, E, E, E ],
+    [ E, X, O, X, E ],
+    [ E, O, N, O, E ],
+    [ E, X, O, X, E ],
+    [ E, E, E, E, E ]
+  
+  ];
+
+  var json = JSON.stringify(startingBoard);
+
+  console.log(JSON.parse(json));
+
+  */
