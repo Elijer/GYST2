@@ -47,8 +47,6 @@ export function gameplay(currentPlayer, board, callback){
                 board[pieceRow][pieceCol] = E;
                 //
                 success = true;
-                console.log(board)
-                callback(board);
   
             } else {
   
@@ -66,7 +64,6 @@ export function gameplay(currentPlayer, board, callback){
                     board[pieceRow][pieceCol] = E;
                     //
                     success = true;
-                    callback(board);
                 } else {
                   say("That destination is too far away.")
                 }
@@ -115,15 +112,18 @@ export function gameplay(currentPlayer, board, callback){
             item.style.background = "orange";
     
             if (!selection){
-              console.log(board);
               selection = [row, col];
             } else {
               var successfulMove = movePiece(selection[0], selection[1], row, col);
+              console.log(successfulMove);
+              //
 
               if (successfulMove === true){
-                renderBoard(false)
-              } else {
                 renderBoard(true)
+                callback(board);
+              } else {
+                selection = null;
+                renderBoard(false);
               }
             }
           })
@@ -133,6 +133,7 @@ export function gameplay(currentPlayer, board, callback){
         }
       }
     } else {
+
       for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board[0].length; j++){
     
