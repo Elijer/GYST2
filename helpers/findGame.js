@@ -36,7 +36,7 @@ export function findGame(db, firebase){
                     var game = gameFound.game;
                     var gameRef = db.collection("games").doc(game);
 
-                    showtime("player1", gameRef);
+                    showtime("player1", gameRef, firebase);
 
                     // So we'll delete the "pending" document
                     
@@ -77,7 +77,7 @@ export function findGame(db, firebase){
                     doc.ref.update({
                       game: gameID
                     }).then(function(){
-                        showtime("player2", game);
+                        showtime("player2", game, firebase);
                     })
 
                 })
