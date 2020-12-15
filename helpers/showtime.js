@@ -13,7 +13,7 @@ export function showtime(player, gameRef, firebase){
         if (player === "player1"){
         
             if (data.turn === 1){
-                gameplay("player1", startingBoard, playerOne, data.turn);
+                gameplay("player1", startingBoard, playerOne);
             } else if (data.turn % 2 != 0){
 
 
@@ -26,6 +26,9 @@ export function showtime(player, gameRef, firebase){
         } else if (player === "player2"){
 
             if (data.turn %2 === 0){
+                var boardParsed = JSON.parse(data.board);
+                gameplay("player2", boardParsed, playerTwo);
+                //gameplay("player2", data.board, playerTwo);
                 // get current board
                 // run gameplay with current board
             } else {
@@ -35,8 +38,6 @@ export function showtime(player, gameRef, firebase){
     });
 
     function playerOne(board){
-
-
         
         var json = JSON.stringify(board);
 
@@ -44,15 +45,16 @@ export function showtime(player, gameRef, firebase){
             turn: increment,
             board: json
         })
+
+        //showtime("player2", gameRef, firebase);
         
     }
 
     function playerTwo(board){
-        console.log(gameRef);
-        var unsubscribe = gameRef.onSnapshot(function(doc){
-            var progress = doc.data();
-            console.log("changes were made to the game");
-        })
+
+        var boardParsed = JSON.parse(board);
+        console.log(boardParsed);
+
     }
 
 
