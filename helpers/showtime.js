@@ -15,12 +15,12 @@ export function showtime(player, gameRef, firebase){
             if (data.turn === 1){
                 gameplay("player1", startingBoard, playerOne);
             } else if (data.turn % 2 != 0){
-
+                var boardParsed = JSON.parse(data.board);
+                gameplay("player1", boardParsed, playerOne);
+                //
 
                 // get the current board
                 // run gameplay with current board
-            } else if (data.turn %2 === 0){
-                // lock the board: You can't move right now!
             }
 
         } else if (player === "player2"){
@@ -31,8 +31,6 @@ export function showtime(player, gameRef, firebase){
                 //gameplay("player2", data.board, playerTwo);
                 // get current board
                 // run gameplay with current board
-            } else {
-                // lock the board! You can't move right now
             }
         }
     });
@@ -47,13 +45,19 @@ export function showtime(player, gameRef, firebase){
         })
 
         //showtime("player2", gameRef, firebase);
+        //
         
     }
 
     function playerTwo(board){
 
-        var boardParsed = JSON.parse(board);
-        console.log(boardParsed);
+        var json = JSON.stringify(board);
+
+        gameRef.update({
+            turn: increment,
+            board: json
+        })
+
 
     }
 

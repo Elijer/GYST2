@@ -47,6 +47,7 @@ export function gameplay(currentPlayer, board, callback){
                 board[pieceRow][pieceCol] = E;
                 //
                 success = true;
+                console.log(board)
                 callback(board);
   
             } else {
@@ -149,10 +150,10 @@ export function gameplay(currentPlayer, board, callback){
   }
     
   var winner = function(){
-    straightWin(X, true);
-    straightWin(X, false);
-    descendingWin(X);
-    ascendingWin(X);
+    straightWin(currentPlayer.color, true);
+    straightWin(currentPlayer.color, false);
+    descendingWin(currentPlayer.color);
+    ascendingWin(currentPlayer.color);
   }
     
   function ascendingWin(target){
