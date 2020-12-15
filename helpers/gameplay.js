@@ -86,7 +86,7 @@ export function gameplay(currentPlayer, board, callback){
     //movePiece(2, 2, 0, 0);
     
     
-  var renderBoard = function(){
+  var renderBoard = function(locked){
   
     for (var i = 0; i < board.length; i++) {
       for (var j = 0; j < board[0].length; j++){
@@ -98,29 +98,35 @@ export function gameplay(currentPlayer, board, callback){
   
         let row = i;
         let col = j;
+
+        if (locked === false){
+          item.addEventListener("click", function(){
   
-        item.addEventListener("click", function(){
-  
-          item.style.background = "orange";
-  
-          if (!selection){
-            console.log(board);
-            selection = [row, col];
-          } else {
-  
-            movePiece(selection[0], selection[1], row, col);
-            selection = null;
-            document.getElementById("grid-container").innerHTML = "";
-            renderBoard();
-  
-          }
-  
-        })
+            item.style.background = "orange";
+    
+            if (!selection){
+              console.log(board);
+              selection = [row, col];
+            } else {
+    
+              movePiece(selection[0], selection[1], row, col);
+              selection = null;
+              document.getElementById("grid-container").innerHTML = "";
+              // For multiplayer, they should only get one move. The second time around, the board will have no click listeners.
+              renderBoard(true);
+    
+            }
+    
+          })
+        } else {
+          say("Waiting for other player to move.");
+        }
   
         document.getElementById("grid-container").appendChild(item);
+
       }
     }
-    winner();
+    //winner();
   }
     
   var winner = function(){
@@ -256,7 +262,7 @@ export function gameplay(currentPlayer, board, callback){
     [1, 1]
   ];
     
-  renderBoard();
+  renderBoard(false);
     
   var say = function(t){
     var target = document.getElementById("message-content");

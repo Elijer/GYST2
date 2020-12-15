@@ -1,0 +1,1 @@
+var target = document.getElementById("message");

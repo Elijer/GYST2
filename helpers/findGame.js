@@ -68,7 +68,8 @@ export function findGame(db, firebase){
                 const game = db.collection("games").doc();
                 game.set({
                     player1: doc.data().player1,
-                    player2: uid
+                    player2: uid,
+                    turn: 1
                 }).then(function(){
 
                     const gameID = game.id;
