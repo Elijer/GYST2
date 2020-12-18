@@ -87,8 +87,6 @@ export function gameplay(currentPlayer, board, callback){
     return success;
   }
     
-    //movePiece(2, 2, 0, 0);
-    
     
   var renderBoard = function(locked){
 

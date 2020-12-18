@@ -77,6 +77,9 @@ export function findGame(db, firebase){
                     doc.ref.update({
                       game: gameID
                     }).then(function(){
+
+                        hideFindGameStuff();
+
                         showtime("player2", game, firebase);
                     })
 
@@ -114,5 +117,17 @@ function animateElipsis(target){
     }, interval);
 
     return loop;
+
+}
+
+function hideFindGameStuff(){
+    
+    // hide the find-game button
+    var findGameButton = document.getElementById("find-game");
+    findGameButton.style.display = "none";
+
+    // Make sure loading stuff is hidden
+    var welcome = document.getElementById("welcome");
+    welcome.style.display = "none";
 
 }
