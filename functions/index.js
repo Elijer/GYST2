@@ -28,8 +28,10 @@ exports.newPendingPlayer = functions.firestore
                         pending: false
                     })
 
+                    // Check to see if this is the first doc in the querySnapshot or the second
                     if (count === 0){
 
+                        // Add player one to the gameRef
                         gameRef.set({
                             player1: doc.id
                         }, {merge: true})
@@ -37,12 +39,14 @@ exports.newPendingPlayer = functions.firestore
 
                     } else {
 
+                        // Add player two to the gameRef
                         gameRef.set({
                             player2: doc.id
                         }, {merge: true})
 
                     }
 
+                    // Finally, add a reference to the game in the playerRef
                     playerRef.set({
                         game: gameRef.id
                     }, {merge: true})
