@@ -111,8 +111,11 @@ export function showtime(player, gameRef, firebase, userRef){
         }
 
         userRef.update({
-            game: null
-        })
+            game: null,
+            winner: null,
+            pending: false,
+            whichPlayer: null
+        }, {merge: true})
 
         gameRef.delete().then(function(){
             console.log("Game over, document successfully deleted");
