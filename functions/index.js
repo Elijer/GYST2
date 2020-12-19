@@ -28,6 +28,9 @@ exports.newPendingPlayer = functions.firestore
                         pending: false
                     })
 
+                    console.log("THE COUNT IS", count);
+                    count++;
+
 /*                     if (count === 0){
                         gameRef.set({
                             player1: doc.id
