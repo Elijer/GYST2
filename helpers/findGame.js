@@ -27,7 +27,7 @@ export function findGame(db, firebase){
                 console.log("Okay, ran an HTTP function I think.")
 
                 // create listener on player to wait for a game ID
-                var unsubscribe = userRef.onSnapshot(function(doc){
+/*                 var unsubscribe = userRef.onSnapshot(function(doc){
                     let data = doc.data();
                     if (data.game != null){
 
@@ -41,7 +41,7 @@ export function findGame(db, firebase){
                         //showtime(data.whichPlayer, data.game, firebase);
 
                     }
-                })
+                }) */
             })
         })
     })

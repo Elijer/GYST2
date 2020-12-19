@@ -24,14 +24,80 @@ function matchMaker(){
             if (querySnapshot.size === 2){
                 console.log("we can make a game")
 
-                var player1 = querySnapshot[0];
-                var player2 = querySnapshot[1];
+                // First we have to create a game ref to call later.
+                var gameRef = admin.firestore().collection('games').doc()
 
-                // create game docRef
-                let gameRef = admin.firestore().collection('games').doc().set({
+                // Then we make sure the player docs are set to 'pending:false' to make sure no other games are created
+                var count = 1;
+
+                querySnapshot.forEach(function(doc){
+
+                    let playerRef = admin.firestore().collection('players').doc(doc.id);
+
+                    playerRef.set({
+                        pending: false,
+                        game: gameRef.id,
+                        whichPlayer: "player" + count
+                    }), {merge:true}
+
+                    count++;
+
+                })
+
+                // We can now asynchronously create the game
+                var player1 = querySnapshot.docs[0];
+                var player2 = querySnapshot.docs[1];
+
+                gameRef.set({
                     turn: 1,
                     winner: null,
-                    player1: player2.id,
+                    player1: player1.id,
+                    player2: player2.id
+                }, {merge: true});
+
+
+
+
+
+/* 
+                var player1 = querySnapshot.docs[0];
+                var player2 = querySnapshot.docs[1]; */
+
+/*                 var count = 1;
+                querySnapshot.forEach(function(doc){
+                    console.log(doc.id);
+                }) */
+
+/*                 var gameRef = admin.firestore().collection('games').doc().set({
+                    turn: 1,
+                    winner: null,
+                    player1: player1.id,
+                    player2: player2.id
+                }, {merge: true}) */
+                
+/*                 .then(() => {
+                    console.log("yo")
+
+                var count = 1;
+                    querySnapshot.forEach(function(doc){
+                        console.log("snapshot");
+                        let playerRef = admin.firestore().collection('players').doc(doc.id);
+                        playerRef.set({
+                            pending: false,
+                            game: gameRef.id
+                        }), {merge:true}
+                    })
+                }) */
+
+
+                //////////
+
+
+                // create game docRef
+/*                 let gameRef = admin.firestore().collection('games').doc().set({
+                    turn: 1,
+                    winner: null,
+                    player1: player1.id,
                     player2: player2.id
                 }, {merge:true}).then(function(){
 
@@ -49,7 +115,7 @@ function matchMaker(){
                         count++;
                     })
 
-                })
+                }) */
 
             } else {
                 console.log("we cannot yet make a game: only one player is pending.")
