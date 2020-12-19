@@ -19,15 +19,22 @@ export function findGame(db, firebase){
             console.log("document don't exist. Gon make it and set the game field as null. The cloud will do the rest.");
             userRef.set({
                 game: null,
-                pending: true
+                pending: true,
+                whichPlayer: null
             }).then(function(){
                 // create listener on player to wait for a game ID
                 var unsubscribe = userRef.onSnapshot(function(doc){
                     let data = doc.data();
                     if (data.game != null){
 
-                        console.log("a game exists now!!")
+                        let gameRef = db.collection("games").doc(data.game);
 
+                        //console.log(data.whichPlayer);
+                        showtime(data.whichPlayer, gameRef, firebase);
+
+                        hideFindGameStuff();
+                        unsubscribe();
+                        //showtime(data.whichPlayer, data.game, firebase);
 
                     }
                 })
@@ -48,24 +55,6 @@ function createGame(db, firebase){
     })
 
     return gamesRef;
-}
-
-function animateElipsis(target){
-
-    var counter = 0;
-    const interval = 650;
-
-    var loop = setInterval(function(){
-        target.innerHTML = target.innerHTML + ".";
-        counter++;
-        if (counter > 3){
-            counter = 0;
-            target.innerHTML = "Waiting for another player"
-        }
-    }, interval);
-
-    return loop;
-
 }
 
 function hideFindGameStuff(){
@@ -92,6 +81,24 @@ function waitingDisplay(){
 
     var matchmakingLoader = document.getElementById("matchmaking-loader");
     matchmakingLoader.style.display = "block";
+
+}
+
+function animateElipsis(target){
+
+    var counter = 0;
+    const interval = 650;
+
+    var loop = setInterval(function(){
+        target.innerHTML = target.innerHTML + ".";
+        counter++;
+        if (counter > 3){
+            counter = 0;
+            target.innerHTML = "Waiting for another player"
+        }
+    }, interval);
+
+    return loop;
 
 }
 
