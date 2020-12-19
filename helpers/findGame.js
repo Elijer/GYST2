@@ -89,7 +89,10 @@ function waitingDisplay(){
     welcomeMessage.innerHTML = "Waiting for another player";
     //welcomeMessage.style.textAlign = "center";
     var loop = animateElipsis(welcomeMessage);
-    
+
+    var matchmakingLoader = document.getElementById("matchmaking-loader");
+    matchmakingLoader.style.display = "block";
+
 }
 
 /*     query.get()
