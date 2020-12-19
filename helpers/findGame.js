@@ -10,9 +10,6 @@ export function findGame(db, firebase){
     userRef.get()
     .then((doc) => {
 
-        // stop loading the animateElipsis
-        clearInterval(loop);
-
         // Because merge is true, it will update the crucial fields of the document regardless of whether it exists or not
         console.log("document don't exist. Gon make it and set the game field as null. The cloud will do the rest.");
         userRef.set({
@@ -21,6 +18,9 @@ export function findGame(db, firebase){
             whichPlayer: null,
             winner: null
         }, {merge: true}).then(function(){
+
+            // stop loading the animateElipsis -- this should be run later, once a game is actually found.
+            clearInterval(loop);
 
             // Run HTTPS function
             var findNewGame = firebase.functions().httpsCallable('findNewGame');
