@@ -41,7 +41,7 @@ export function showtime(player, gameRef, firebase, userRef){
                 alert("You Won!!")
 
             } else {
-                endGame(gameRef, player, false)
+                endGame(gameRef, player, userRef, false)
                 alert("Sorry bruh. You lost this one.")
 
             }
@@ -85,6 +85,10 @@ export function showtime(player, gameRef, firebase, userRef){
 
         let spinner = document.getElementById("matchmaking-loader");
         spinner.style.display = 'none';
+
+        let msg = document.getElementById("message-content");
+        msg.style.innerHTML = "";
+        msg.style.display = "none";
 
         var welcomeMessage = document.getElementById("welcome-message");
         welcomeMessage.style.display = "block";
