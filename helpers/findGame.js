@@ -20,7 +20,8 @@ export function findGame(db, firebase){
             userRef.set({
                 game: null,
                 pending: true,
-                whichPlayer: null
+                whichPlayer: null,
+                winner: null
             }).then(function(){
                 // create listener on player to wait for a game ID
                 var unsubscribe = userRef.onSnapshot(function(doc){
@@ -30,7 +31,7 @@ export function findGame(db, firebase){
                         let gameRef = db.collection("games").doc(data.game);
 
                         //console.log(data.whichPlayer);
-                        showtime(data.whichPlayer, gameRef, firebase);
+                        showtime(data.whichPlayer, gameRef, firebase, userRef);
 
                         hideFindGameStuff();
                         unsubscribe();

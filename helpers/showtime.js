@@ -1,7 +1,7 @@
 import { gameplay } from "./gameplay";
 import { startingBoard } from './startingBoard';
 
-export function showtime(player, gameRef, firebase){
+export function showtime(player, gameRef, firebase, userRef){
 
     const increment = firebase.firestore.FieldValue.increment(1);
     const decrement = firebase.firestore.FieldValue.increment(-1);
@@ -10,30 +10,42 @@ export function showtime(player, gameRef, firebase){
     var unsubscribe = gameRef.onSnapshot(function(doc){
         let data = doc.data();
 
-        if (player === "player1"){
-        
-            if (data.turn === 1){
-                gameplay("player1", startingBoard, playerOne, true);
-            } else if (data.turn % 2 != 0){
-                var boardParsed = JSON.parse(data.board);
-                gameplay("player1", boardParsed, playerOne, true);
-                //
+        if (data.winner == null){ // Game is carrying on
 
-                // get the current board
-                // run gameplay with current board
+            if (player === "player1"){
+
+                if (data.turn === 1){
+                    gameplay("player1", startingBoard, playerOne, true, winner);
+                } else if (data.turn % 2 != 0){
+                    var boardParsed = JSON.parse(data.board);
+                    gameplay("player1", boardParsed, playerOne, true, winner);
+                }
+
+
+            } else if (player === "player2"){
+
+                if (data.turn === 1){
+                    gameplay("player2", startingBoard, playerTwo, false, winner);
+                } else if (data.turn %2 === 0){
+                    var boardParsed = JSON.parse(data.board);
+                    gameplay("player2", boardParsed, playerTwo, true, winner);
+                }
             }
 
-        } else if (player === "player2"){
-            if (data.turn === 1){
-                gameplay("player2", startingBoard, playerTwo, false);
-            } else if (data.turn %2 === 0){
-                var boardParsed = JSON.parse(data.board);
-                gameplay("player2", boardParsed, playerTwo, true);
-                //gameplay("player2", data.board, playerTwo);
-                // get current board
-                // run gameplay with current board
+        } else { // Somebody won
+
+            unsubscribe();
+            endGame(gameRef, player, userRef)
+
+            if (player == data.winner){
+                alert("You Won!!")
+
+            } else {
+                alert("Sorry bruh. You lost this one.")
+
             }
         }
+
     });
 
     function playerOne(board){
@@ -44,9 +56,6 @@ export function showtime(player, gameRef, firebase){
             turn: increment,
             board: json
         })
-
-        //showtime("player2", gameRef, firebase);
-        //
         
     }
 
@@ -60,6 +69,28 @@ export function showtime(player, gameRef, firebase){
         })
 
 
+    }
+    
+
+    function winner(winner){
+
+        gameRef.update({
+            winner: winner
+        })
+
+    }
+
+    function endGame(gameRef, playerName, userRef){
+        userRef.update({
+            game: null
+        })
+
+        gameRef.delete().then(function(){
+            console.log("Game over, document successfully deleted");
+        })
+        // Delete Game
+        // Delete game ref from player
+        // Reset Dom
     }
 
 

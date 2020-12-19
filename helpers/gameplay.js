@@ -1,6 +1,6 @@
 import { E, X, O, N} from './startingBoard';
 
-export function gameplay(currentPlayer, board, callback, movementAllowed){
+export function gameplay(currentPlayer, board, callback, movementAllowed, winnerCallback){
   // CurrentPlayer should be "player1" or "player2"
   // Board defines the state of the board for that turn before player plays
   // Callback defines the function that will be run if a valid move is made.
@@ -16,21 +16,25 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
   // Set the player's piece
   if (currentPlayer === "player1"){
     var currentPlayer = {
-      color: X
+      color: X,
+      name: 'player1'
     }
 
     var opponent = {
-      color: O
+      color: O,
+      name: 'player2'
     }
 
   } else {
 
     var currentPlayer = {
-      color: O
+      color: O,
+      name: 'player2'
     }
 
     var opponent = {
-      color: X
+      color: X,
+      name: 'player2'
     }
 
   }
@@ -179,7 +183,8 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
     let d = ascendingWin(currentPlayer.color);
 
     if (a || b || c || d){
-      alert("You won!")
+      winnerCallback(currentPlayer.name);
+      //alert("You won!")
     }
 
     let e = straightWin(opponent.color, true);
@@ -188,7 +193,8 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
     let h = ascendingWin(opponent.color);
 
     if (e || f || g || h){
-      alert("Sorry bruh...you lost this one.")
+      winnerCallback(opponent.name)
+      //alert("Sorry bruh...you lost this one.")
     }
 
   }
