@@ -18,10 +18,21 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
     var currentPlayer = {
       color: X
     }
+
+    var opponent = {
+      color: O
+    }
+
   } else {
+
     var currentPlayer = {
       color: O
     }
+
+    var opponent = {
+      color: X
+    }
+
   }
     
   var selection = null;
@@ -158,14 +169,28 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
         }
       }
     }
-    //winner();
+    winner();
   }
     
   var winner = function(){
-    straightWin(currentPlayer.color, true);
-    straightWin(currentPlayer.color, false);
-    descendingWin(currentPlayer.color);
-    ascendingWin(currentPlayer.color);
+    let a = straightWin(currentPlayer.color, true);
+    let b = straightWin(currentPlayer.color, false);
+    let c = descendingWin(currentPlayer.color);
+    let d = ascendingWin(currentPlayer.color);
+
+    if (a || b || c || d){
+      alert("You won!")
+    }
+
+    let e = straightWin(opponent.color, true);
+    let f = straightWin(opponent.color, false);
+    let g = descendingWin(opponent.color);
+    let h = ascendingWin(opponent.color);
+
+    if (e || f || g || h){
+      alert("Sorry bruh...you lost this one.")
+    }
+
   }
     
   function ascendingWin(target){
@@ -200,7 +225,8 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
         }
   
         if (count === 4){
-          alert("You won!! ascending")
+          //alert("You won!! ascending")
+          return true;
         } else {
           // if this coord is of the player's type, then keep moving up and left until i is 3 (must be <4 in loop definition)
           starts[i][0]++;
@@ -241,7 +267,8 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
         }
   
         if (count === 4){
-          alert("You won!! descending")
+          //alert("You won!! descending")
+          return true;
         } else {
           starts[i][0]++;
           starts[i][1]++;
@@ -274,7 +301,8 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
         }
   
         if (count === 4){
-          alert("X's have won!!!");
+          //alert("X's have won!!!");
+          return true;
         }
   
       }
