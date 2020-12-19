@@ -41,7 +41,7 @@ export function showtime(player, gameRef, firebase, userRef){
                 alert("You Won!!")
 
             } else {
-                endGame(gameRef, player, false)
+                endGame(gameRef, player, userRef, false)
                 alert("Sorry bruh. You lost this one.")
 
             }
