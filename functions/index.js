@@ -1,22 +1,23 @@
 const functions = require('firebase-functions');
 
 const admin = require('firebase-admin');
+const { endsWith } = require('whimsy/lib/filters');
 admin.initializeApp(functions.config().firebase);
+const cors = require('cors')({ origin: true });
 
 //17 minutes into this https://fireship.io/lessons/the-ultimate-beginners-guide-to-firebase/
 
-exports.newPendingPlayer = functions.firestore
+/* exports.newPendingPlayer = functions.firestore
     .document('players/{playerId}')
     .onCreate(event => {
         matchmaker();
         return true;
-    })
+    }) */
 
-exports.findNewGame = functions.https.onRequest((req, res) => {
-        console.log("Okay, this is an http function that should create a new game")
-        matchmaker();
-        return true;
-    });
+exports.findNewGame = functions.https.onCall (async(data, context) => {
+    console.log("attempted HTTPS function")
+    return true;
+})
 
 
 function matchmaker(){
@@ -46,7 +47,7 @@ function matchmaker(){
 
                     gameRef.set({
                         turn: 1
-                    })
+                    }, {merge: true})
 
                     // Check to see if this is the first doc in the querySnapshot or the second
                     if (count === 0){

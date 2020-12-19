@@ -30,7 +30,7 @@ export function auth(firebase, db){
     disp("loading");
     if (user) {
 
-      const userRef = db.collection("users").doc(user.uid);
+      const userRef = db.collection("players").doc(user.uid);
 
       userRef.get().then(function(doc) {
         let name = doc.data().name;
@@ -150,7 +150,7 @@ function signOut(firebase){
 function name(uid, db){
   let name =  whimsy('{{adjective}} {{noun}}');
 
-  const userRef = db.collection("users").doc(uid);
+  const userRef = db.collection("players").doc(uid);
   userRef.set({
     uid: uid,
     name: name
@@ -185,7 +185,7 @@ function changeUsername(firebase, db){
     }
 
     let uid = firebase.auth().currentUser.uid;
-    const userRef = db.collection("users").doc(uid);
+    const userRef = db.collection("players").doc(uid);
     
     userRef.set({
       name: newOne
