@@ -1,6 +1,6 @@
 import { E, X, O, N} from './startingBoard';
 
-export function gameplay(currentPlayer, board, callback){
+export function gameplay(currentPlayer, board, callback, movementAllowed){
   // CurrentPlayer should be "player1" or "player2"
   // Board defines the state of the board for that turn before player plays
   // Callback defines the function that will be run if a valid move is made.
@@ -280,8 +280,12 @@ export function gameplay(currentPlayer, board, callback){
     [1, 0],
     [1, 1]
   ];
-    
-  renderBoard(false);
+  
+  if (movementAllowed == true){
+    renderBoard(false);
+  } else {
+    renderBoard(true);
+  }
     
   var say = function(t){
     var target = document.getElementById("message-content");
