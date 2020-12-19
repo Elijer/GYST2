@@ -42,7 +42,7 @@ export function auth(firebase, db){
       // If user is signed in, then the find game button can be displayed.
       findGameButton.style.display = "inline";
       // This is for testing only, and allows the findGameButton to be clicked as soon as it is available.
-      findGameButton.click();
+      //findGameButton.click();
       //
 
     } else {

@@ -2,11 +2,92 @@ import { showtime } from './showtime';
 
 export function findGame(db, firebase){
 
-    var matches = db.collection("pending");
+    let uid = firebase.auth().currentUser.uid;
+    let userRef = db.collection("players").doc(uid);
+    userRef.get()
+    .then((doc) => {
+        if (doc.exists){
+            console.log("document exists");
+        } else {
+            console.log("don't exist");
+            userRef.set({
+                game: null
+            })
+        }
+    })
 
-    var query = matches.where("player2", "==", null).limit(1);
+/*     var userRef = db.collection("players").doc(uid);
+    var pending = db.collection("pending");
 
-    query.get()
+    players.get(uid)
+    .then(function(doc){
+
+        console.log(doc.data());
+
+        if (doc.exists){
+            console.log("doc exists")
+        } else {
+            console.log("doc does not exist. Let's create it");
+            players.doc(uid).set({
+                game: null
+            })
+        }
+    }) */
+
+    
+/*     var gameFound = doc.data();
+    if (gameFound.game != null){ */
+
+
+    //var query = matches.where("player2", "==", null).limit(1);
+    // Do the findGameStuff
+
+}
+
+function createGame(db, firebase){
+    
+    let uid = firebase.auth().currentUser.uid;
+    const gamesRef = db.collection("pending").doc();
+    
+    gamesRef.set({
+      player1: uid,
+      player2: null
+    })
+
+    return gamesRef;
+}
+
+function animateElipsis(target){
+
+    var counter = 0;
+    const interval = 650;
+
+    var loop = setInterval(function(){
+        target.innerHTML = target.innerHTML + ".";
+        counter++;
+        if (counter > 3){
+            counter = 0;
+            target.innerHTML = "Waiting for another player"
+        }
+    }, interval);
+
+    return loop;
+
+}
+
+function hideFindGameStuff(){
+    
+    // hide the find-game button
+    var findGameButton = document.getElementById("find-game");
+    findGameButton.style.display = "none";
+
+    // Make sure loading stuff is hidden
+    var welcome = document.getElementById("welcome");
+    welcome.style.display = "none";
+
+}
+
+/*     query.get()
     .then(function(querySnapshot){
 
         if (querySnapshot.empty){
@@ -86,48 +167,4 @@ export function findGame(db, firebase){
                 })
             })
         }
-    })
-}
-
-function createGame(db, firebase){
-    
-    let uid = firebase.auth().currentUser.uid;
-    const gamesRef = db.collection("pending").doc();
-    
-    gamesRef.set({
-      player1: uid,
-      player2: null
-    })
-
-    return gamesRef;
-}
-
-function animateElipsis(target){
-
-    var counter = 0;
-    const interval = 650;
-
-    var loop = setInterval(function(){
-        target.innerHTML = target.innerHTML + ".";
-        counter++;
-        if (counter > 3){
-            counter = 0;
-            target.innerHTML = "Waiting for another player"
-        }
-    }, interval);
-
-    return loop;
-
-}
-
-function hideFindGameStuff(){
-    
-    // hide the find-game button
-    var findGameButton = document.getElementById("find-game");
-    findGameButton.style.display = "none";
-
-    // Make sure loading stuff is hidden
-    var welcome = document.getElementById("welcome");
-    welcome.style.display = "none";
-
-}
+    }) */
