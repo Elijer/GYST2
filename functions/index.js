@@ -17,14 +17,32 @@ exports.newPendingPlayer = functions.firestore
 
             if (querySnapshot.size === 2){
                 console.log("we can make a game")
+                let gameRef = admin.firestore().collection('games').doc();
+                var count = 0;
+
+                querySnapshot.forEach(function(doc) {
+                    console.log(doc.id, " => ", doc.data());
+                    let playerRef = admin.firestore().collection('players').doc(doc.id);
+
+                    playerRef.update({
+                        pending: false
+                    })
+
+/*                     if (count === 0){
+                        gameRef.set({
+                            player1: doc.id
+                        })
+                    } else {
+                        gameRef.set({
+                            player2: doc.id
+                        })
+                    } */
+                });
+
+
             } else {
                 console.log("we cannot yet make a game")
             }
-
-/*             querySnapshot.forEach(function(doc) {
-                // doc.data() is never undefined for query doc snapshots
-                console.log(doc.id, " => ", doc.data());
-            }); */
         })
         .catch(function(error) {
             console.log("Error getting documents: ", error);
