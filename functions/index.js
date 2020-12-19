@@ -8,6 +8,18 @@ admin.initializeApp(functions.config().firebase);
 exports.newPendingPlayer = functions.firestore
     .document('players/{playerId}')
     .onCreate(event => {
+        matchmaker();
+        return true;
+    })
+
+exports.findNewGame = functions.https.onRequest((req, res) => {
+        console.log("Okay, this is an http function that should create a new game")
+        matchmaker();
+        return true;
+    });
+
+
+function matchmaker(){
 
         //const docId = event.params.productId;
         //const pendingRef = admin.firestore().collection('pending').doc(docId);
@@ -75,8 +87,5 @@ exports.newPendingPlayer = functions.firestore
         .catch(function(error) {
             console.log("Error getting documents: ", error);
         });
-        
-        // If I don't do this I get an error
-        return true;
-    })
+}
 

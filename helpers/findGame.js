@@ -21,6 +21,15 @@ export function findGame(db, firebase){
             whichPlayer: null,
             winner: null
         }, {merge: true}).then(function(){
+
+            // Run HTTPS function
+            var findNewGame = firebase.functions().httpsCallable('findNewGame');
+            findNewGame({whatever: "this doesn't matter"})
+            .then(function(){
+                console.log("Okay, ran an HTTP function I think.")
+            })
+
+
             // create listener on player to wait for a game ID
             var unsubscribe = userRef.onSnapshot(function(doc){
                 let data = doc.data();
