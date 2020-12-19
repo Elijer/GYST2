@@ -4,7 +4,7 @@ export function findGame(db, firebase){
 
     let uid = firebase.auth().currentUser.uid;
     let userRef = db.collection("players").doc(uid);
-    let pendingRef = db.collection("pending").doc(uid);
+    //let pendingRef = db.collection("pending").doc(uid);
     userRef.get()
     .then((doc) => {
         if (doc.exists){
@@ -13,13 +13,14 @@ export function findGame(db, firebase){
             console.log("document don't exist. Gon make it and set the game field as null. The cloud will do the rest.");
 
             userRef.set({
-                game: null
+                game: null,
+                pending: true
             })
 
             // We have to set a throway field to create this doc, but we don't actually need any fields for our own use.
-            pendingRef.set({
+/*             pendingRef.set({
                 pending: true
-            })
+            }) */
 
         }
     })
