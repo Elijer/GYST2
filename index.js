@@ -16,7 +16,7 @@ import { auth } from "./helpers/auth";
 document.addEventListener("DOMContentLoaded", event => {
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
-    handleEmulators(db);
+    handleEmulators(firebase, db);
     auth(firebase, db);
     //gameplay("player1", startingBoard);
     //showtime("player1");
