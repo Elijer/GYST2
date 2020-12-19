@@ -4,44 +4,25 @@ export function findGame(db, firebase){
 
     let uid = firebase.auth().currentUser.uid;
     let userRef = db.collection("players").doc(uid);
+    let pendingRef = db.collection("pending").doc(uid);
     userRef.get()
     .then((doc) => {
         if (doc.exists){
-            console.log("document exists");
+            console.log("document already exists");
         } else {
-            console.log("don't exist");
+            console.log("document don't exist. Gon make it and set the game field as null. The cloud will do the rest.");
+
             userRef.set({
                 game: null
             })
+
+            // We have to set a throway field to create this doc, but we don't actually need any fields for our own use.
+            pendingRef.set({
+                pending: true
+            })
+
         }
     })
-
-/*     var userRef = db.collection("players").doc(uid);
-    var pending = db.collection("pending");
-
-    players.get(uid)
-    .then(function(doc){
-
-        console.log(doc.data());
-
-        if (doc.exists){
-            console.log("doc exists")
-        } else {
-            console.log("doc does not exist. Let's create it");
-            players.doc(uid).set({
-                game: null
-            })
-        }
-    }) */
-
-    
-/*     var gameFound = doc.data();
-    if (gameFound.game != null){ */
-
-
-    //var query = matches.where("player2", "==", null).limit(1);
-    // Do the findGameStuff
-
 }
 
 function createGame(db, firebase){

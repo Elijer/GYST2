@@ -122,7 +122,7 @@ function anonLogin(firebase, db){
   .then(result => {
     const user = result.user;
     name(user.uid, db)
-    console.log(user + "signed in");
+    //console.log(user.uid + "signed in");
   })
   .catch((error) => {
     var errorCode = error.code;
