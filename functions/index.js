@@ -3,6 +3,8 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
+//17 minutes into this https://fireship.io/lessons/the-ultimate-beginners-guide-to-firebase/
+
 exports.newPendingPlayer = functions.firestore
     .document('players/{playerId}')
     .onCreate(event => {
@@ -24,6 +26,8 @@ exports.newPendingPlayer = functions.firestore
                     console.log(doc.id, " => ", doc.data());
                     let playerRef = admin.firestore().collection('players').doc(doc.id);
 
+                    // Immediately Remove description of player as pending
+                    // so that it doesn't come up in future queries
                     playerRef.update({
                         pending: false
                     })
@@ -55,7 +59,7 @@ exports.newPendingPlayer = functions.firestore
 
 
             } else {
-                console.log("we cannot yet make a game")
+                console.log("we cannot yet make a game: only one player is pending.")
             }
         })
         .catch(function(error) {
@@ -65,21 +69,4 @@ exports.newPendingPlayer = functions.firestore
         // If I don't do this I get an error
         return true;
     })
-
-/* exports.createGame = functions.firestore
-    .document('pending/{pendingId}')
-    .onCreate(event => {
-
-        const docId = event.params.productId;
-
-        // name being an example of a field of the newly created document
-        const name = event.data.data().name;
-
-        const productRef = admin.firestore().collection('products').doc(docId);
-
-        return productRef.update({ message: 'Nice ${name}! - Love Cloud Functions'});
-
-    }); */
-
-//17 minutes into this https://fireship.io/lessons/the-ultimate-beginners-guide-to-firebase/
 
