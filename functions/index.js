@@ -29,25 +29,24 @@ exports.newPendingPlayer = functions.firestore
                     })
 
                     if (count === 0){
+
                         gameRef.set({
                             player1: doc.id
                         }, {merge: true})
                         count++;
+
                     } else {
+
                         gameRef.set({
                             player2: doc.id
                         }, {merge: true})
+
                     }
 
-/*                     if (count === 0){
-                        gameRef.set({
-                            player1: doc.id
-                        })
-                    } else {
-                        gameRef.set({
-                            player2: doc.id
-                        })
-                    } */
+                    playerRef.set({
+                        game: gameRef.id
+                    }, {merge: true})
+
                 });
 
 
