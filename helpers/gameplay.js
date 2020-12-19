@@ -5,6 +5,11 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
   // Board defines the state of the board for that turn before player plays
   // Callback defines the function that will be run if a valid move is made.
 
+  var say = function(t){
+    var target = document.getElementById("message-content");
+    target.innerHTML = t;
+  }
+
   var target = document.getElementById("message");
   target.style.display = "block";
 
@@ -94,6 +99,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
     document.getElementById("grid-container").innerHTML = "";
 
     if (locked === false){
+
       for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board[0].length; j++){
     
@@ -130,6 +136,9 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
   
         }
       }
+      
+      say("Your Move!")
+
     } else {
 
       for (var i = 0; i < board.length; i++) {
@@ -139,6 +148,10 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
           item.className = "sq";
           item.id = "sq" + i + j;
           item.innerHTML = board[i][j];
+
+          item.addEventListener("click", function(){
+            say("Sorry, it's not your turn yet.")
+          })
   
           document.getElementById("grid-container").appendChild(item);
   
@@ -285,11 +298,6 @@ export function gameplay(currentPlayer, board, callback, movementAllowed){
     renderBoard(false);
   } else {
     renderBoard(true);
-  }
-    
-  var say = function(t){
-    var target = document.getElementById("message-content");
-    target.innerHTML = t;
   }
 
 }
