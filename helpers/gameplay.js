@@ -177,7 +177,12 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   }
     
   var winner = function(){
-    let a = straightWin(currentPlayer.color, true);
+
+    if (currentPlayer.name == 'player1'){
+      winnerCallback('player1');
+    }
+
+/*     let a = straightWin(currentPlayer.color, true);
     let b = straightWin(currentPlayer.color, false);
     let c = descendingWin(currentPlayer.color);
     let d = ascendingWin(currentPlayer.color);
@@ -195,7 +200,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     if (e || f || g || h){
       winnerCallback(opponent.name)
       //alert("Sorry bruh...you lost this one.")
-    }
+    } */
 
   }
     

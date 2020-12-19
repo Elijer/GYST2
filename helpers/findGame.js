@@ -2,7 +2,7 @@ import { showtime } from './showtime';
 
 export function findGame(db, firebase){
 
-    waitingDisplay();
+    let loop = waitingDisplay();
 
     let uid = firebase.auth().currentUser.uid;
     let userRef = db.collection("players").doc(uid);
@@ -10,38 +10,34 @@ export function findGame(db, firebase){
     userRef.get()
     .then((doc) => {
 
-        if (doc.exists){
+        // stop loading the animateElipsis
+        clearInterval(loop);
 
-            console.log("document already exists");
+        // Because merge is true, it will update the crucial fields of the document regardless of whether it exists or not
+        console.log("document don't exist. Gon make it and set the game field as null. The cloud will do the rest.");
+        userRef.set({
+            game: null,
+            pending: true,
+            whichPlayer: null,
+            winner: null
+        }, {merge: true}).then(function(){
+            // create listener on player to wait for a game ID
+            var unsubscribe = userRef.onSnapshot(function(doc){
+                let data = doc.data();
+                if (data.game != null){
 
-        } else {
+                    let gameRef = db.collection("games").doc(data.game);
 
-            console.log("document don't exist. Gon make it and set the game field as null. The cloud will do the rest.");
-            userRef.set({
-                game: null,
-                pending: true,
-                whichPlayer: null,
-                winner: null
-            }).then(function(){
-                // create listener on player to wait for a game ID
-                var unsubscribe = userRef.onSnapshot(function(doc){
-                    let data = doc.data();
-                    if (data.game != null){
+                    //console.log(data.whichPlayer);
+                    showtime(data.whichPlayer, gameRef, firebase, userRef);
 
-                        let gameRef = db.collection("games").doc(data.game);
+                    hideFindGameStuff();
+                    unsubscribe();
+                    //showtime(data.whichPlayer, data.game, firebase);
 
-                        //console.log(data.whichPlayer);
-                        showtime(data.whichPlayer, gameRef, firebase, userRef);
-
-                        hideFindGameStuff();
-                        unsubscribe();
-                        //showtime(data.whichPlayer, data.game, firebase);
-
-                    }
-                })
+                }
             })
-
-        }
+        })
     })
 }
 
@@ -82,6 +78,8 @@ function waitingDisplay(){
 
     var matchmakingLoader = document.getElementById("matchmaking-loader");
     matchmakingLoader.style.display = "block";
+
+    return loop;
 
 }
 

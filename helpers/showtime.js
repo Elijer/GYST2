@@ -35,12 +35,13 @@ export function showtime(player, gameRef, firebase, userRef){
         } else { // Somebody won
 
             unsubscribe();
-            endGame(gameRef, player, userRef)
 
             if (player == data.winner){
+                endGame(gameRef, player, userRef, true)
                 alert("You Won!!")
 
             } else {
+                endGame(gameRef, player, false)
                 alert("Sorry bruh. You lost this one.")
 
             }
@@ -80,7 +81,28 @@ export function showtime(player, gameRef, firebase, userRef){
 
     }
 
-    function endGame(gameRef, playerName, userRef){
+    function endGame(gameRef, playerName, userRef, won){
+
+        let spinner = document.getElementById("matchmaking-loader");
+        spinner.style.display = 'none';
+
+        var welcomeMessage = document.getElementById("welcome-message");
+        welcomeMessage.style.display = "block";
+
+        // hide the find-game button
+        var findGameButton = document.getElementById("find-game");
+        findGameButton.style.display = "block";
+
+        // Make sure loading stuff is hidden
+        var welcome = document.getElementById("welcome");
+        welcome.style.display = "block";
+
+        if (won == true){
+            welcomeMessage.innerHTML = "Nice win! Think you can do it again?"
+        } else {
+            welcomeMessage.innerHTML = "Condolences. Press 'Find Game' to redeem yourself";
+        }
+
         userRef.update({
             game: null
         })
@@ -91,6 +113,10 @@ export function showtime(player, gameRef, firebase, userRef){
         // Delete Game
         // Delete game ref from player
         // Reset Dom
+        var findGameButton = document.getElementById("find-game");
+        findGameButton.style.display = "block";
+        document.getElementById("grid-container").innerHTML = "";
+        
     }
 
 
