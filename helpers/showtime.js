@@ -89,6 +89,9 @@ export function showtime(player, gameRef, firebase, userRef){
         var welcomeMessage = document.getElementById("welcome-message");
         welcomeMessage.style.display = "block";
 
+        var messageContent = document.getElementById("message-content");
+        messageContent.style.display = "none";
+
         // hide the find-game button
         var findGameButton = document.getElementById("find-game");
         findGameButton.style.display = "block";
