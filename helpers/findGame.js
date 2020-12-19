@@ -2,6 +2,8 @@ import { showtime } from './showtime';
 
 export function findGame(db, firebase){
 
+    waitingDisplay();
+
     let uid = firebase.auth().currentUser.uid;
     let userRef = db.collection("players").doc(uid);
     //let pendingRef = db.collection("pending").doc(uid);
@@ -25,6 +27,7 @@ export function findGame(db, firebase){
                     if (data.game != null){
 
                         console.log("a game exists now!!")
+
 
                     }
                 })
@@ -75,6 +78,18 @@ function hideFindGameStuff(){
     var welcome = document.getElementById("welcome");
     welcome.style.display = "none";
 
+}
+
+function waitingDisplay(){
+
+    var findGameButton = document.getElementById("find-game");
+    findGameButton.style.display = "none";
+
+    var welcomeMessage = document.getElementById("welcome-message");
+    welcomeMessage.innerHTML = "Waiting for another player";
+    //welcomeMessage.style.textAlign = "center";
+    var loop = animateElipsis(welcomeMessage);
+    
 }
 
 /*     query.get()
