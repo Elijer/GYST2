@@ -7,20 +7,28 @@ export function findGame(db, firebase){
     //let pendingRef = db.collection("pending").doc(uid);
     userRef.get()
     .then((doc) => {
-        if (doc.exists){
-            console.log("document already exists");
-        } else {
-            console.log("document don't exist. Gon make it and set the game field as null. The cloud will do the rest.");
 
+        if (doc.exists){
+
+            console.log("document already exists");
+
+        } else {
+
+            console.log("document don't exist. Gon make it and set the game field as null. The cloud will do the rest.");
             userRef.set({
                 game: null,
                 pending: true
-            })
+            }).then(function(){
+                // create listener on player to wait for a game ID
+                var unsubscribe = userRef.onSnapshot(function(doc){
+                    let data = doc.data();
+                    if (data.game != null){
 
-            // We have to set a throway field to create this doc, but we don't actually need any fields for our own use.
-/*             pendingRef.set({
-                pending: true
-            }) */
+                        console.log("a game exists now!!")
+
+                    }
+                })
+            })
 
         }
     })
