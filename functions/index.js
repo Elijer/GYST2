@@ -6,7 +6,6 @@ admin.initializeApp(functions.config().firebase);
 
 //17 minutes into this https://fireship.io/lessons/the-ultimate-beginners-guide-to-firebase/
 
-
 exports.findNewGame = functions.https.onCall (async(data, context) => {
 
     const queryRef = admin.firestore().collection('players').where("pending", "==", true).limit(2);

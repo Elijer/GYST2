@@ -138,8 +138,13 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
               //
 
               if (successfulMove === true){
-                renderBoard(true)
-                callback(board);
+
+                let gameOver = winner();
+
+                if (!gameOver){
+                  renderBoard(true);
+                  callback(board);
+                }
               } else {
                 selection = null;
                 renderBoard(false);
@@ -173,7 +178,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
         }
       }
     }
-    winner();
+    //winner();
   }
     
   var winner = function(){
@@ -183,19 +188,19 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     let c = descendingWin(currentPlayer.color);
     let d = ascendingWin(currentPlayer.color);
 
-    if (a || b || c || d){
-      winnerCallback(currentPlayer.name);
-      //alert("You won!")
-    }
-
     let e = straightWin(opponent.color, true);
     let f = straightWin(opponent.color, false);
     let g = descendingWin(opponent.color);
     let h = ascendingWin(opponent.color);
 
-    if (e || f || g || h){
+    if (a || b || c || d){
+      winnerCallback(currentPlayer.name);
+      return true;
+    } else if (e || f || g || h){
       winnerCallback(opponent.name)
-      //alert("Sorry bruh...you lost this one.")
+      return true;
+    } else {
+      return false;
     }
 
   }
@@ -329,6 +334,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     [1, 1]
   ];
   
+  // Renderboard for start of game
   if (movementAllowed == true){
     renderBoard(false);
   } else {

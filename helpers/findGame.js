@@ -31,14 +31,15 @@ export function findGame(db, firebase){
                     let data = doc.data();
 
                     if (data.game != null && data.pending == false){
+                        
                         console.log("The game has been made and everything is good!!!");
 
-/*                         let gameRef = db.collection("games").doc(data.game);
+                        let gameRef = db.collection("games").doc(data.game);
 
                         showtime(data.whichPlayer, gameRef, firebase, userRef);
 
                         hideFindGameStuff();
-                        unsubscribe(); */
+                        unsubscribe();
 
                     }
                 })

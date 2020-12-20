@@ -11,6 +11,7 @@ export function showtime(player, gameRef, firebase, userRef){
         let data = doc.data();
 
         if (data.winner == null){ // Game is carrying on
+            console.log("nobody has won yet")
 
             if (player === "player1"){
 
@@ -34,16 +35,16 @@ export function showtime(player, gameRef, firebase, userRef){
 
         } else { // Somebody won
 
+            console.log("somebody won")
             unsubscribe();
+            console.log("does this run?")
 
             if (player == data.winner){
+
                 endGame(gameRef, player, userRef, true)
-                alert("You Won!!")
 
             } else {
                 endGame(gameRef, player, userRef, false)
-                alert("Sorry bruh. You lost this one.")
-
             }
         }
 
@@ -104,28 +105,29 @@ export function showtime(player, gameRef, firebase, userRef){
         var welcome = document.getElementById("welcome");
         welcome.style.display = "block";
 
-        if (won == true){
+        if (won === true){
+            alert("You won!")
             welcomeMessage.innerHTML = "Nice win! Think you can do it again?"
         } else {
+            alert("Sorry bruh, you lost.")
             welcomeMessage.innerHTML = "Condolences. Press 'Find Game' to redeem yourself";
         }
 
-        userRef.update({
-            game: null,
-            winner: null,
-            pending: false,
-            whichPlayer: null
-        }, {merge: true})
-
-        gameRef.delete().then(function(){
-            console.log("Game over, document successfully deleted");
-        })
-        // Delete Game
-        // Delete game ref from player
-        // Reset Dom
         var findGameButton = document.getElementById("find-game");
         findGameButton.style.display = "block";
-        document.getElementById("grid-container").innerHTML = "";
+        var gameBoard = document.getElementById("grid-container").innerHTML = "";      
+
+        userRef.set({
+            game: null,
+            pending: false,
+            whichPlayer: null
+        }, {merge: true}).then(function(){
+
+            gameRef.delete().then(function(){
+                console.log("Game over, document successfully deleted");
+            })
+
+        })
         
     }
 
