@@ -153,8 +153,11 @@ function name(uid, db){
   const userRef = db.collection("players").doc(uid);
   userRef.set({
     uid: uid,
-    name: name
-  })
+    name: name,
+    pending: false,
+    game: null,
+    whichPlayer: null
+  }, {merge:true})
 }
 
 
@@ -189,7 +192,7 @@ function changeUsername(firebase, db){
     
     userRef.set({
       name: newOne
-    })
+    }, {merge: true})
   })
 }
 

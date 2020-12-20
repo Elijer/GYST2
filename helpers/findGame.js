@@ -29,16 +29,15 @@ export function findGame(db, firebase){
                 // create listener on player to wait for a game ID
 /*                 var unsubscribe = userRef.onSnapshot(function(doc){
                     let data = doc.data();
-                    if (data.game != null){
+
+                    if (data.game != null && data.pending == false){
 
                         let gameRef = db.collection("games").doc(data.game);
 
-                        //console.log(data.whichPlayer);
                         showtime(data.whichPlayer, gameRef, firebase, userRef);
 
                         hideFindGameStuff();
                         unsubscribe();
-                        //showtime(data.whichPlayer, data.game, firebase);
 
                     }
                 }) */
