@@ -27,20 +27,21 @@ export function findGame(db, firebase){
                 console.log("Okay, ran an HTTP function I think.")
 
                 // create listener on player to wait for a game ID
-/*                 var unsubscribe = userRef.onSnapshot(function(doc){
+                var unsubscribe = userRef.onSnapshot(function(doc){
                     let data = doc.data();
 
                     if (data.game != null && data.pending == false){
+                        console.log("The game has been made and everything is good!!!");
 
-                        let gameRef = db.collection("games").doc(data.game);
+/*                         let gameRef = db.collection("games").doc(data.game);
 
                         showtime(data.whichPlayer, gameRef, firebase, userRef);
 
                         hideFindGameStuff();
-                        unsubscribe();
+                        unsubscribe(); */
 
                     }
-                }) */
+                })
             })
         })
     })
