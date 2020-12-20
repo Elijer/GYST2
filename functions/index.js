@@ -29,11 +29,11 @@ exports.findNewGame = functions.https.onCall (async(data, context) => {
                 player2: null,
                 winner: null,
                 turn: 1
-            }).then(async function(){
+            }).then(async () => {
                 try {
                     await admin.firestore().runTransaction(async (t) => {
-                        const p1 = admin.firestore().collection('players').doc(player1id)
-                        const p2 = admin.firestore().collection('players').doc(player2id)
+                        const p1 = await admin.firestore().collection('players').doc(player1id)
+                        const p2 = await admin.firestore().collection('players').doc(player2id)
     
                         t.update(p1, {
                             pending: false,
