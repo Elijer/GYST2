@@ -6,25 +6,6 @@ N = "N";
 
 export var startingBoard = [
     
-    [ X, E, E, E, E ],
-    [ E, X, O, E, E ],
-    [ E, O, X, O, E ],
-    [ E, E, O, E, E ],
-    [ E, E, E, X, E ]
-  
-  ];
-
-
-  /*
-  
-var
-E = " ",
-X = "X",
-O = "O",
-N = "N";
-
-var startingBoard = [
-    
     [ E, E, E, E, E ],
     [ E, X, O, X, E ],
     [ E, O, N, O, E ],
@@ -32,9 +13,3 @@ var startingBoard = [
     [ E, E, E, E, E ]
   
   ];
-
-  var json = JSON.stringify(startingBoard);
-
-  console.log(JSON.parse(json));
-
-  */
