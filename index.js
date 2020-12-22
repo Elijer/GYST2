@@ -7,6 +7,7 @@ import { firebaseConfig } from "./helpers/firebaseConfig";
 import { handleEmulators } from "./helpers/handleEmulators";
 import { findGame } from './helpers/findGame';
 import { auth } from "./helpers/auth";
+import { hide, show } from "./helpers/utility";
 
     // IMPORTED FOR TESTING
     import { showtime } from './helpers/showtime';
@@ -25,7 +26,9 @@ document.addEventListener("DOMContentLoaded", event => {
     var winnerCallback = function(name){
         console.log("This is the winner callback, printing the name of the winner: " + name);
     }
-
+    
+    hide("loader");
+    hide("welcome-message");
     gameplay('player1', startingBoard, callback, true, winnerCallback);
 
     //handleEmulators(db, firebase);
@@ -34,8 +37,8 @@ document.addEventListener("DOMContentLoaded", event => {
     //showtime("player1");
 
     //// EVENT LISTENERS
-    document.getElementById('find-game').addEventListener('click', function(){
+/*     document.getElementById('find-game').addEventListener('click', function(){
         findGame(db, firebase);
-    });
+    }); */
 
 });

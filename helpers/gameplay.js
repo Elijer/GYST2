@@ -1,4 +1,5 @@
 import { E, X, O, N} from './startingBoard';
+import { hide, show } from "./utility";
 
 // These are the arguments I want:
 // export function gameplay(board, player, callback){
