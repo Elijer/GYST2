@@ -3,22 +3,21 @@ import { hide, show, set} from "./utility";
 import { renderBoard } from "./renderboard";
 
 // Show the messages
-show("message-content");
 show("message");
-hide("welcome");
+/* hide("welcome"); */
 
 export function gameplay2(board){
 
     // Helper function that writes user message according to gameplay
     var say = function(t){
-        var target = document.getElementById("message-content");
+        var target = document.getElementById("message");
         target.innerHTML = t;
     }
 
     var renderBoard = function(callback){
 
         // delete previous board to make room for new one
-        document.getElementById("grid-container").innerHTML = "";
+        document.getElementById("board").innerHTML = "";
     
         for (var i = 0; i < board.length; i++) {
             for (var j = 0; j < board[0].length; j++){
@@ -40,7 +39,7 @@ export function gameplay2(board){
                 }
                 })
         
-                document.getElementById("grid-container").appendChild(item);
+                document.getElementById("board").appendChild(item);
         
             }
         }
