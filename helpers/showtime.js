@@ -1,5 +1,6 @@
 import { gameplay } from "./gameplay";
 import { startingBoard } from './startingBoard';
+import { hide, show, set, gg } from './utility';
 
 export function showtime(player, gameRef, firebase, userRef){
 
@@ -86,6 +87,8 @@ export function showtime(player, gameRef, firebase, userRef){
 
         hideGame();
 
+        var welcomeMessage = gg("welcome-message");
+
         if (won === true){
             alert("You won!")
             welcomeMessage.innerHTML = "Nice win! Think you can do it again?"
@@ -114,26 +117,19 @@ export function showtime(player, gameRef, firebase, userRef){
 
 
     var hideGame = function(){
-        let spinner = document.getElementById("matchmaking-loader");
-        spinner.style.display = 'none';
 
-        let msg = document.getElementById("message-content");
-        msg.style.innerHTML = "";
-        msg.style.display = "none";
+        hide([
+            "matchmaking-loader",
+            "message-content"
+        ]);
 
-        var welcomeMessage = document.getElementById("welcome-message");
-        welcomeMessage.style.display = "block";
+        show([
+            "welcome-message",
+            "find-game",
+            "welcome"
+        ]);
 
-        var messageContent = document.getElementById("message-content");
-        messageContent.style.display = "none";
-
-        // hide the find-game button
-        var findGameButton = document.getElementById("find-game");
-        findGameButton.style.display = "block";
-
-        // Make sure loading stuff is hidden
-        var welcome = document.getElementById("welcome");
-        welcome.style.display = "block";
+        set("message-content", "");
     }
 
 
