@@ -1,5 +1,5 @@
 import { E, X, O, N} from './startingBoard';
-import { hide, show } from "./utility";
+import { hide, show, set} from "./utility";
 
 // These are the arguments I want:
 // export function gameplay(board, player, callback){
@@ -20,12 +20,11 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
 
 
   var say = function(t){
+    show("message-content");
+    show("message");
     var target = document.getElementById("message-content");
-    target.style.display = "block";
     target.innerHTML = t;
   }
-
-  say("");
 
   // Set the player's piece
   if (currentPlayer === "player1"){
@@ -52,7 +51,9 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     }
 
   }
-    
+  
+  // Selection saves the first piece that is selected
+  // When I add in the possibility of multiple skips, I will probably need to also add in an additional 'destination' array
   var selection = null;
   
   var movePiece = function(pieceRow, pieceCol, destRow, destCol){
@@ -194,7 +195,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     }
     //winner();
   }
-    
+  
   var winner = function(){
 
     let a = straightWin(currentPlayer.color, true);
