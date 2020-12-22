@@ -1,17 +1,32 @@
-import { write } from "firebase-functions/lib/logger";
-
 export function hide(t){
-    document.getElementById(t).style.display = "none";
-}
-
-export function show(t, inline){
-    if (inline === true){
-        document.getElementById(t).style.display = "inline";
-    } else {
-        document.getElementById(t).style.display = "block";
+    if (typeof t === 'string'){
+        document.getElementById(t).style.display = "none";
+    } else if (Array.isArray(t)){
+        for (var i = 0; i < t.length; i++){
+            document.getElementById(t[i]).style.display = "none";
+        }
     }
 }
 
-export function set(t){
-    document.getElementById(t).innerHTML = t;
+export function show(t, displayType){
+
+    if (!displayType){
+        displayType = "block";
+    }
+
+    if (typeof t === 'string'){
+        document.getElementById(t).style.display = displayType;
+    } else if (Array.isArray(t)){
+        for (var i = 0; i < t.length; i++){
+            document.getElementById(t[i]).style.display = displayType;
+        }
+    }
+}
+
+export function set(t, html){
+    document.getElementById(t).innerHTML = html;
+}
+
+export function gg(d){
+    return document.getElementById(d);
 }
