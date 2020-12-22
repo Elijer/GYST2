@@ -84,26 +84,7 @@ export function showtime(player, gameRef, firebase, userRef){
 
     function endGame(gameRef, playerName, userRef, won){
 
-        let spinner = document.getElementById("matchmaking-loader");
-        spinner.style.display = 'none';
-
-        let msg = document.getElementById("message-content");
-        msg.style.innerHTML = "";
-        msg.style.display = "none";
-
-        var welcomeMessage = document.getElementById("welcome-message");
-        welcomeMessage.style.display = "block";
-
-        var messageContent = document.getElementById("message-content");
-        messageContent.style.display = "none";
-
-        // hide the find-game button
-        var findGameButton = document.getElementById("find-game");
-        findGameButton.style.display = "block";
-
-        // Make sure loading stuff is hidden
-        var welcome = document.getElementById("welcome");
-        welcome.style.display = "block";
+        hideGame();
 
         if (won === true){
             alert("You won!")
@@ -132,7 +113,28 @@ export function showtime(player, gameRef, firebase, userRef){
     }
 
 
+    var hideGame = function(){
+        let spinner = document.getElementById("matchmaking-loader");
+        spinner.style.display = 'none';
 
+        let msg = document.getElementById("message-content");
+        msg.style.innerHTML = "";
+        msg.style.display = "none";
+
+        var welcomeMessage = document.getElementById("welcome-message");
+        welcomeMessage.style.display = "block";
+
+        var messageContent = document.getElementById("message-content");
+        messageContent.style.display = "none";
+
+        // hide the find-game button
+        var findGameButton = document.getElementById("find-game");
+        findGameButton.style.display = "block";
+
+        // Make sure loading stuff is hidden
+        var welcome = document.getElementById("welcome");
+        welcome.style.display = "block";
+    }
 
 
 
