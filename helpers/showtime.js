@@ -17,20 +17,20 @@ export function showtime(player, gameRef, firebase, userRef){
             if (player === "player1"){
 
                 if (data.turn === 1){
-                    gameplay("player1", startingBoard, playerOne, true, winner);
+                    gameplay("player1", startingBoard, winner, playerOne);
                 } else if (data.turn % 2 != 0){
                     var boardParsed = JSON.parse(data.board);
-                    gameplay("player1", boardParsed, playerOne, true, winner);
+                    gameplay("player1", boardParsed, winner, playerOne);
                 }
 
 
             } else if (player === "player2"){
 
                 if (data.turn === 1){
-                    gameplay("player2", startingBoard, playerTwo, false, winner);
+                    gameplay("player2", startingBoard, winner);
                 } else if (data.turn %2 === 0){
                     var boardParsed = JSON.parse(data.board);
-                    gameplay("player2", boardParsed, playerTwo, true, winner);
+                    gameplay("player2", boardParsed, winner);
                 }
             }
 
