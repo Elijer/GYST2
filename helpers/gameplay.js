@@ -1,17 +1,30 @@
 import { E, X, O, N} from './startingBoard';
 
+// These are the arguments I want:
+// export function gameplay(board, player, callback){
+// The callback has a boolean in it for "endgame" to be true or false;
+// The board is, you know, the board that gets passed in.
+// And the player is either 'X' or 'O'.
+// In addition, if a callback ISN'T passed in i.e (!callback), that indicated that the board should be locked.
+// This way, I can get along with just three arguments, which I like.
+
 export function gameplay(currentPlayer, board, callback, movementAllowed, winnerCallback){
   // CurrentPlayer should be "player1" or "player2"
   // Board defines the state of the board for that turn before player plays
   // Callback defines the function that will be run if a valid move is made.
 
+
+  // Tasks
+  // Start with 'say' function. get rid of other references of 'target'.
+
+
   var say = function(t){
     var target = document.getElementById("message-content");
+    target.style.display = "block";
     target.innerHTML = t;
   }
 
-  var target = document.getElementById("message");
-  target.style.display = "block";
+  say("");
 
   // Set the player's piece
   if (currentPlayer === "player1"){
