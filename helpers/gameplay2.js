@@ -5,11 +5,14 @@ import { hide, show, set} from "./utility";
 show("message-content");
 show("message");
 
-var say = function(t){
-    var target = document.getElementById("message-content");
-    target.innerHTML = t;
-  }
+export function gameplay2(board){
 
-export function gameplay2(){
+    console.log(board);
+
+    // Helper function that writes user message according to gameplay
+    var say = function(t){
+        var target = document.getElementById("message-content");
+        target.innerHTML = t;
+    }
 
 }

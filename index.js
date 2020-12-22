@@ -12,6 +12,7 @@ import { hide, show } from "./helpers/utility";
     // IMPORTED FOR TESTING
     import { showtime } from './helpers/showtime';
     import { gameplay } from './helpers/gameplay';
+    import { gameplay2 } from './helpers/gameplay2';
     import { startingBoard, E, X, O, N } from './helpers/startingBoard';
 
 
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", event => {
     
     hide("loader");
     hide("welcome-message");
-    gameplay('player1', startingBoard, callback, true, winnerCallback);
+    gameplay2(startingBoard);
 
     //handleEmulators(db, firebase);
     //auth(firebase, db);
