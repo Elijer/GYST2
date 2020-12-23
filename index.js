@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", event => {
     hide("welcome-message");
     gameplay2(startingBoard);
 
-    //handleEmulators(db, firebase);
-    //auth(firebase, db);
+    handleEmulators(db, firebase);
+    auth(firebase, db);
     //gameplay("player1", startingBoard);
     //showtime("player1");
 

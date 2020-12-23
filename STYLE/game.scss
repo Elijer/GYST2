@@ -1,11 +1,20 @@
 @import "vars";
 
+$default-space: 10px;
+
 #game {
+
+    // This affects the #board and #message children
+    width: 50%;
+    margin-left: 25%;
+
+    // This does not
+    padding-top: $default-space;
+    padding-bottom: $default-space;
 
     #board{
 
-        padding: 2% 25% 2%;
-        width: 50%;
+        padding-top: $default-space;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -16,7 +25,7 @@
 
         font-family: 'Ubuntu', sans-serif;
         color: white;
-        padding: 25px 20px 25px;
+        padding: 25% 25% 25%;
         font-size: 50px;
         text-align: center;
         background: $sq;
@@ -25,12 +34,16 @@
 
     }
 
+    .sq:hover {
+        background: $bg;
+    }
+
     #message {
 
+        padding-top: $default-space;
         color: white;
-        padding: 25px 10px 25px;
-        font-size: 50px;
-        text-align: center;
+        font-size: 30px;
+        text-align: left;
         background: $sq;
         box-shadow: 4px 4px 5px $shadow;
 
@@ -39,16 +52,9 @@
         display: none;
         color: $message-text;
         text-shadow: 2px 2px $message-shadow;
-        margin-top: 3%;
-        margin-left: 24%;
-        width: 50%;
+        margin-bottom: none;
         background: none;
         box-shadow: none;
-        margin-bottom: 20px;
-    }
-    
-    .sq:hover {
-        background: $bg;
     }
 
 }
