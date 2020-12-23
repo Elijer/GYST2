@@ -2,6 +2,24 @@
 
 $default-space: 10px;
 
+/*
+
+The problem:
+
+I need to constrain the #board div to a 1:1 aspect ratio, dependent simultaneously on height and width.
+I.e, if the window becomes shorter than the square is tall, the square needs to get smaller.
+AND if the window becomes narrower than the square is wide, the square needs to get smaller.
+
+One thing to consider: it's probably okay that the width is the priority here, and it could just use media queries to solve this problem
+However, I kind of want to do it the hard way.
+
+Also. If it sounds like I actually understand this problem...I really don't. I think it might be better to leave it for now,
+considering I have a lot to do.
+
+Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
+
+*/
+
 #game {
 
     // This affects the #board and #message children
