@@ -25,7 +25,7 @@ export function gameplay2(board){
                 const item = document.createElement('div');
                 item.className = "sq";
                 item.id = "sq" + i + j;
-                item.style.background = boardColors[i][j];
+                //item.style.background = boardColors[i][j];
                 item.innerHTML = board[i][j];
         
                 let row = i;

@@ -27,17 +27,16 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
     width: 40%;
     margin-left: 30%;
     margin-top: 30px;
+    //box-shadow: 4px 4px 5px $shadow;
 
     // This does not
-    padding-top: $default-space;
-    padding-bottom: $default-space;
+
 
     #board{
 
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-        box-shadow: 4px 4px 5px $shadow;
 
     }
 
@@ -49,17 +48,19 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         padding-bottom: 25%;
         text-align: center;
         font-size: 45px;
-        //background: $sq;
+        background: $sq;
+        border: 1px solid $bg;
         text-shadow: 2px 2px $type-shadow;
-        box-shadow: 4px 4px 5px $shadow;
+        //box-shadow: 4px 4px 5px $shadow;
 
     }
 
     .sq:hover {
-        background: $bg;
+        background: $bg-auth;
     }
 
     #message {
+        z-index: 1000;
         font-family: 'JetBrains Mono', monospace;
         padding-top: $default-space;
         padding-bottom: $default-space;
@@ -67,12 +68,13 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         color: white;
         font-size: 28px;
         text-align: left;
-        box-shadow: 4px 4px 5px $shadow;
+        //box-shadow: 4px 4px 5px $shadow;
         display: none;
         color: $message-text;
         text-shadow: 2px 2px $message-shadow;
         margin-bottom: none;
-        background: $shadow;
+        background: $bg-auth;
+        border: 1px solid $bg;
     }
 
 }

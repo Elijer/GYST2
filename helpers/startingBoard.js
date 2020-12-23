@@ -14,9 +14,9 @@ export var startingBoard = [
   
 ];
 
-var r = "#e66072",
-  b = "#356eba",
-  y = "#e6d04a",
+var r = "#d3919a",
+  b = "#7faccb",
+  y = "#ffeb74",
   w = "#e0deda";
 
 export var boardColors = [

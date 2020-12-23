@@ -1,13 +1,12 @@
 @import "vars";
 
 html {
-    background: $message-shadow;
+    background: $bg;
 }
 
 
 #body {
     font-family: 'Ubuntu', sans-serif;
-    background: $bg;
 }
 
 #welcome {
