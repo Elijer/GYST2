@@ -39,6 +39,7 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        box-shadow: 4px 4px 5px $shadow;
 
     }
 
@@ -50,7 +51,6 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         text-align: center;
         font-size: 45px;
         background: $sq;
-        box-shadow: 4px 4px 5px $shadow;
         text-shadow: 2px 2px $type-shadow;
 
     }
@@ -75,7 +75,6 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         background: $shadow;
         border-top: 2px solid $shadow;
         border-left: 2px solid $shadow;
-        box-shadow: none;
     }
 
 }
