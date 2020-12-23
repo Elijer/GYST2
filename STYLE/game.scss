@@ -1,6 +1,6 @@
 @import "vars";
 
-$default-space: 22px;
+$default-space: 30px;
 
 
 /*
@@ -44,8 +44,9 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
         font-family: 'Ubuntu', sans-serif;
         color: white;
-        padding: 40% 25% 40%;
+        padding: 30% 30% 30%;
         text-align: center;
+        font-size: 45px;
         background: $sq;
         box-shadow: 4px 4px 5px $shadow;
         text-shadow: 2px 2px $type-shadow;
@@ -54,11 +55,6 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
     .sq:hover {
         background: $bg;
-    }
-
-    .inner-sq {
-        position: absolute;
-        font-size: 100%;
     }
 
     #message {
