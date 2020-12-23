@@ -88,7 +88,7 @@ export function auth(firebase, db){
         // login-inviz and the timeout is to animate a fade
         login.classList.add("login-inviz");
         setTimeout(() => {
-          loginState.innerHTML = 'logged in as '
+          loginState.innerHTML = '';
           username.innerHTML = user;
           loginState.classList.remove("login-go");
           //login.innerHTML = `logged in as ${user}`;

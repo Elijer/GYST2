@@ -1,6 +1,6 @@
 @import "vars";
 
-$default-space: 10px;
+$default-space: 22px;
 
 /*
 
@@ -23,8 +23,8 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 #game {
 
     // This affects the #board and #message children
-    width: 50%;
-    margin-left: 25%;
+    width: 40%;
+    margin-left: 30%;
 
     // This does not
     padding-top: $default-space;
@@ -60,11 +60,10 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         font-family: 'JetBrains Mono', monospace;
         padding-top: $default-space;
         color: white;
-        font-size: 30px;
+        font-size: 28px;
         text-align: left;
         background: $sq;
         box-shadow: 4px 4px 5px $shadow;
-        font-size: 35px;
 
         display: none;
         color: $message-text;
@@ -75,3 +74,53 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
     }
 
 }
+
+@media only screen and (max-width: 1200px) {
+
+    #game {
+        // This affects the #board and #message children
+        width: 60%;
+        margin-left: 20%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+    #game {
+        // This affects the #board and #message children
+        width: 80%;
+        margin-left: 10%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+    #game {
+        // This affects the #board and #message children
+        width: 94%;
+        margin-left: 3%;
+        
+        .sq {
+            font-size: 40px;
+        }
+
+        #message {
+            font-size: 24px;
+        }
+  }
+}
+
+
+@media only screen and (max-width: 400px) {
+
+    #game {
+        // This affects the #board and #message children
+        width: 100%;
+        margin-left: 0px;
+        
+        .sq {
+            font-size: 40px;
+        }
+  }
+}
+
