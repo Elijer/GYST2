@@ -23,9 +23,9 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 #game {
 
     // This affects the #board and #message children
-    width: 50%;
-    margin-left: 25%;
-
+    width: 80%;
+    padding-left: 10%;
+    height: auto;
     // This does not
     padding-top: $default-space;
     padding-bottom: $default-space;
@@ -43,8 +43,8 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
         font-family: 'Ubuntu', sans-serif;
         color: white;
-        padding: 25% 25% 25%;
-        font-size: 50px;
+        padding: 40% 25% 40%;
+        font-size: .1%;
         text-align: center;
         background: $sq;
         box-shadow: 4px 4px 5px $shadow;
@@ -75,3 +75,4 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
     }
 
 }
+
