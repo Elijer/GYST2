@@ -1,6 +1,6 @@
 @import "vars";
 
-$default-space: 10px;
+$default-space: 15px;
 
 /*
 
@@ -23,8 +23,8 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 #game {
 
     // This affects the #board and #message children
-    width: 80%;
-    padding-left: 10%;
+    width: 40%;
+    padding-left: 30%;
     height: auto;
     // This does not
     padding-top: $default-space;
@@ -44,7 +44,6 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         font-family: 'Ubuntu', sans-serif;
         color: white;
         padding: 40% 25% 40%;
-        font-size: .1%;
         text-align: center;
         background: $sq;
         box-shadow: 4px 4px 5px $shadow;
@@ -54,6 +53,11 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
     .sq:hover {
         background: $bg;
+    }
+
+    .inner-sq {
+        position: absolute;
+        font-size: 100%;
     }
 
     #message {
