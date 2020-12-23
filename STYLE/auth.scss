@@ -3,9 +3,11 @@
 #auth-bar {
     font-family: 'JetBrains Mono', monospace;
     height: 30px;
-    background: #604444;
+    //background: #633f4d;
+    background: #1b1b20;
     color: white;
     padding: 30px 80px 35px;
+    border-bottom: 4px solid #16161b;
     box-shadow: 4px 4px 5px $shadow;
 
     #login, #logout {
