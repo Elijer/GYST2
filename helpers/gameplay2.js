@@ -25,7 +25,7 @@ export function gameplay2(board){
                 const item = document.createElement('div');
                 item.className = "sq";
                 item.id = "sq" + i + j;
-                item.innerHTML = board[i][j];
+                item.innerHTML = `<div class = "inner-sq">${board[i][j]}</div>`
         
                 let row = i;
                 let col = j;
