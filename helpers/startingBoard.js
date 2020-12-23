@@ -12,7 +12,21 @@ export var startingBoard = [
     [ E, E, O, E, E ],
     [ E, E, E, X, E ]
   
-  ];
+];
+
+var r = "#e66072",
+  b = "#356eba",
+  y = "#e6d04a",
+  w = "#e0deda";
+
+export var boardColors = [
+  [ b, y, b, y, b ],
+  [ y, r, w, r, y ],
+  [ b, w, y, w, b ],
+  [ y, r, w, r, y ],
+  [ b, y, b, y, b ]
+]
+
 
 
   /*

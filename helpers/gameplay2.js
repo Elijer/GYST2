@@ -1,4 +1,4 @@
-import { E, X, O, N} from './startingBoard';
+import { E, X, O, N, boardColors} from './startingBoard';
 import { hide, show, set} from "./utility";
 import { renderBoard } from "./renderboard";
 
@@ -25,6 +25,7 @@ export function gameplay2(board){
                 const item = document.createElement('div');
                 item.className = "sq";
                 item.id = "sq" + i + j;
+                item.style.background = boardColors[i][j];
                 item.innerHTML = board[i][j];
         
                 let row = i;
