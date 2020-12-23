@@ -39,14 +39,13 @@ $default-space: 10px;
     }
 
     #message {
-
+        font-family: 'JetBrains Mono', monospace;
         padding-top: $default-space;
         color: white;
         font-size: 30px;
         text-align: left;
         background: $sq;
         box-shadow: 4px 4px 5px $shadow;
-
         font-size: 35px;
 
         display: none;
