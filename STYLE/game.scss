@@ -1,6 +1,6 @@
 @import "vars";
 
-$default-space: 30px;
+$default-space: 15px;
 
 
 /*
@@ -26,6 +26,7 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
     // This affects the #board and #message children
     width: 40%;
     margin-left: 30%;
+    margin-top: 30px;
 
     // This does not
     padding-top: $default-space;
@@ -33,7 +34,8 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
     #board{
 
-        padding-top: $default-space;
+        border-left: 2px solid $shadow;
+
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -60,17 +62,19 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
     #message {
         font-family: 'JetBrains Mono', monospace;
         padding-top: $default-space;
+        padding-bottom: $default-space;
+        padding-left: $default-space;
         color: white;
         font-size: 28px;
         text-align: left;
-        background: $sq;
         box-shadow: 4px 4px 5px $shadow;
-
         display: none;
         color: $message-text;
         text-shadow: 2px 2px $message-shadow;
         margin-bottom: none;
-        background: none;
+        background: $shadow;
+        border-top: 2px solid $shadow;
+        border-left: 2px solid $shadow;
         box-shadow: none;
     }
 
