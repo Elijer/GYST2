@@ -34,8 +34,6 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
     #board{
 
-        border-left: 2px solid $shadow;
-
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -75,8 +73,6 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         text-shadow: 2px 2px $message-shadow;
         margin-bottom: none;
         background: $shadow;
-        border-top: 2px solid $shadow;
-        border-left: 2px solid $shadow;
     }
 
 }
