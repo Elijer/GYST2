@@ -1,5 +1,7 @@
 # GYST
-A game somewhere between tic-tac-toe and checkers. DISCLAIMER: I did not create the concept for this game, but I am the sole programmer of this repository. A friend of mine name Walter Dintman came up with the concept and created a physical boardgame before commissioning me to create it.
+A 2-person online realtime board game with anonymous user authentication. The gameplay itself is somewhere between tic-tac-toe and checkers. Play it here: [https://gyst-93a6d.web.app/](https://gyst-93a6d.web.app/)
+
+DISCLAIMER: I did not create the concept for this game, but I am the sole programmer of this repository. A friend of mine name Walter Dintman came up with the concept and created a physical boardgame before commissioning me to create it.
 
 # Parcel.js
 To start, run the following command: `parcel index.html`. Make sure that an `index.js` is linked in the index.html and that file will be used as an entry point for all js files. Parcel allows you to use ES6 module syntax or a bunch of other stuff including SCSS, which it just accepts automatically. All you need to do is name a file SCSS and it will pase it for you.
