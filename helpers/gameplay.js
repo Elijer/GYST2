@@ -1,5 +1,5 @@
 import { E, X, O, N} from './startingBoard';
-import { hide, show, set} from "./utility";
+import { hide, show, set, clear} from "./utility";
 
 // X always moves first
 

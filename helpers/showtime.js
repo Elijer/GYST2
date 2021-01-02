@@ -1,5 +1,6 @@
 import { gameplay } from "./gameplay";
 import { startingBoard } from './startingBoard';
+import { gg, hide, set, show } from "./utility";
 
 export function showtime(player, gameRef, firebase, userRef){
 
@@ -16,7 +17,10 @@ export function showtime(player, gameRef, firebase, userRef){
             if (player === "X"){
 
                 if (data.turn === 1){
+
                     gameplay("X", startingBoard, playerOne, true, winner);
+                    endGameDisplay(true)
+
                 } else if (data.turn % 2 != 0){
                     var boardParsed = JSON.parse(data.board);
                     gameplay("X", boardParsed, playerOne, true, winner);
@@ -82,19 +86,66 @@ export function showtime(player, gameRef, firebase, userRef){
 
     }
 
+
+
+    // This is a temporary function I am writing just to clean up endGame more easily
+    function endGameDisplay(won){
+
+        hide("game");
+        show("welcome");
+        show("find-game");
+        hide("matchmaking-loader");
+
+        if (won === true){
+            set("welcome-message", "Nice win! Think you can do it again?")
+        } else {
+            set("welcome-message", "Condolences. Press 'Find Game' to redeem yourself")
+        }
+/*         let spinner = document.getElementById("matchmaking-loader");
+        spinner.style.display = 'none';
+        let msg = gg("message");
+        hide("message");
+        msg.innerHTML = "";
+        var welcomeMessage = document.getElementById("welcome-message");
+        welcomeMessage.style.display = "block";
+
+        var messageContent = document.getElementById("message");
+        messageContent.style.display = "none";
+
+        // hide the find-game button
+        var findGameButton = document.getElementById("find-game");
+        findGameButton.style.display = "block";
+
+        // Make sure loading stuff is hidden
+        var welcome = document.getElementById("welcome");
+        welcome.style.display = "block";
+
+        if (won === true){
+            welcomeMessage.innerHTML = "Nice win! Think you can do it again?"
+        } else {
+            welcomeMessage.innerHTML = "Condolences. Press 'Find Game' to redeem yourself";
+        }
+
+        console.log('endgame display'); */
+    }
+
+
+
+
     function endGame(gameRef, playerName, userRef, won){
 
         let spinner = document.getElementById("matchmaking-loader");
         spinner.style.display = 'none';
+        
 
-        let msg = document.getElementById("message-content");
-        msg.style.innerHTML = "";
-        msg.style.display = "none";
+        let msg = gg("message");
+        hide("message");
+        msg.innerHTML = ""
 
         var welcomeMessage = document.getElementById("welcome-message");
         welcomeMessage.style.display = "block";
 
-        var messageContent = document.getElementById("message-content");
+        var messageContent = document.getElementById("message");
         messageContent.style.display = "none";
 
         // hide the find-game button

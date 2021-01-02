@@ -8,6 +8,16 @@ export function hide(t){
     }
 }
 
+export function clear(t){
+    if (typeof t === 'string'){
+        document.getElementById(t).innerHTML = "";
+    } else if (Array.isArray(t)){
+        for (var i = 0; i < t.length; i++){
+            document.getElementById(t[i]).style.display = "";
+        }
+    }
+}
+
 export function show(t, displayType){
 
     if (!displayType){
