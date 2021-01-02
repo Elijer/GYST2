@@ -20,21 +20,28 @@ export function showtime(player, gameRef, firebase, userRef){
 
                 if (data.turn === 1){
 
+                    clear(board);
                     gameplay("X", startingBoard, playerOne, true, winner);
 
                 } else if (data.turn % 2 != 0){
+
                     var boardParsed = JSON.parse(data.board);
                     gameplay("X", boardParsed, playerOne, true, winner);
+                    
                 }
 
 
             } else if (player === "O"){
 
                 if (data.turn === 1){
+
                     gameplay("O", startingBoard, playerTwo, false, winner);
+
                 } else if (data.turn %2 === 0){
+
                     var boardParsed = JSON.parse(data.board);
                     gameplay("O", boardParsed, playerTwo, true, winner);
+                    
                 }
             }
 

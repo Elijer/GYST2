@@ -66,7 +66,6 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   var selection = null;
   
   var movePiece = function(pieceRow, pieceCol, destRow, destCol){
-    console.log(game.activePlayer);
 
     var success = false;
   
@@ -158,7 +157,6 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
             if (!selection){
               selection = [row, col];
             } else {
-              console.log(selection[1]);
               var successfulMove = movePiece(selection[0], selection[1], row, col);
               console.log(successfulMove);
               //
