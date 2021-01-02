@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/database';
 import 'firebase/functions';
 import 'firebase/auth';
 
@@ -14,6 +15,8 @@ import { gameplay } from './helpers/gameplay';
 document.addEventListener("DOMContentLoaded", event => {
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
+    var database = firebase.database();
+    console.log(database);
 
     handleEmulators(db, firebase);
     auth(firebase, db);
