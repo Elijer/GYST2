@@ -17,9 +17,9 @@ export function showtime(player, gameRef, firebase, userRef){
             if (player === "X"){
 
                 if (data.turn === 1){
-                    var newBored = JSON.stringify(startingBoard);
-                    var newNewBored = JSON.parse(newBored);
-                    gameplay("X", newNewBored, playerOne, true, winner);
+                    var stringBoard = JSON.stringify(startingBoard);
+                    var andWereBack = JSON.parse(stringBoard);
+                    gameplay("X", andWereBack, playerOne, true, winner);
 
                 } else if (data.turn % 2 != 0){
 
