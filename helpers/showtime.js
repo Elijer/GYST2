@@ -118,9 +118,9 @@ export function showtime(player, gameRef, firebase, userRef){
         hide("matchmaking-loader");
 
         if (won === true){
-            set("welcome-message", "Nice win! Think you can do it again?")
+            set("welcome-message", "YOU WON!!! NICE! ...Think you can do it again?")
         } else {
-            set("welcome-message", "Condolences. Press 'Find Game' to redeem yourself")
+            set("welcome-message", "Sorry, you lost. Press 'Find Game' to redeem yourself")
         }
     }
 
