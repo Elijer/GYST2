@@ -1,6 +1,8 @@
 import { E, X, O, N} from './startingBoard';
 import { hide, show, set} from "./utility";
 
+// X always moves first
+
 // These are the arguments I want:
 // export function gameplay(board, player, callback){
 // The callback has a boolean in it for "endgame" to be true or false;
@@ -10,14 +12,6 @@ import { hide, show, set} from "./utility";
 // This way, I can get along with just three arguments, which I like.
 
 export function gameplay(currentPlayer, board, callback, movementAllowed, winnerCallback){
-  // CurrentPlayer should be "player1" or "player2"
-  // Board defines the state of the board for that turn before player plays
-  // Callback defines the function that will be run if a valid move is made.
-
-
-  // Tasks
-  // Start with 'say' function. get rid of other references of 'target'.
-
 
   var say = function(t){
     show("message");
@@ -26,7 +20,23 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   }
 
   // Set the player's piece
-  if (currentPlayer === "player1"){
+  var game = {};
+  if (currentPlayer === "X"){
+
+    game = {
+      activePlayer: X,
+      opponent: O
+    }
+
+  } else {
+
+    game = {
+      activePlayer: X,
+      opponent: O
+    }
+      
+  }
+/*   if (currentPlayer === "player1"){
     var currentPlayer = {
       color: X,
       name: 'player1'
@@ -49,7 +59,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
       name: 'player2'
     }
 
-  }
+  } */
   
   // Selection saves the first piece that is selected
   // When I add in the possibility of multiple skips, I will probably need to also add in an additional 'destination' array
@@ -63,7 +73,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     var destination = board[destRow][destCol];
   
     if (position){
-      if (position === currentPlayer.color || position === N){
+      if (position === game.activePlayer || position === N){
           if (destination === E){
         
           var verticalRange = destRow - pieceRow;
@@ -147,6 +157,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
             if (!selection){
               selection = [row, col];
             } else {
+              console.log(selection[1]);
               var successfulMove = movePiece(selection[0], selection[1], row, col);
               console.log(successfulMove);
               //
@@ -197,21 +208,21 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
   var winner = function(){
 
-    let a = straightWin(currentPlayer.color, true);
-    let b = straightWin(currentPlayer.color, false);
-    let c = descendingWin(currentPlayer.color);
-    let d = ascendingWin(currentPlayer.color);
+    let a = straightWin(game.activePlayer, true);
+    let b = straightWin(game.activePlayer, false);
+    let c = descendingWin(game.activePlayer);
+    let d = ascendingWin(game.activePlayer);
 
-    let e = straightWin(opponent.color, true);
-    let f = straightWin(opponent.color, false);
-    let g = descendingWin(opponent.color);
-    let h = ascendingWin(opponent.color);
+    let e = straightWin(game.opponent, true);
+    let f = straightWin(game.opponent, false);
+    let g = descendingWin(game.opponent);
+    let h = ascendingWin(game.opponent);
 
     if (a || b || c || d){
-      winnerCallback(currentPlayer.name);
+      winnerCallback(game.activePlayer);
       return true;
     } else if (e || f || g || h){
-      winnerCallback(opponent.name)
+      winnerCallback(game.opponent)
       return true;
     } else {
       return false;

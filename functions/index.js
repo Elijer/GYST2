@@ -37,13 +37,13 @@ exports.findNewGame = functions.https.onCall (async(data, context) => {
                         t.update(p1, {
                             pending: false,
                             game: game.id,
-                            whichPlayer: 'player1'
+                            whichPlayer: 'X'
                         });
     
                         t.update(p2, {
                             pending: false,
                             game: game.id,
-                            whichPlayer: 'player2'
+                            whichPlayer: 'O'
                         })
     
                         t.update(game, {

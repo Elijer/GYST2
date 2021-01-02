@@ -13,23 +13,23 @@ export function showtime(player, gameRef, firebase, userRef){
         if (data.winner == null){ // Game is carrying on
             console.log("nobody has won yet")
 
-            if (player === "player1"){
+            if (player === "X"){
 
                 if (data.turn === 1){
-                    gameplay("player1", startingBoard, playerOne, true, winner);
+                    gameplay("X", startingBoard, playerOne, true, winner);
                 } else if (data.turn % 2 != 0){
                     var boardParsed = JSON.parse(data.board);
-                    gameplay("player1", boardParsed, playerOne, true, winner);
+                    gameplay("X", boardParsed, playerOne, true, winner);
                 }
 
 
-            } else if (player === "player2"){
+            } else if (player === "O"){
 
                 if (data.turn === 1){
-                    gameplay("player2", startingBoard, playerTwo, false, winner);
+                    gameplay("O", startingBoard, playerTwo, false, winner);
                 } else if (data.turn %2 === 0){
                     var boardParsed = JSON.parse(data.board);
-                    gameplay("player2", boardParsed, playerTwo, true, winner);
+                    gameplay("O", boardParsed, playerTwo, true, winner);
                 }
             }
 
