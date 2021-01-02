@@ -20,9 +20,8 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
 
 
   var say = function(t){
-    show("message-content");
     show("message");
-    var target = document.getElementById("message-content");
+    var target = document.getElementById("message");
     target.innerHTML = t;
   }
 
@@ -126,7 +125,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   var renderBoard = function(locked){
 
     // delete previous board to make room for new one
-    document.getElementById("grid-container").innerHTML = "";
+    document.getElementById("board").innerHTML = "";
 
     if (locked === false){
 
@@ -167,7 +166,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
             }
           })
   
-          document.getElementById("grid-container").appendChild(item);
+          document.getElementById("board").appendChild(item);
   
         }
       }
@@ -188,7 +187,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
             say("Sorry, it's not your turn yet.")
           })
   
-          document.getElementById("grid-container").appendChild(item);
+          document.getElementById("board").appendChild(item);
   
         }
       }
