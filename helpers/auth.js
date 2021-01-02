@@ -182,7 +182,7 @@ function changeUsername(firebase, db){
 
     let newOne = username.innerHTML;
 
-    if (newOne.length < 3){s
+    if (newOne.length < 3){
       alert("Username has to be at least 3 characters");
       username.innerHTML = original;
     }
