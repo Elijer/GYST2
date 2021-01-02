@@ -1,12 +1,11 @@
 import { E, X, O, N, boardColors} from './startingBoard';
 import { hide, show, set} from "./utility";
-import { renderBoard } from "./renderboard";
 
 // Show the messages
 show("message");
 /* hide("welcome"); */
 
-export function gameplay2(board){
+export function gameplay2(board, callback){
 
     // Helper function that writes user message according to gameplay
     var say = function(t){
@@ -14,7 +13,35 @@ export function gameplay2(board){
         target.innerHTML = t;
     }
 
-    var renderBoard = function(callback){
+        // Set the player's piece
+    if (currentPlayer === "player1"){
+        var currentPlayer = {
+        color: X,
+        name: 'player1'
+        }
+
+        var opponent = {
+        color: O,
+        name: 'player2'
+        }
+
+    } else {
+
+        var currentPlayer = {
+        color: O,
+        name: 'player2'
+        }
+
+        var opponent = {
+        color: X,
+        name: 'player2'
+        }
+
+    }
+
+
+
+    var renderBoard = function(){
 
         // delete previous board to make room for new one
         document.getElementById("board").innerHTML = "";
@@ -30,14 +57,17 @@ export function gameplay2(board){
         
                 let row = i;
                 let col = j;
-        
+                
+                // Add click behavior
                 item.addEventListener("click", function(){
 
-                if (callback){
-                    callback();
-                } else {
-                    console.log("board is locked");
-                }
+                    if (callback){
+
+                        callback();
+                    } else {
+                        console.log("board is locked");
+                    }
+
                 })
         
                 document.getElementById("board").appendChild(item);
@@ -49,6 +79,6 @@ export function gameplay2(board){
 
     }
 
-    renderBoard();
+    renderBoard(board);
 
 }
