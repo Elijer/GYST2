@@ -17,8 +17,14 @@ export function showtime(player, gameRef, firebase, userRef){
             if (player === "X"){
 
                 if (data.turn === 1){
+
+                    // This hack looks really bad, and I'm not sure why it works
+                    // but it fixes a bug that causes board to start from the first move of the last game (if a last game exists)
+                    // and I think it is caused by pointing to a board array that is floating around on the client somewhere
+                    // JSON, however, is VERY immutable, so it seems to fix that problem.
                     var stringBoard = JSON.stringify(startingBoard);
                     var andWereBack = JSON.parse(stringBoard);
+
                     gameplay("X", andWereBack, playerOne, true, winner);
 
                 } else if (data.turn % 2 != 0){
