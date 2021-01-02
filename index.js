@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
     //// EVENT LISTENERS
     document.getElementById('find-game').addEventListener('click', function(){
+        console.log("boop")
         findGame(db, firebase);
     });
 

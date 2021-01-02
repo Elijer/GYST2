@@ -136,8 +136,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     
   var renderBoard = function(locked){
 
-    // delete previous board to make room for new one
-    document.getElementById("board").innerHTML = "";
+    clear("board");
 
     if (locked === false){
 

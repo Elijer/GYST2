@@ -4,6 +4,8 @@ import { gg, hide, set, show, clear} from "./utility";
 
 export function showtime(player, gameRef, firebase, userRef){
 
+    console.log("Showtime");
+
     const increment = firebase.firestore.FieldValue.increment(1);
     const decrement = firebase.firestore.FieldValue.increment(-1);
     
@@ -110,8 +112,8 @@ export function showtime(player, gameRef, firebase, userRef){
     // This is a temporary function I am writing just to clean up endGame more easily
     function endGameDisplay(won){
 
-        clear("game");
         hide("game");
+        clear("board");
 
         show("welcome");
         show("find-game") // Have to include this, as it's hidden by default

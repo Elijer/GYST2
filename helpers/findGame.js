@@ -1,5 +1,5 @@
 import { showtime } from './showtime';
-import { hide } from './utility';
+import { hide, show } from './utility';
 
 export function findGame(db, firebase){
 
@@ -40,6 +40,8 @@ export function findGame(db, firebase){
                         showtime(data.whichPlayer, gameRef, firebase, userRef);
 
                         hide("welcome");
+                        show("game");
+                        
                         unsubscribe();
 
                     }
