@@ -22,8 +22,6 @@ http.listen(3020, () => {
 });
 
 
-
-
 // Everything else
 //17 minutes into this https://fireship.io/lessons/the-ultimate-beginners-guide-to-firebase/
 
