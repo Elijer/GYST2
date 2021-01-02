@@ -67,8 +67,10 @@ exports.findNewGame = functions.https.onCall (async(data, context) => {
     return true;
 })
 
-
-
+/* 
+exports.sendByeEmail = functions.auth.user().onDelete((user) => {
+    console.log("Wabam!");
+}); */
 
 
 // Graveyard:
