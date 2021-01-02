@@ -19,6 +19,23 @@ It's possible to load Firebase using script tags, and this is how I started out 
 # Firebase Emulators
 The Firebase Commandline Tools (CLI) can be installed here: [firebase-tools](https://www.npmjs.com/package/firebase-tools). The Firebase CLI can do a bunch of different things, mostly focused on getting your project started more quickly, but for this starter kit I am only using the firestore emulator. Firestore is a database in the firebase suite, and the firebase emulator allows you to use firestore locally. However, a special snippet of code (unfortunately) must be including in your project in order for firebase to know it should be talking to the local, emulated database, and NOT the production version on the cloud. This snippet is located in `helpers/handleEmulators.js` in the form of an importable function. Basically what it does is check to see if the site is hosted locally as a test, and if so it points it to the emulators.
 
+# User Presence System (In Development)
+For an online game, it is important to monitor the state of each player's connection. I obviously can't just assume both players are online. One player's device could shut down, or their browse could be closed. They could also get up and leave, leaving the other player hanging for a while, and this is all information I can use to make the playing experience smoother. Here are the metrics I want to monitor:
+1. Connection/disconnection
+2. Logout
+3. Inactivity timer (2 minutes)
+
+**Bonus**
+4. Internet connection reliability measurement
+
+### 1. Connection Disconnection
+I am going to be using the firebase Realtime Database (RTD). After some research, I found that RTD has a feature that firebase doesn't; it can report on the status of the connection with the database. I also found out that Socket.io is probably what I would use if I WASN'T using cloud functions for my backend, but they make it pretty impossible to use socket.io and I don't want to configure/setup a separate node instance in addition to the one I already have, so it makes sense to give RTD a shot as an alternative to running my own websocket. Don't let me down now firebase.
+
+Here is the first choice:
+1. Add 'online: true' to each game document by default
+2. Add 'online: true' to each player document by default
+
+
 # Summary
 Run `npm test` and `npm run ems`, and then go to `localhost:1234` (or whatever port Parcel.js prints in the console in the event that 1234 is being used already). You should see your project there! Now go to `localhost:4000` and press on `Firestore emulator`. You should see a collection and a document in there.
 
