@@ -31,8 +31,8 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   } else {
 
     game = {
-      activePlayer: X,
-      opponent: O
+      activePlayer: O,
+      opponent: X
     }
       
   }
@@ -66,6 +66,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   var selection = null;
   
   var movePiece = function(pieceRow, pieceCol, destRow, destCol){
+    console.log(game.activePlayer);
 
     var success = false;
   
@@ -74,6 +75,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
     if (position){
       if (position === game.activePlayer || position === N){
+        console.log("this is your piece, good");
           if (destination === E){
         
           var verticalRange = destRow - pieceRow;
