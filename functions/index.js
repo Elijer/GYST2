@@ -4,6 +4,28 @@ const admin = require('firebase-admin');
 const { endsWith } = require('whimsy/lib/filters');
 admin.initializeApp(functions.config().firebase);
 
+
+// Socket.io stuff
+const http = require('http').createServer();
+const io = require('socket.io')(http, {
+    cors: {origin: "*"}
+});
+
+io.on('connection', (socket) => {
+    console.log("A client connected");
+
+    socket.on('message', (message) => {
+        console.log(message);
+
+        // This sends it to all connected clients. I think // io.emit('message')
+    });
+
+});
+
+http.listen(8082, () => console.log('listening on 8082'))
+
+
+// Everything else
 //17 minutes into this https://fireship.io/lessons/the-ultimate-beginners-guide-to-firebase/
 
 exports.findNewGame = functions.https.onCall (async(data, context) => {
