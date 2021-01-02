@@ -40,3 +40,14 @@ export function set(t, html){
 export function gg(d){
     return document.getElementById(d);
 }
+
+export var immutableArray = function(arr){
+    var returnedArray = [];
+
+    for (var i = 0; i < arr.length ; i++){
+        returnedArray[i] = arr[i];
+    }
+
+    return returnedArray;
+
+}

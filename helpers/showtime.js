@@ -4,8 +4,6 @@ import { gg, hide, set, show, clear} from "./utility";
 
 export function showtime(player, gameRef, firebase, userRef){
 
-    console.log("Showtime");
-
     const increment = firebase.firestore.FieldValue.increment(1);
     const decrement = firebase.firestore.FieldValue.increment(-1);
     
@@ -19,9 +17,9 @@ export function showtime(player, gameRef, firebase, userRef){
             if (player === "X"){
 
                 if (data.turn === 1){
-
-                    clear(board);
-                    gameplay("X", startingBoard, playerOne, true, winner);
+                    var newBored = JSON.stringify(startingBoard);
+                    var newNewBored = JSON.parse(newBored);
+                    gameplay("X", newNewBored, playerOne, true, winner);
 
                 } else if (data.turn % 2 != 0){
 
@@ -41,7 +39,7 @@ export function showtime(player, gameRef, firebase, userRef){
 
                     var boardParsed = JSON.parse(data.board);
                     gameplay("O", boardParsed, playerTwo, true, winner);
-                    
+
                 }
             }
 

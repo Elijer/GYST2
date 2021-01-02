@@ -13,6 +13,9 @@ import { hide, show, set, clear} from "./utility";
 
 export function gameplay(currentPlayer, board, callback, movementAllowed, winnerCallback){
 
+  console.log(board);
+
+
   var say = function(t){
     show("message");
     var target = document.getElementById("message");
@@ -36,30 +39,6 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     }
       
   }
-/*   if (currentPlayer === "player1"){
-    var currentPlayer = {
-      color: X,
-      name: 'player1'
-    }
-
-    var opponent = {
-      color: O,
-      name: 'player2'
-    }
-
-  } else {
-
-    var currentPlayer = {
-      color: O,
-      name: 'player2'
-    }
-
-    var opponent = {
-      color: X,
-      name: 'player2'
-    }
-
-  } */
   
   // Selection saves the first piece that is selected
   // When I add in the possibility of multiple skips, I will probably need to also add in an additional 'destination' array
