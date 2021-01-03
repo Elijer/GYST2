@@ -31,9 +31,13 @@ For an online game, it is important to monitor the state of each player's connec
 ### 1. Connection Disconnection
 I am going to be using the firebase Realtime Database (RTD). After some research, I found that RTD has a feature that firebase doesn't; it can report on the status of the connection with the database. I also found out that Socket.io is probably what I would use if I WASN'T using cloud functions for my backend, but they make it pretty impossible to use socket.io and I don't want to configure/setup a separate node instance in addition to the one I already have, so it makes sense to give RTD a shot as an alternative to running my own websocket. Don't let me down now firebase.
 
-Here is the first choice:
+#### Here is the first choice:
 1. Add 'online: true' to each game document by default
 2. Add 'online: true' to each player document by default
+
+#### Progress:
+Whenever a player disconnects, the player object is updated with online: false. Where I go from there is yet to be determined.
+
 
 
 # Summary
