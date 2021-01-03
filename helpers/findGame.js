@@ -13,10 +13,10 @@ export function findGame(db, firebase, database){
     let rtdRef = database.ref('/activePlayers/' + uid);
 
     rtdRef.set({
-        uid: uid,
         online: true
     })
 
+    // It's dumb, but apparently update takes keys value pairs as strings only
     rtdRef.onDisconnect().set({
         online: false
     })
@@ -31,7 +31,8 @@ export function findGame(db, firebase, database){
         userRef.set({
             game: null,
             whichPlayer: null,
-            pending: true
+            pending: true,
+            online: true
         }, {merge: true}).then(function(){
 
 

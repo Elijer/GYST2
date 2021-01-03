@@ -74,15 +74,17 @@ exports.findNewGame = functions.https.onCall (async(data, context) => {
 exports.disconnection = functions.database.ref('/activePlayers/{pushId}')
     .onUpdate((change, context) => {
 
+        var key = change.after.key;
+
         const beforeData = change.before.val(); // data before the write
         const afterData = change.after.val(); // data after the write
 
         if (afterData.online === false){
-            let userRef = db.collection("players").doc(afterData.uid);
+            let userRef = db.collection("players").doc(key);
 
             userRef.set({
                 online: false
-            })
+            }, {merge: true})
 
         }
 
