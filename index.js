@@ -8,15 +8,10 @@ import { firebaseConfig } from "./helpers/firebaseConfig";
 import { handleEmulators } from "./helpers/handleEmulators";
 import { findGame } from './helpers/findGame';
 import { auth } from "./helpers/auth";
-import { hide, show } from "./helpers/utility";
-import { gameplay } from './helpers/gameplay';
-
-import io from 'socket.io-client';
+import { show } from "./helpers/utility";
 
 
 document.addEventListener("DOMContentLoaded", event => {
-
-    const socket = io('http://localhost:3020');
 
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
