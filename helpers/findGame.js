@@ -13,6 +13,7 @@ export function findGame(db, firebase, database){
     let rtdRef = database.ref('/activePlayers/' + uid);
 
     rtdRef.set({
+        uid: uid,
         online: true
     })
 

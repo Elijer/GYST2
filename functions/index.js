@@ -96,7 +96,14 @@ exports.disconnection = functions.database.ref('/activePlayers/{pushId}')
         const beforeData = change.before.val(); // data before the write
         const afterData = change.after.val(); // data after the write
 
-        console.log(beforeData);
+        if (afterData.online === false){
+            let userRef = db.collection("players").doc(afterData.uid);
+
+            userRef.set({
+                online: false
+            })
+
+        }
 
         return true;
 })
