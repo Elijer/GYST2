@@ -1,12 +1,27 @@
 import { showtime } from './showtime';
 import { hide, show } from './utility';
 
-export function findGame(db, firebase){
+export function findGame(db, firebase, database){
 
     let loop = waitingDisplay();
 
     let uid = firebase.auth().currentUser.uid;
     let userRef = db.collection("players").doc(uid);
+
+
+    // Realtime database stuff
+    let rtdRef = database.ref('/activePlayers/' + uid);
+
+    rtdRef.set({
+        online: true
+    })
+
+    rtdRef.onDisconnect().set({
+        online: false
+    })
+
+
+    
     
     userRef.get()
     .then((doc) => {
@@ -17,6 +32,8 @@ export function findGame(db, firebase){
             whichPlayer: null,
             pending: true
         }, {merge: true}).then(function(){
+
+
 
             // stop loading the animateElipsis -- this should be run later, once a game is actually found.
             clearInterval(loop);

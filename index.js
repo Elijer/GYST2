@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", event => {
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
     var database = firebase.database();
-    console.log(database);
 
     handleEmulators(db, firebase);
     auth(firebase, db);
@@ -26,7 +25,7 @@ document.addEventListener("DOMContentLoaded", event => {
     //// EVENT LISTENERS
     document.getElementById('find-game').addEventListener('click', function(){
         console.log("boop")
-        findGame(db, firebase);
+        findGame(db, firebase, database);
     });
 
 });
