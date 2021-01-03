@@ -91,9 +91,12 @@ exports.findNewGame = functions.https.onCall (async(data, context) => {
 
 
 exports.disconnection = functions.database.ref('/activePlayers/{pushId}')
-    .onUpdate((snapshot, context) => {
+    .onUpdate((change, context) => {
 
-        console.log("ayo")
+        const beforeData = change.before.val(); // data before the write
+        const afterData = change.after.val(); // data after the write
+
+        console.log(beforeData);
 
         return true;
 })
