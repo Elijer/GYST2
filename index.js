@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", event => {
     var db = firebase.firestore();
     var database = firebase.database();
 
-    handleEmulators(db, firebase);
+    handleEmulators(db, firebase, database);
     auth(firebase, db);
 
     show("welcome");

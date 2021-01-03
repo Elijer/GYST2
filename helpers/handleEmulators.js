@@ -1,4 +1,4 @@
-export function handleEmulators(_db, _firebase){
+export function handleEmulators(_db, _firebase, database){
     if (window.location.hostname === "localhost") {
         console.log("localhost detected! Using functions and firestore emulators instead of live instances");
         _firebase.functions().useFunctionsEmulator("http://localhost:5001");
@@ -6,5 +6,9 @@ export function handleEmulators(_db, _firebase){
           host: "localhost:8080",
           ssl: false
         });
+
+
+        database.useEmulator("localhost", 9000);
+
     }
 }
