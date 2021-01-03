@@ -8,7 +8,9 @@ import { firebaseConfig } from "./helpers/firebaseConfig";
 import { handleEmulators } from "./helpers/handleEmulators";
 import { findGame } from './helpers/findGame';
 import { auth } from "./helpers/auth";
-import { show } from "./helpers/utility";
+import { hide, show } from "./helpers/utility";
+
+import { testGameplay } from "./helpers/testGameplay"
 
 
 document.addEventListener("DOMContentLoaded", event => {
@@ -19,13 +21,16 @@ document.addEventListener("DOMContentLoaded", event => {
 
     handleEmulators(db, firebase, database);
     auth(firebase, db);
+    
+    hide("welcome");
+    testGameplay();
 
-    show("welcome");
+/*     show("welcome");
 
     //// EVENT LISTENERS
     document.getElementById('find-game').addEventListener('click', function(){
         console.log("boop")
         findGame(db, firebase, database);
-    });
+    }); */
 
 });
