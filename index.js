@@ -11,8 +11,13 @@ import { auth } from "./helpers/auth";
 import { hide, show } from "./helpers/utility";
 import { gameplay } from './helpers/gameplay';
 
+import io from 'socket.io-client';
+
 
 document.addEventListener("DOMContentLoaded", event => {
+
+    const socket = io('http://localhost:3020');
+
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
     var database = firebase.database();
