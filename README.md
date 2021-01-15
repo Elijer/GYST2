@@ -38,6 +38,25 @@ I am going to be using the firebase Realtime Database (RTD). After some research
 #### Progress:
 Whenever a player disconnects, the player object is updated with online: false. Where I go from there is yet to be determined.
 
+# Gameplay
+
+- Add Rules so that people know how to play
+- Add unlimited skipping functionality.
+
+### Unlimited skipping functionality.
+This requires the gaming interface to change somewhat. As it is now, the player selects a piece, then selects where they want the piece to go, and the piece will immediately go there, if it is a valid move. Regardless, a message will be displayed that describes the move.
+
+However, in order to allow the option for specifying *multiple* moves at the same time, this might need to be changed. Here are my optins as I see it:
+
+1. All moves require a minimum of three clicks: select piece, direct piece to destination, confirm destination.
+2. #1, but only require the confirm destination click if a skip is available, which it often will not be
+
+Okay how about this:
+Gameplay works as normal, and IF player makes a successful SKIP, a message appears that says "click destination tile again to confirm your move, OR select another tile to skip to (if available)."
+
+?. Highlight available moves when piece is clicked
+?. Create a line to show where the piece will move
+
 
 
 # Summary

@@ -8,9 +8,9 @@ export var startingBoard = [
     
     [ E, E, E, E, E ],
     [ E, X, O, X, E ],
-    [ E, O, X, O, E ],
+    [ E, O, E, O, E ],
     [ E, X, O, X, E ],
-    [ E, E, E, X, E ]
+    [ X, E, E, X, E ]
   
 ];
 

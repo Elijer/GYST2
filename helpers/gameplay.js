@@ -33,7 +33,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   // Selection saves the first piece that is selected
   // When I add in the possibility of multiple skips, I will probably need to also add in an additional 'destination' array
   var selection = null;
-  var skips = null;
+  //var skips = [];
   
   var movePiece = function(pieceRow, pieceCol, destRow, destCol){
 
@@ -74,11 +74,15 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                 var intermediateSquare = board[pieceRow + v][pieceCol + h];
   
                 if (intermediateSquare != E ){
-                    say("You skipped over another piece.");
+                    //say("You skipped over another piece.");
+                    say("You skipped over another piece! Skip again, or click again to end turn. ");
+
+                    
+
                     board[destRow][destCol] = position
                     board[pieceRow][pieceCol] = E;
                     //
-                    success = true;
+                    success = 'skip';
                 } else {
                   say("That destination is too far away.")
                 }
@@ -127,22 +131,31 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
             if (!selection){
               selection = [row, col];
             } else {
-              var successfulMove = movePiece(selection[0], selection[1], row, col);
-              console.log(successfulMove);
-              //
 
-              if (successfulMove === true){
+              // check to see if the skips array is longer than 1
 
-                let gameOver = winner();
+                var successfulMove = movePiece(selection[0], selection[1], row, col);
+                console.log(successfulMove);
+                //
 
-                if (!gameOver){
-                  renderBoard(true);
-                  callback(board);
+                if (successfulMove === true){
+
+                  let gameOver = winner();
+
+                  if (!gameOver){
+                    renderBoard(true);
+                    callback(board);
+                  }
+                } else if (successfulMove === 'skip'){
+
+                  console.log("this is skip");
+                  //skips.push = ['hi'];
+                  
+
+                } else {
+                  selection = null;
+                  renderBoard(false);
                 }
-              } else {
-                selection = null;
-                renderBoard(false);
-              }
             }
           })
   
