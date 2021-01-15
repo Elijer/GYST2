@@ -22,15 +22,24 @@ document.addEventListener("DOMContentLoaded", event => {
     handleEmulators(db, firebase, database);
     auth(firebase, db);
     
+
+    //// TESTING///
     hide("welcome");
     testGameplay();
+    ////////////////
 
-/*     show("welcome");
 
+
+    //// Uncomment the following: 
+    /*     show("welcome");
     //// EVENT LISTENERS
     document.getElementById('find-game').addEventListener('click', function(){
         console.log("boop")
         findGame(db, firebase, database);
     }); */
+
+
+
+    
 
 });

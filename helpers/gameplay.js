@@ -1,16 +1,6 @@
 import { E, X, O, N} from './startingBoard';
 import { hide, show, set, clear} from "./utility";
 
-// X always moves first
-
-// These are the arguments I want:
-// export function gameplay(board, player, callback){
-// The callback has a boolean in it for "endgame" to be true or false;
-// The board is, you know, the board that gets passed in.
-// And the player is either 'X' or 'O'.
-// In addition, if a callback ISN'T passed in i.e (!callback), that indicated that the board should be locked.
-// This way, I can get along with just three arguments, which I like.
-
 export function gameplay(currentPlayer, board, callback, movementAllowed, winnerCallback){
 
   console.log(board);
@@ -43,6 +33,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   // Selection saves the first piece that is selected
   // When I add in the possibility of multiple skips, I will probably need to also add in an additional 'destination' array
   var selection = null;
+  var skips = null;
   
   var movePiece = function(pieceRow, pieceCol, destRow, destCol){
 

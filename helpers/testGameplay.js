@@ -11,5 +11,5 @@ export function testGameplay(){
         console.log('winner');
     }
 
-    gameplay("X", startingBoard, moveSuccess, false, winner);
+    gameplay("X", startingBoard, moveSuccess, true, winner);
 }
