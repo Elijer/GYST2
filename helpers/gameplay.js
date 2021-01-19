@@ -1,18 +1,16 @@
 import { E, X, O, N} from './startingBoard';
-import { hide, show, set, clear} from "./utility";
+import { show, clear} from "./utility";
 
 export function gameplay(currentPlayer, board, callback, movementAllowed, winnerCallback){
 
-  console.log(board);
-
-
+  // Function that sets the game message when game events occur
   var say = function(t){
     show("message");
     var target = document.getElementById("message");
     target.innerHTML = t;
   }
 
-  // Set the player's piece
+  // Specify which piece is used by the active player and which by opponent
   var game = {};
   if (currentPlayer === "X"){
 
@@ -30,11 +28,14 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
       
   }
   
-  // Selection saves the first piece that is selected
-  // When I add in the possibility of multiple skips, I will probably need to also add in an additional 'destination' array
-  var selection = null;
-  //var skips = [];
+  // Selection saves the tiles selected by player to make moves
+  var selection = [];
   
+  
+  // This function takes a the coords of a piece and the desired destination and:
+    // 1) Determines whether it can move there
+    // 2) Returns either false or true accordingly through 'success' variable
+    // 3) If move is determined to be possible, changes the global board array to reflect the move.
   var movePiece = function(pieceRow, pieceCol, destRow, destCol){
 
     var success = false;
@@ -126,15 +127,18 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
           item.addEventListener("click", function(){
   
-            item.style.background = "orange";
+            item.style.background = "pink";
     
-            if (!selection){
-              selection = [row, col];
+            if (selection.length === 0){
+
+              selection.push([row, col]);
+              item.style.background = "orange";
+
             } else {
 
               // check to see if the skips array is longer than 1
 
-                var successfulMove = movePiece(selection[0], selection[1], row, col);
+                var successfulMove = movePiece(selection[0][0], selection[0][1], row, col);
                 console.log(successfulMove);
                 //
 
@@ -148,12 +152,13 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                   }
                 } else if (successfulMove === 'skip'){
 
-                  console.log("this is skip");
+                  console.log(selection);
+              
                   //skips.push = ['hi'];
                   
 
                 } else {
-                  selection = null;
+                  selection = [];
                   renderBoard(false);
                 }
             }
