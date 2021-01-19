@@ -30,9 +30,11 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
   // Selection saves the tiles selected by player to make moves
   var selection = [];
+  var skipMode = false;
 
   var resetBoard = function(){
     renderBoard(false);
+    skipMode = false;
     selection = [];
   }
   
@@ -199,6 +201,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
             //item.style.background = "pink";
             selection.push([row, col]);
+
     
             if (selection.length === 1){
 
