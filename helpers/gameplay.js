@@ -31,7 +31,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   // Selection saves the tiles selected by player to make moves
   var selection = [];
   
-  
+
   // This function takes a the coords of a piece and the desired destination and:
     // 1) Determines whether it can move there
     // 2) Returns either false or true accordingly through 'success' variable
@@ -42,7 +42,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
     var position = board[pieceRow][pieceCol];
     var destination = board[destRow][destCol];
-  
+    
     if (position){
       if (position === game.activePlayer || position === N){
         console.log("this is your piece, good");
@@ -127,40 +127,57 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
           item.addEventListener("click", function(){
   
-            item.style.background = "pink";
+            //item.style.background = "pink";
+            //selection.push([row, col]);
     
-            if (selection.length === 0){
+            if (selection.length === 1){
 
-              selection.push([row, col]);
-              item.style.background = "orange";
+              // is this current player's piece?
+                // If yes, add to selection, highlight background, and tell them they have selected a valid piece
+                // If not, don't do either of those things; just tell them it's not their piece
 
-            } else {
+            } else if (selection.length === 2){
 
-              // check to see if the skips array is longer than 1
+              // was a valid destination selected? If so:
+                // add to selection array
+                // highlight dest with new bg color
+                // tell player "Move is valid. click again to confirm."
+                // was it a skip move? If so, set global "skip" variable to true
+              // if not:
+                // clear selection
+                // clear any bg colors
+                // tell player why this isn't a valid move
 
-                var successfulMove = movePiece(selection[0][0], selection[0][1], row, col);
-                console.log(successfulMove);
-                //
+            } else if (selection.length === 2){
 
-                if (successfulMove === true){
+              // Does selection[1] === selection[2]? If so, change board data to reflect this and re-render board
+              // if selection[1] != selection[2], is global skip variable true?
+                // if not, cancel selection. selection = [], get rid of any bg colors, tell player something
+                // If yes, check to see if slection[1] to selection[2] is a valid skip move.
+                  // if so highlight background and give user message "click last tile of selection to confirm skip move"
+                  // if not, cancel selection
 
-                  let gameOver = winner();
 
-                  if (!gameOver){
-                    renderBoard(true);
-                    callback(board);
-                  }
-                } else if (successfulMove === 'skip'){
+/*               var successfulMove = movePiece(selection[0][0], selection[0][1], row, col);
+              console.log(successfulMove);
+              selection = [];
 
-                  console.log(selection);
-              
-                  //skips.push = ['hi'];
-                  
+              if (successfulMove === true){
 
-                } else {
-                  selection = [];
-                  renderBoard(false);
+                let gameOver = winner();
+
+                if (!gameOver){
+                  renderBoard(true);
+                  callback(board);
                 }
+              } else {
+                renderBoard(false);
+              } */
+
+            } else  if (selection > 2){
+              // If skip variable is false, cancel
+              // otherwise, run the basically the same as selection == 2
+              // since everything is the same, there is probably a way to get rid of this conditional
             }
           })
   
