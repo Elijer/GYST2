@@ -30,7 +30,77 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
   // Selection saves the tiles selected by player to make moves
   var selection = [];
+
+  var resetBoard = function(){
+    renderBoard(false);
+    selection = [];
+  }
   
+  var validPiece = function(row, col){
+    var pos = board[row][col];
+    var valid = false;
+
+    if (pos === game.activePlayer || pos === N){
+      valid = true;
+      say("You have selected a piece to move.")
+    } else {
+      say("Hey...piece doesn't belong to you!");
+    }
+
+    return valid;
+  }
+
+  var validMove = function(pieceRow, pieceCol, destRow, destCol){
+    var success = false;
+    var position = board[pieceRow][pieceCol];
+    var destination = board[destRow][destCol];
+
+    var verticalRange = destRow - pieceRow;
+    var horizontalRange = destCol - pieceCol;
+
+    if (Math.abs(verticalRange) > 2 || Math.abs(horizontalRange) > 2){
+  
+      say("That destination is out of range");
+
+    } else {
+
+      if (Math.abs(horizontalRange) <= 1 && Math.abs(verticalRange) <= 1){
+        say("You moved one square. Nice!");
+          // board[destRow][destCol] = position
+          // board[pieceRow][pieceCol] = E;
+          success = true;
+
+      } else {
+
+        var h = horizontalRange / 2;
+        var v = verticalRange / 2;
+
+        if (h % 1 != 0 || v % 1 != 0){
+          say("you can only skip other pieces on a true diagonal")
+        } else {
+          var intermediateSquare = board[pieceRow + v][pieceCol + h];
+
+          if (intermediateSquare != E ){
+              //say("You skipped over another piece.");
+              say("You skipped over another piece! Skip again, or click again to end turn. ");
+
+              // board[destRow][destCol] = position
+              // board[pieceRow][pieceCol] = E;
+
+              success = true;
+
+          } else {
+            say("That destination is too far away.")
+          }
+
+        }
+
+      }
+      
+    }
+
+    return success;
+  }
 
   // This function takes a the coords of a piece and the desired destination and:
     // 1) Determines whether it can move there
@@ -128,15 +198,32 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
           item.addEventListener("click", function(){
   
             //item.style.background = "pink";
-            //selection.push([row, col]);
+            selection.push([row, col]);
     
             if (selection.length === 1){
 
-              // is this current player's piece?
-                // If yes, add to selection, highlight background, and tell them they have selected a valid piece
-                // If not, don't do either of those things; just tell them it's not their piece
+              var valid = validPiece(row, col);
+              if (valid){
+                item.style.background = "pink";
+              } else {
+                selection = [];
+              }
 
             } else if (selection.length === 2){
+
+              // check that dest is empty
+              if (board[row][col] != E){
+                say("You may only move to empty tiles.")
+                resetBoard();
+              } else {
+                let valid = validMove(selection[0][0], selection[0][1], selection[1][0], selection[1][1]);
+                if (valid){
+                  item.style.background = "orange";
+                } else {
+                  resetBoard();
+                }
+
+              }
 
               // was a valid destination selected? If so:
                 // add to selection array
@@ -148,7 +235,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                 // clear any bg colors
                 // tell player why this isn't a valid move
 
-            } else if (selection.length === 2){
+            } else if (selection.length === 3){
 
               // Does selection[1] === selection[2]? If so, change board data to reflect this and re-render board
               // if selection[1] != selection[2], is global skip variable true?
