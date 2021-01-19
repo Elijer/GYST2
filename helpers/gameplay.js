@@ -67,10 +67,14 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     } else {
 
       if (Math.abs(horizontalRange) <= 1 && Math.abs(verticalRange) <= 1){
-        say("You moved one square. Nice!");
-          // board[destRow][destCol] = position
-          // board[pieceRow][pieceCol] = E;
-          success = true;
+        if (skipMode === true){
+          say("You moved one square. Nice!");
+            // board[destRow][destCol] = position
+            // board[pieceRow][pieceCol] = E;
+            success = true;
+        } else {
+          say("You may make multiple skip moves per turn, but only one normal move per turn.")
+        }
 
       } else {
 
@@ -85,6 +89,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
           if (intermediateSquare != E ){
               //say("You skipped over another piece.");
               say("You skipped over another piece! Skip again, or click again to end turn. ");
+              skipMode = true;
 
               // board[destRow][destCol] = position
               // board[pieceRow][pieceCol] = E;
@@ -216,7 +221,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
 
               // check that dest is empty
               if (board[row][col] != E){
-                say("You may only move to empty tiles.")
+                say("Oops! There's already a piece where you are trying to move.")
                 resetBoard();
               } else {
                 let valid = validMove(selection[0][0], selection[0][1], selection[1][0], selection[1][1]);
@@ -238,7 +243,36 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                 // clear any bg colors
                 // tell player why this isn't a valid move
 
-            } else if (selection.length === 3){
+            } else if (selection.length > 2){
+              
+              // confirm move
+              var c = selection[selection.length - 1];
+              var l = selection[selection.length - 2]
+              if (c.toString() === l.toString()){
+                if (selection[0].toString() === c){
+                 say("You can't waste your turn skipping back to the same tile.")
+                 resetBoard();
+                 
+                } else {
+
+                  say("Cool, you moved!")
+                  board[selection[0][0]][selection[0][1]] = E;
+                  board[c[0]][c[1]] = game.activePlayer;
+                  selection = [];
+                  skipMode = false;
+                  renderBoard(false);
+
+                }
+
+              } else {
+                valid = validMove(l[0], l[1], c[0], c[1]);
+                if (valid){
+                  item.style.background = "orange";
+                } else {
+                  resetBoard();
+                }
+              }
+            
 
               // Does selection[1] === selection[2]? If so, change board data to reflect this and re-render board
               // if selection[1] != selection[2], is global skip variable true?
@@ -264,11 +298,11 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                 renderBoard(false);
               } */
 
-            } else  if (selection > 2){
+            } /* else  if (selection > 2){
               // If skip variable is false, cancel
               // otherwise, run the basically the same as selection == 2
               // since everything is the same, there is probably a way to get rid of this conditional
-            }
+            } */
           })
   
           document.getElementById("board").appendChild(item);
