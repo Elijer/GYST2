@@ -8,7 +8,6 @@ export function findGame(db, firebase, database){
     let uid = firebase.auth().currentUser.uid;
     let userRef = db.collection("players").doc(uid);
 
-
     // Realtime database stuff
     let rtdRef = database.ref('/activePlayers/' + uid);
 
@@ -20,7 +19,6 @@ export function findGame(db, firebase, database){
     rtdRef.onDisconnect().set({
         online: false
     })
-
 
     
     

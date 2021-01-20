@@ -1,13 +1,19 @@
 import { E, X, O, N} from './startingBoard';
 import { show, clear} from "./utility";
 
+// Function that sets the game message when game events occur
+var say = function(t){
+  show("message");
+  var target = document.getElementById("message");
+  target.innerHTML = t;
+}
+
 export function gameplay(currentPlayer, board, callback, movementAllowed, winnerCallback){
 
-  // Function that sets the game message when game events occur
-  var say = function(t){
-    show("message");
-    var target = document.getElementById("message");
-    target.innerHTML = t;
+  if (movementAllowed){
+    say("Your move!")
+  } else {
+    say("Waiting for other player to move.")
   }
 
   // Specify which piece is used by the active player and which by opponent
