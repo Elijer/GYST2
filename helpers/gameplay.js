@@ -246,18 +246,19 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
             } else if (selection.length > 2){
               
               // confirm move
-              var c = selection[selection.length - 1];
-              var l = selection[selection.length - 2]
-              if (c.toString() === l.toString()){
-                if (selection[0].toString() === c){
+              var current = selection[selection.length - 1];
+              var last = selection[selection.length - 2]
+              var initial = selection[0];
+              if (current.toString() === last.toString()){
+                if (initial.toString() === current.toString()){
                  say("You can't waste your turn skipping back to the same tile.")
                  resetBoard();
                  
                 } else {
 
                   say("Cool, you moved!")
-                  board[selection[0][0]][selection[0][1]] = E;
-                  board[c[0]][c[1]] = game.activePlayer;
+                  board[  initial[0]]  [initial[1]  ] = E;
+                  board[  current[0]]  [current[1]  ] = game.activePlayer;
                   selection = [];
                   skipMode = false;
                   renderBoard(false);
@@ -265,7 +266,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                 }
 
               } else {
-                valid = validMove(l[0], l[1], c[0], c[1]);
+                valid = validMove(last[0], last[1], current[0], current[1]);
                 if (valid){
                   item.style.background = "orange";
                 } else {
