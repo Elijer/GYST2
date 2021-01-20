@@ -45,6 +45,8 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     if (pos === game.activePlayer || pos === N){
       valid = true;
       say("You have selected a piece to move.")
+    } else if (pos === E){
+      say("That tile is empty.");
     } else {
       say("Hey...piece doesn't belong to you!");
     }
@@ -53,57 +55,60 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   }
 
   var validMove = function(pieceRow, pieceCol, destRow, destCol){
+
     var success = false;
-    var position = board[pieceRow][pieceCol];
-    var destination = board[destRow][destCol];
 
-    var verticalRange = destRow - pieceRow;
-    var horizontalRange = destCol - pieceCol;
-
-    if (Math.abs(verticalRange) > 2 || Math.abs(horizontalRange) > 2){
-  
-      say("That destination is out of range");
-
+    if (board[destRow][destCol] != E){
+      say("You can't move there.")
     } else {
-
-      if (Math.abs(horizontalRange) <= 1 && Math.abs(verticalRange) <= 1){
-        if (skipMode === true){
-          say("You moved one square. Nice!");
-            // board[destRow][destCol] = position
-            // board[pieceRow][pieceCol] = E;
-            success = true;
-        } else {
-          say("You may make multiple skip moves per turn, but only one normal move per turn.")
-        }
-
+      var position = board[pieceRow][pieceCol];
+      var destination = board[destRow][destCol];
+  
+      var verticalRange = destRow - pieceRow;
+      var horizontalRange = destCol - pieceCol;
+  
+      if (Math.abs(verticalRange) > 2 || Math.abs(horizontalRange) > 2){
+    
+        say("That destination is out of range");
+  
       } else {
-
-        var h = horizontalRange / 2;
-        var v = verticalRange / 2;
-
-        if (h % 1 != 0 || v % 1 != 0){
-          say("you can only skip other pieces on a true diagonal")
-        } else {
-          var intermediateSquare = board[pieceRow + v][pieceCol + h];
-
-          if (intermediateSquare != E ){
-              //say("You skipped over another piece.");
-              say("You skipped over another piece! Skip again, or click again to end turn. ");
-              skipMode = true;
-
+  
+        if (Math.abs(horizontalRange) <= 1 && Math.abs(verticalRange) <= 1){
+            say("Move one square? Click again to confirm.");
               // board[destRow][destCol] = position
               // board[pieceRow][pieceCol] = E;
-
               success = true;
-
+          //say("You may make multiple skip moves per turn, but only one normal move per turn.")
+  
+        } else {
+  
+          var h = horizontalRange / 2;
+          var v = verticalRange / 2;
+  
+          if (h % 1 != 0 || v % 1 != 0){
+            say("you can only skip other pieces on a true diagonal")
           } else {
-            say("That destination is too far away.")
+            var intermediateSquare = board[pieceRow + v][pieceCol + h];
+  
+            if (intermediateSquare != E ){
+                //say("You skipped over another piece.");
+                say("You have selected a skip move! You may skip again, or click same tile again to confirm move. ");
+                skipMode = true;
+  
+                // board[destRow][destCol] = position
+                // board[pieceRow][pieceCol] = E;
+  
+                success = true;
+  
+            } else {
+              say("That destination is too far away.")
+            }
+  
           }
-
+  
         }
-
+        
       }
-      
     }
 
     return success;
@@ -211,6 +216,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
             if (selection.length === 1){
 
               var valid = validPiece(row, col);
+
               if (valid){
                 item.style.background = "pink";
               } else {
@@ -221,12 +227,25 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
 
               // check that dest is empty
               if (board[row][col] != E){
-                say("Oops! There's already a piece where you are trying to move.")
                 resetBoard();
+                say("Oops! There's already a piece where you are trying to move.")
+
               } else {
+
                 let valid = validMove(selection[0][0], selection[0][1], selection[1][0], selection[1][1]);
                 if (valid){
-                  item.style.background = "orange";
+                  if (skipMode === false){
+                    // For moving a single tile, just go ahead and move it -- don't wait for confirmation.
+                    board[  selection[0][0]]   [   selection[0][1]] = E;
+                    board[  selection[1][0]]   [   selection[1][1]] = game.activePlayer;
+                    selection = [];
+                    skipMode = false;
+                    renderBoard(false);
+
+                  } else {
+                    // Wait for confirmation on a skip tile.
+                    item.style.background = "orange";
+                  }
                 } else {
                   resetBoard();
                 }
@@ -311,7 +330,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
         }
       }
       
-      say("Your Move!")
+      //say("Your Move!")
 
     } else {
 
