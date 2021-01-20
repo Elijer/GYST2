@@ -60,7 +60,8 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     return valid;
   }
 
-  var moved = function(){
+  // Streamline the callback behavior
+  var moved = function(board){
     // If !gameover...
     callback(board);
   }
@@ -85,7 +86,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
       } else {
   
         if (Math.abs(horizontalRange) <= 1 && Math.abs(verticalRange) <= 1){
-            say("Move one square? Click again to confirm.");
+            say("You moved one square. Nice.");
               // board[destRow][destCol] = position
               // board[pieceRow][pieceCol] = E;
               success = true;
@@ -251,7 +252,9 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                     board[  selection[1][0]]   [   selection[1][1]] = game.activePlayer;
                     selection = [];
                     skipMode = false;
-                    renderBoard(false);
+                    // Lock board and send board back through callback
+                    renderBoard(true);
+                    moved(board);
 
                   } else {
                     // Wait for confirmation on a skip tile.
@@ -291,8 +294,9 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                   board[  current[0]]  [current[1]  ] = game.activePlayer;
                   selection = [];
                   skipMode = false;
-                  renderBoard(false);
-
+                  // Lock board and send board back through callback
+                  renderBoard(true);
+                  moved(board);
                 }
 
               } else {
