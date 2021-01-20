@@ -50,8 +50,15 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
         #inst-text {
             color: $message-shadow;
+            cursor: default;
             //text-shadow: 1px 1px $message-shadow;
-            padding-left: 0px;
+            padding-left: 10px;
+        }
+    }
+
+    #inst-btn-container:hover {
+        #inst-icon, #inst-text {
+            color: $sq;
         }
     }
 

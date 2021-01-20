@@ -42,16 +42,25 @@ document.addEventListener("DOMContentLoaded", event => {
 
     document.getElementById('inst-btn').addEventListener('click', function(){
 
+        var el = document.getElementById('inst-icon')
+        el.removeAttribute("class");
+
+
         if (inst === false){
             hide("board");
             show("instructions");
             set("inst-text", 'Hide Instructions')
+            el.classList.add("fas");
+            el.classList.add("fa-book-open");
             inst = true;
 
         } else {
             show("board", 'grid');
             hide("instructions");
             set("inst-text", 'Instructions')
+            el.classList.add("fas");
+            el.classList.add("fa-book");
+
             inst = false;
         }
 
