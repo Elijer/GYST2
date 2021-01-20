@@ -62,7 +62,9 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
 
   // Streamline the callback behavior
   var moved = function(board){
+    //let gameOver = winner();
     // If !gameover...
+    winner();
     callback(board);
   }
 
@@ -366,7 +368,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
         }
       }
     }
-    //winner();
+    winner();
   }
   
   var winner = function(){
