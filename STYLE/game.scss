@@ -23,17 +23,37 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
 #game {
 
-    display: grid;
-    grid-template-areas:
-    'inst board board board'
-    'message message message message';
-    grid-gap: 5px;
-
     // This affects the #board and #message children
-    width: 60%;
-    margin-left: 20%;
+    width: 50%;
+    margin-left: 25%;
     margin-top: 4%;
     //box-shadow: 4px 4px 5px $shadow;
+
+    #inst-btn {
+        display: block;
+        padding-bottom: 8px;
+
+
+        #inst-btn-container {
+            display: inline;
+            padding: 20px 20px 20px 20px;
+            background: $bg-auth;
+            margin-bottom: 10px;
+        }
+
+        #inst-icon, #inst-text {
+            display: inline;
+            text-align: left;
+            color: $message-shadow;
+            font-size: 30px;
+        }
+
+        #inst-text {
+            color: $message-shadow;
+            //text-shadow: 1px 1px $message-shadow;
+            padding-left: 0px;
+        }
+    }
 
     // This does not
     #instructions {
@@ -51,7 +71,6 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
     #board {
         grid-area: board;
-        position: inline;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -94,14 +113,6 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         margin-bottom: none;
         background: $bg-auth;
         border: 1px solid $bg-auth;
-    }
-
-    #instructions-icon {
-            color: $message-shadow;
-            text-shadow: 2px 2px $sq;
-            font-size: 60px;
-            padding: 10px;
-            padding-bottom: 15px;
     }
 
 

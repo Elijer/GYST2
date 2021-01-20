@@ -8,12 +8,14 @@ import { firebaseConfig } from "./helpers/firebaseConfig";
 import { handleEmulators } from "./helpers/handleEmulators";
 import { findGame } from './helpers/findGame';
 import { auth } from "./helpers/auth";
-import { hide, show } from "./helpers/utility";
+import { hide, set, show } from "./helpers/utility";
 
 import { testGameplay } from "./helpers/testGameplay"
 
 
 document.addEventListener("DOMContentLoaded", event => {
+
+    var inst = false;
 
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
@@ -37,6 +39,23 @@ document.addEventListener("DOMContentLoaded", event => {
         console.log("boop")
         findGame(db, firebase, database);
     }); */
+
+    document.getElementById('inst-btn').addEventListener('click', function(){
+
+        if (inst === false){
+            hide("board");
+            show("instructions");
+            set("inst-text", 'Hide Instructions')
+            inst = true;
+
+        } else {
+            show("board", 'grid');
+            hide("instructions");
+            set("inst-text", 'Instructions')
+            inst = false;
+        }
+
+    });
 
 
 
