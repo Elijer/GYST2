@@ -92,7 +92,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
             if (intermediateSquare != E ){
                 //say("You skipped over another piece.");
-                say("You have selected a skip move! You may skip again, or click same tile again to confirm move. ");
+                say("Click again to confirm move, or continue skipping.");
                 skipMode = true;
   
                 // board[destRow][destCol] = position
