@@ -26,21 +26,21 @@ document.addEventListener("DOMContentLoaded", event => {
     
 
     //// TESTING///
-    hide("welcome");
-    testGameplay();
+    // hide("welcome");
+    // testGameplay();
     ////////////////
 
 
-
     //// Uncomment the following: 
-    /*     show("welcome");
+    show("welcome");
     //// EVENT LISTENERS
     document.getElementById('find-game').addEventListener('click', function(){
         console.log("boop")
         findGame(db, firebase, database);
-    }); */
+    });
 
 
+    // Instructions Toggle Button
     document.getElementById('inst-btn').addEventListener('click', function(){
 
         var el = document.getElementById('inst-icon')
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
 
         if (inst === false){
+            hide("message");
             hide("board");
             show("instructions");
             set("inst-text", 'Hide Instructions')
@@ -56,6 +57,7 @@ document.addEventListener("DOMContentLoaded", event => {
             inst = true;
 
         } else {
+            hide("message");
             show("board", 'grid');
             hide("instructions");
             set("inst-text", 'Instructions')
