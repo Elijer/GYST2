@@ -44,12 +44,11 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         #inst-icon, #inst-text {
             display: inline;
             text-align: left;
-            color: $message-shadow;
+            color: $bg-dark;
             font-size: 30px;
         }
 
         #inst-text {
-            color: $message-shadow;
             cursor: default;
             //text-shadow: 1px 1px $message-shadow;
             padding-left: 10px;
@@ -65,15 +64,32 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
     // This does not
     #instructions {
         grid-area: inst;
-        padding: 12%;
+        padding: 30px 50px 30px 50px;
         background: $bg-auth;
+        font-size: 16px;
         font-family: 'Ubuntu', sans-serif;
         //border: 2px solid $sq;
         color: $sq;
 
+        h2 {
+            text-shadow: 3px 3px $shadow;
+            font-size: 40px;
+            color: $sq
+        }
+
+        .inst-bold {
+            font-size: 20px;
+            color: $welcome;
+            //text-decoration: underline;
+        }
+
         ul {
             list-style: none;
         }
+    }
+
+    .space {
+        padding-top: 18px;
     }
 
     #board {

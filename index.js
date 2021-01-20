@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", event => {
         findGame(db, firebase, database);
     }); */
 
+
     document.getElementById('inst-btn').addEventListener('click', function(){
 
         var el = document.getElementById('inst-icon')

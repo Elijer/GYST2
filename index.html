@@ -24,7 +24,7 @@
 
   </head>
 
-  <body id = "fade-in">
+  <body id = "fade-in" class = "noselect">
 
     <!-- AUTH BAR -->
     <div id = "auth-bar">
@@ -69,16 +69,24 @@
       <div id = "board"></div>
       <div id = "instructions">
         <h2>GYST</h2>
-        <p> <strong>Object of Game:</strong> to align all four of one's pieces in a row.</p>
-        <p> <strong>The 'N', or neutral piece: </strong> Can be used by either player but is not counted in winning 4-in-a-row.</p>
+        <div class = "space"></div>
 
-        <ul>
-          <li>1. asdf </li>
-          <li>2. asdf</li>
-          <li>3. asf</li>
-          <li>4. asfasdf</li>
-          <li>5. adsfasdfasf</li>
-        </ul>
+        <strong class = "inst-bold">Object of Game:</strong>
+        <p> Align all four of one's pieces in a row, not counting the neutral piece.</p>
+        <div class = "space"></div>
+
+        <strong class = "inst-bold">The 'N', or neutral piece: </strong>
+        <p> Can be used by either player. Good for blocking.</p>
+        <div class = "space"></div>
+
+        <strong class = "inst-bold">Movement: </strong>
+        <p> You may move one square per turn, with the exception of skip moves. A move may be horizontal, vertail or diagonal.</p>
+        <div class = "space"></div>
+
+        <strong class = "inst-bold">Skip Moves: </strong>
+        <p> You may 'skip', or 'jump' over any piece with your piece. After a skip move, you may choose to continue with another skip move. You may 'chain' as many skip moves as you want, but you may not combine them with normal moves.</p>
+        <div class = "space"></div>
+
       </div>
     </div>
 
