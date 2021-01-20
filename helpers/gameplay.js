@@ -60,6 +60,11 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     return valid;
   }
 
+  var moved = function(){
+    // If !gameover...
+    callback(board);
+  }
+
   var validMove = function(pieceRow, pieceCol, destRow, destCol){
 
     var success = false;
