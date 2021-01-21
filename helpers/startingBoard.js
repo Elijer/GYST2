@@ -8,22 +8,12 @@ export var startingBoard = [
     
     [ E, E, E, E, E ],
     [ E, X, O, X, E ],
-    [ E, O, E, O, E ],
+    [ E, O, N, O, E ],
     [ E, X, O, X, E ],
-    [ X, E, E, X, E ]
+    [ E, E, E, E, E ]
   
 ];
 
-// For testing
-/* export var startingBoard = [
-    
-    [ X, E, E, E, E ],
-    [ E, X, O, E, E ],
-    [ E, O, X, O, E ],
-    [ E, E, O, E, E ],
-    [ E, E, E, X, E ]
-  
-]; */
 
 var r = "#d3919a",
   b = "#7faccb",

@@ -296,6 +296,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                   board[  current[0]]  [current[1]  ] = game.activePlayer;
                   selection = [];
                   skipMode = false;
+                  selectionValue;
                   // Lock board and send board back through callback
                   renderBoard(true);
                   moved(board);
