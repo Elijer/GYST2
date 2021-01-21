@@ -1,5 +1,5 @@
 import { showtime } from './showtime';
-import { hide, show } from './utility';
+import { hide, show, clear } from './utility';
 
 export function findGame(db, firebase, database){
 
@@ -74,6 +74,8 @@ function waitingDisplay(){
 
     var welcomeMessage = document.getElementById("welcome-message");
     welcomeMessage.innerHTML = "Waiting for another player";
+    hide("game");
+    clear("board");
     //welcomeMessage.style.textAlign = "center";
     var loop = animateElipsis(welcomeMessage);
 

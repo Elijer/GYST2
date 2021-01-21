@@ -147,13 +147,12 @@ export function showtime(player, gameRef, firebase, userRef){
     // This is a temporary function I am writing just to clean up endGame more easily
     function endGameDisplay(won){
 
-        hide("game");
-        clear("board");
-
         show("welcome");
         show("find-game") // Have to include this, as it's hidden by default
         hide("matchmaking-loader");
         if (won === 'disconnected'){
+            hide("game");
+            clear("board");
             set("welcome-message", "Bummer. Looks like the other player quit or disconnected. ")
         } else if (won === true){
             set("welcome-message", "YOU WON!!! NICE! ...Think you can do it again?")
