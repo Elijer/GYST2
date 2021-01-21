@@ -36,11 +36,13 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   
   // Selection saves the tiles selected by player to make moves
   var selection = [];
+  var selectionValue = false;
   var skipMode = false;
 
   var resetBoard = function(){
     renderBoard(false);
     skipMode = false;
+    selectionValue = false;
     selection = [];
   }
   
@@ -233,6 +235,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
 
               if (valid){
                 item.style.background = "pink";
+                selectionValue = board[row][col];
               } else {
                 selection = [];
               }
@@ -251,7 +254,7 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                   if (skipMode === false){
                     // For moving a single tile, just go ahead and move it -- don't wait for confirmation.
                     board[  selection[0][0]]   [   selection[0][1]] = E;
-                    board[  selection[1][0]]   [   selection[1][1]] = game.activePlayer;
+                    board[  selection[1][0]]   [   selection[1][1]] = selectionValue;
                     selection = [];
                     skipMode = false;
                     // Lock board and send board back through callback
@@ -293,10 +296,10 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
 
                   say("Cool, you moved!")
                   board[  initial[0]]  [initial[1]  ] = E;
-                  board[  current[0]]  [current[1]  ] = game.activePlayer;
+                  board[  current[0]]  [current[1]  ] = selectionValue;
                   selection = [];
+                  selectionValue = false;
                   skipMode = false;
-                  selectionValue;
                   // Lock board and send board back through callback
                   renderBoard(true);
                   moved(board);
