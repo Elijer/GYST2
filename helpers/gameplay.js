@@ -11,9 +11,9 @@ var say = function(t){
 export function gameplay(currentPlayer, board, callback, movementAllowed, winnerCallback){
 
   if (movementAllowed){
-    say("Your move!")
+    say(`Your move! You are playing as ${currentPlayer}.`)
   } else {
-    say("Waiting for other player to move.")
+    say(`You are playing as ${currentPlayer}. Waiting for other player to move.`)
   }
 
   // Specify which piece is used by the active player and which by opponent
