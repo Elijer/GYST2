@@ -3,13 +3,14 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 let db = admin.firestore();
+const cors = require('cors')({origin: true});
 
-const { endsWith } = require('whimsy/lib/filters');
+const { endsWith } = require('whimsy');
 
 
 //17 minutes into this https://fireship.io/lessons/the-ultimate-beginners-guide-to-firebase/
 
-exports.findNewGame = functions.https.onCall (async(data, context) => {
+exports.findGame = functions.https.onCall (async(data, context) => {
 
     const queryRef = admin.firestore().collection('players').where("pending", "==", true).limit(2);
 

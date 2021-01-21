@@ -39,7 +39,7 @@ export function findGame(db, firebase, database){
             clearInterval(loop);
 
             // Run HTTPS function
-            var findNewGame = firebase.functions().httpsCallable('findNewGame');
+            var findNewGame = firebase.functions().httpsCallable('findGame');
             findNewGame({whatever: "this doesn't matter"})
             .then(function(){
                 console.log("Okay, ran an HTTP function I think.")
@@ -101,21 +101,3 @@ function animateElipsis(target){
     return loop;
 
 }
-
-
-
-
-/// Don't know what this was used for:
-
-/* function createGame(db, firebase){
-    
-    let uid = firebase.auth().currentUser.uid;
-    const gamesRef = db.collection("pending").doc();
-    
-    gamesRef.set({
-      player1: uid,
-      player2: null
-    })
-
-    return gamesRef;
-} */

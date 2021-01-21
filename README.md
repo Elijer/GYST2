@@ -4,11 +4,18 @@ A game somewhere between tic-tac-toe and checkers. DISCLAIMER: I did not create 
 # Parcel.js
 To start, run the following command: `parcel index.html`. Make sure that an `index.js` is linked in the index.html and that file will be used as an entry point for all js files. Parcel allows you to use ES6 module syntax or a bunch of other stuff including SCSS, which it just accepts automatically. All you need to do is name a file SCSS and it will pase it for you.
 
+If you get an error message that says `cannot read length of undefined` from a lineCounter or something, then just delete the .cache folder and the dist folder too while you're at it and then let them rebuild it.
+
 # Firebase
 Firebase is a google suite that essentially aids in fast development by bundling a bunch of (relatively) easy to use tools together, like hosting, local testing, a choice of 2 databases, storage, etc. Nice to have it all in one place. In order to use this project, you actually need to do the following:
 * Have or make a project on [firebase](http://console.firebase.google.com/)
 * Activate firestore on that project (just go to the firestore tab on the left sidebar)
 * Press the gear next to `Project Overview` on the top left > project settings, scroll down, and copy that firebaseConfig var. Paste it into helpers/firebaseConfig.js. You're now hooked up to the firestore database on your own firebase project
+
+Problem I had:
+I was getting `cannot deploy functions properly` when I tried to do `firebase deploy`, and I one or or both of the following fixed it:
+1. Fixed the `require` syntax of the modules I was using in functions/index.js and made sure they were installed
+2. Fixed the rules of RTD and firestore to be insecure for testing.
 
 # Firebase Modules
 It's possible to load Firebase using script tags, and this is how I started out using it. In some ways it is easier. However, in this project, I am loading `firebase` and `firebase/firestore` using NPM modules.
