@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", event => {
             inst = true;
 
         } else {
-            hide("message");
+            show("message");
             show("board", 'grid');
             hide("instructions");
             set("inst-text", 'Instructions')
