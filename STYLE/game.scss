@@ -45,7 +45,7 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
         #inst-icon, #inst-text {
             display: inline;
             text-align: left;
-            color: $bg-dark;
+            color: $sq;
             font-size: 30px;
         }
 
@@ -58,7 +58,7 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
     #inst-btn-container:hover {
         #inst-icon, #inst-text {
-            color: $sq;
+            color: $bg-dark;
         }
     }
 
