@@ -82,11 +82,63 @@ exports.disconnection = functions.database.ref('/activePlayers/{pushId}')
         if (afterData.online === false){
             let userRef = db.collection("players").doc(key);
 
-            userRef.set({
-                online: false
-            }, {merge: true})
+            // Delete the game
+            userRef.get().then(function(doc){
+                data = doc.data();
+                if (data.game){
+                    let gameRef = db.collection("games").doc(data.game);
+                    gameRef.delete();
+                }
+            }).then(function(){
+                userRef.delete();
+            })
 
         }
 
         return true;
 })
+
+/* exports.onUpdateTrigger = functions.firestore
+  .document('players/{playerId}')
+  .onUpdate((change, eventContext) => {
+
+    // Document id of the updated document
+    const documentId = eventContext.params.docId
+    
+    //const previousValue = change.before.data();
+    const data = change.after.data();
+
+    console.log(data);
+
+    if (data.online === false){
+        const gameRef = db.collection('games').doc(data.game);
+        const playerRef = db.collection('players').doc(documentId);
+        gameRef.delete();
+        playerRef.delete();
+    }
+  
+    return 0
+
+}); */
+
+
+/* exports.offline = functions.firestore
+    .document('players/{playerID}')
+    .onUpdate((snap, context) => {
+
+        console.log("this is a test")
+
+        data = snap.data();
+
+        if (data.online === false){
+            
+            if (data.game){
+                // If there is a game, delete it
+                const gameRef = db.collection('games').doc(data.game);
+                gameRef.delete().then(function(){
+                    snap.delete();
+                });
+            }
+        }
+
+    }); */

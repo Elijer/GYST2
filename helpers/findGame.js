@@ -68,23 +68,9 @@ export function findGame(db, firebase, database){
     })
 }
 
-function createGame(db, firebase){
-    
-    let uid = firebase.auth().currentUser.uid;
-    const gamesRef = db.collection("pending").doc();
-    
-    gamesRef.set({
-      player1: uid,
-      player2: null
-    })
-
-    return gamesRef;
-}
-
 function waitingDisplay(){
 
-    var findGameButton = document.getElementById("find-game");
-    findGameButton.style.display = "none";
+    hide("find-game")
 
     var welcomeMessage = document.getElementById("welcome-message");
     welcomeMessage.innerHTML = "Waiting for another player";
@@ -115,3 +101,21 @@ function animateElipsis(target){
     return loop;
 
 }
+
+
+
+
+/// Don't know what this was used for:
+
+/* function createGame(db, firebase){
+    
+    let uid = firebase.auth().currentUser.uid;
+    const gamesRef = db.collection("pending").doc();
+    
+    gamesRef.set({
+      player1: uid,
+      player2: null
+    })
+
+    return gamesRef;
+} */
