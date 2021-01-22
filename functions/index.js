@@ -12,6 +12,24 @@ const { endsWith } = require('whimsy');
 
 exports.findGame = functions.https.onCall (async(data, context) => {
 
+    /* Woah it's kinda weird that I'm getting two documents. Shouldn't I be passing the current user into the https function
+    and then just getting one document (the newest one)? I dont see why two docs wouldn't work, but it might be janky if a lot of people are
+    doing this at once.
+
+    Also, I'll have to add the createdAt field for this to work properly.
+
+    While I'm at it, I should probably add the same field to the game.
+
+    Then I can created a function that runs once a day (I think this is okay), and clears out any players or games that were created at least
+    24 hours ago or something.
+
+    I looked this up, and it looks like Firebase recommends that you 'Schedule Functions" using pubsub.
+
+    Keep this in mind: Each scheduluer job costs 10 cents a month, although there is an allowance of three free obs per month per google account.
+    */
+
+    // const queryRef = admin.firestore().collection('players').where("pending", "==", true).orderBy("createdAt", "desc").limit(2);
+
     const queryRef = admin.firestore().collection('players').where("pending", "==", true).limit(2);
 
     queryRef
