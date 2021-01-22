@@ -30,8 +30,7 @@ export function findGame(db, firebase, database){
             game: null,
             whichPlayer: null,
             pending: true,
-            online: true,
-            createdAt: new Date()
+            online: true
         }, {merge: true}).then(function(){
 
 

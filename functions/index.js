@@ -29,10 +29,10 @@ exports.findGame = functions.https.onCall (async(data, context) => {
     */
 
     // New queryRef
-    const queryRef = admin.firestore().collection('players').where("pending", "==", true).orderBy("createdAt", "desc").limit(2);
+    //const queryRef = admin.firestore().collection('players').where("pending", "==", true).orderBy("createdAt", "desc").limit(2);
 
     // Old queryRef
-    //const queryRef = admin.firestore().collection('players').where("pending", "==", true).limit(2);
+    const queryRef = admin.firestore().collection('players').where("pending", "==", true).limit(2);
 
     queryRef
     .get()
@@ -51,6 +51,7 @@ exports.findGame = functions.https.onCall (async(data, context) => {
                 player1: null,
                 player2: null,
                 winner: null,
+                createdAt: new Date(),
                 turn: 1
             }).then(async () => {
                 try {
@@ -119,7 +120,7 @@ exports.disconnection = functions.database.ref('/activePlayers/{pushId}')
         return true;
 })
 
-exports.scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((context) => {
+/* exports.scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((context) => {
 
     console.log('This will be run every day');
 
@@ -147,7 +148,7 @@ exports.scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((
     })
 
     return null;
-});
+}); */
 
 /* exports.onUpdateTrigger = functions.firestore
   .document('players/{playerId}')
