@@ -1,6 +1,8 @@
 import { E, X, O, N} from './startingBoard';
 import { show, clear} from "./utility";
-import Xsrc from "../Bottlecaps/O.png";
+import Xsrc from "../Bottlecaps/X.png";
+import Osrc from "../Bottlecaps/O.png";
+import Nsrc from "../Bottlecaps/N.png";
 
 // Function that sets the game message when game events occur
 var say = function(t){
@@ -220,7 +222,16 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
           item.className = "sq";
           item.id = "sq" + i + j;
           const img = document.createElement('img');
-          img.src = Xsrc;
+
+          if (board[i][j] === X){
+            img.src = Xsrc;
+          } else if (board[i][j] === O){
+            img.src = Osrc;
+          } else if (board[i][j] === N){
+            img.src = Nsrc;
+          } else {
+            // do nothing
+          }
           img.classList.add("bottlecap")
           item.appendChild(img);
           //item.innerHTML = board[i][j];
@@ -367,6 +378,20 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
           item.className = "sq";
           item.id = "sq" + i + j;
           item.innerHTML = board[i][j];
+
+          const img = document.createElement('img');
+
+          if (board[i][j] === X){
+            img.src = Xsrc;
+          } else if (board[i][j] === O){
+            img.src = Osrc;
+          } else if (board[i][j] === N){
+            img.src = Nsrc;
+          } else {
+            // do nothing
+          }
+          img.classList.add("bottlecap")
+          item.appendChild(img);
 
           item.addEventListener("click", function(){
             say("Sorry, it's not your turn yet.")
