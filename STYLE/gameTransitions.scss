@@ -1,0 +1,13 @@
+@import "vars";
+
+#game {
+    .sq {
+        //background: rgb(10, 5, 23);
+        background: $sq;
+        transition: background .2s;
+    }
+
+/*     .justMoved {
+        background: rgb(185, 24, 75);
+    } */
+}

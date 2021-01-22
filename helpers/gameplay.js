@@ -41,12 +41,14 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
   var selection = [];
   var selectionValue = false;
   var skipMode = false;
+  var pieceMoved;
 
   var resetBoard = function(){
     renderBoard(false);
     skipMode = false;
     selectionValue = false;
     selection = [];
+    pieceMoved = "";
   }
   
   var validPiece = function(row, col){
