@@ -71,7 +71,9 @@ export function showtime(player, gameRef, firebase, userRef){
                     endGame(gameRef, player, userRef, true)
     
                 } else {
+                    var boardParsed = JSON.parse(data.board);
                     endGame(gameRef, player, userRef, false)
+                    gameplay(player, boardParsed, player, false, winner);
                 }
             }
         }
@@ -104,10 +106,13 @@ export function showtime(player, gameRef, firebase, userRef){
     }
     
 
-    function winner(winner){
+    function winner(winner, board){
+
+        var json = JSON.stringify(board);
 
         gameRef.update({
-            winner: winner
+            winner: winner,
+            board: json
         })
 
     }
@@ -149,6 +154,7 @@ export function showtime(player, gameRef, firebase, userRef){
 
         show("welcome");
         show("find-game") // Have to include this, as it's hidden by default
+        hide("inst-btn");
         hide("matchmaking-loader");
         if (won === 'disconnected'){
             hide("game");
@@ -158,6 +164,7 @@ export function showtime(player, gameRef, firebase, userRef){
             set("welcome-message", "YOU WON!!! NICE! ...Think you can do it again?")
         } else {
             set("welcome-message", "Sorry, you lost. Press 'Find Game' to redeem yourself")
+            //gameplay("X", andWereBack, playerOne, true, winner);
         }
     }
 

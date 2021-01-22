@@ -419,11 +419,11 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
 
     if (a || b || c || d){
       highlightWinner(game.activePlayer)
-      winnerCallback(game.activePlayer);
+      winnerCallback(game.activePlayer, board);
       return true;
     } else if (e || f || g || h){
       highlightWinner(game.opponent)
-      winnerCallback(game.opponent)
+      //winnerCallback(game.opponent, board)
       return true;
     } else {
       return false;

@@ -119,7 +119,7 @@ exports.disconnection = functions.database.ref('/activePlayers/{pushId}')
         return true;
 })
 
-exports.scheduledFunction = functions.pubsub.schedule('every 1 minute').onRun((context) => {
+exports.scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((context) => {
 
     console.log('This will be run every day');
 
