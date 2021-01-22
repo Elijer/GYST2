@@ -156,6 +156,7 @@ function name(uid, db){
     name: name,
     pending: false,
     game: null,
+    createdAt: new Date(),
     whichPlayer: null
   }, {merge:true})
 }

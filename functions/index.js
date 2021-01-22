@@ -126,7 +126,7 @@ exports.scheduledFunction = functions.pubsub.schedule('every 1 minutes').onRun((
     const yesterday = new Date(today)
 
     //yesterday.setDate(yesterday.getDate() - 1)
-    yesterday.setDate(yesterday.getDate())
+    //yesterday.setDate(yesterday.getDate())
 
     const queryRef = admin.firestore().collection('players').where("createdAt", ">", yesterday);
 
