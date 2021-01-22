@@ -1,5 +1,6 @@
 import { E, X, O, N} from './startingBoard';
 import { show, clear} from "./utility";
+import Xsrc from "../Bottlecaps/O.png";
 
 // Function that sets the game message when game events occur
 var say = function(t){
@@ -218,7 +219,11 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
           const item = document.createElement('div');
           item.className = "sq";
           item.id = "sq" + i + j;
-          item.innerHTML = board[i][j];
+          const img = document.createElement('img');
+          img.src = Xsrc;
+          img.classList.add("bottlecap")
+          item.appendChild(img);
+          //item.innerHTML = board[i][j];
     
           let row = i;
           let col = j;

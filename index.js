@@ -26,18 +26,20 @@ document.addEventListener("DOMContentLoaded", event => {
     
 
     //// TESTING///
-    // hide("welcome");
-    // testGameplay();
+    hide("welcome");
+    testGameplay();
+    show("game");
     ////////////////
 
 
     //// Uncomment the following: 
+    /*
     show("welcome");
     //// EVENT LISTENERS
     document.getElementById('find-game').addEventListener('click', function(){
         console.log("boop")
         findGame(db, firebase, database);
-    });
+    });*/
 
 
     // Instructions Toggle Button

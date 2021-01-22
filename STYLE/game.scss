@@ -106,14 +106,18 @@ Article that might be helpful: https://css-tricks.com/aspect-ratio-boxes/
 
         font-family: 'Ubuntu', sans-serif;
         color: white;
-        padding-top: 25%;
-        padding-bottom: 25%;
+/*         padding-top: 25%;
+        padding-bottom: 25%; */
         text-align: center;
-        font-size: 35px;
+        font-size: 0px;
         background: $sq;
         border: 1px solid $bg;
         text-shadow: 2px 2px $type-shadow;
         //box-shadow: 4px 4px 5px $shadow;
+
+        .bottlecap {
+            width: 100%;
+        }
 
     }
 
