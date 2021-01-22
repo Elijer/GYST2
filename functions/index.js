@@ -28,9 +28,11 @@ exports.findGame = functions.https.onCall (async(data, context) => {
     Keep this in mind: Each scheduluer job costs 10 cents a month, although there is an allowance of three free obs per month per google account.
     */
 
-    // const queryRef = admin.firestore().collection('players').where("pending", "==", true).orderBy("createdAt", "desc").limit(2);
+    // New queryRef
+    const queryRef = admin.firestore().collection('players').where("pending", "==", true).orderBy("createdAt", "desc").limit(2);
 
-    const queryRef = admin.firestore().collection('players').where("pending", "==", true).limit(2);
+    // Old queryRef
+    //const queryRef = admin.firestore().collection('players').where("pending", "==", true).limit(2);
 
     queryRef
     .get()
@@ -116,6 +118,36 @@ exports.disconnection = functions.database.ref('/activePlayers/{pushId}')
 
         return true;
 })
+
+exports.scheduledFunction = functions.pubsub.schedule('every 1 minute').onRun((context) => {
+
+    console.log('This will be run every day');
+
+    const yesterday = new Date(today)
+
+    //yesterday.setDate(yesterday.getDate() - 1)
+    yesterday.setDate(yesterday.getDate())
+
+    const queryRef = admin.firestore().collection('players').where("createdAt", ">", yesterday);
+
+    queryRef
+    .get()
+    .then(async function(querySnapshot) {
+        var batch = db.batch();
+
+        querySnapshot.forEach(function(doc) {
+            // For each doc, add a delete operation to the batch
+            batch.delete(doc.ref);
+        });
+
+        batch.commit();
+
+    }).then(function(){
+        console.log("Batch delete is complete!")
+    })
+
+    return null;
+});
 
 /* exports.onUpdateTrigger = functions.firestore
   .document('players/{playerId}')

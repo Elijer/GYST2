@@ -1,5 +1,5 @@
 import { E, X, O, N} from './startingBoard';
-import { show, clear} from "./utility";
+import { show, clear, gg } from "./utility";
 import Xsrc from "../Bottlecaps/X.png";
 import Osrc from "../Bottlecaps/O.png";
 import Nsrc from "../Bottlecaps/N.png";
@@ -418,15 +418,30 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
     let h = ascendingWin(game.opponent);
 
     if (a || b || c || d){
+      highlightWinner(game.activePlayer)
       winnerCallback(game.activePlayer);
       return true;
     } else if (e || f || g || h){
+      highlightWinner(game.opponent)
       winnerCallback(game.opponent)
       return true;
     } else {
       return false;
     }
 
+  }
+
+  var highlightWinner = function(player){
+    for (var i = 0; i < board.length; i++) {
+      for (var j = 0; j < board[0].length; j++){
+
+        if(board[i][j] === player){
+          var item = gg(`sq${i}${j}`);
+          item.style.background = "orange";
+        }
+
+      }
+    }
   }
     
   function ascendingWin(target){
