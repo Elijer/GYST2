@@ -1,5 +1,5 @@
 # GYST
-A 2-person online realtime board game with anonymous user authentication. The gameplay itself is somewhere between tic-tac-toe and checkers. Play it here: [https://gyst-93a6d.web.app/](https://gyst-93a6d.web.app/)
+[Play it here](https://playgyst.com/). Gyst is a 2-person online realtime board game with anonymous user authentication. The gameplay itself is somewhere between tic-tac-toe and checkers.
 
 It seemed like a good opportunity to use websockets, but I decided that the first thing I wanted to learn about websockets was how they competed with the firestore (google's NOSQL database offering) listeners. My conclusion is that it can be done, but there is one weak point: loss of connection. A websocket is basically built for this, while firestore listeners don't really offer many tools, and neither does the google auth system. The next step in this project is to handle disconnection cases by added in a light layer of socket io.
 
