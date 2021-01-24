@@ -2,7 +2,7 @@ import { gameplay } from "./gameplay";
 import { startingBoard } from './startingBoard';
 import { gg, hide, set, show, clear} from "./utility";
 
-export function showtime(player, gameRef, firebase, userRef){
+export function showtime(player, gameRef, firebase, userRef, db){
 
     const increment = firebase.firestore.FieldValue.increment(1);
     const decrement = firebase.firestore.FieldValue.increment(-1);
@@ -22,10 +22,13 @@ export function showtime(player, gameRef, firebase, userRef){
 
 
         } else {
+
             if (data.winner == null){ // Game is carrying on
                 console.log("nobody has won yet")
     
                 if (player === "X"){
+
+                    opponentName(data, "X");
     
                     if (data.turn === 1){
     
@@ -47,6 +50,8 @@ export function showtime(player, gameRef, firebase, userRef){
     
     
                 } else if (player === "O"){
+
+                    opponentName(data, "O");
     
                     if (data.turn === 1){
     
@@ -103,6 +108,22 @@ export function showtime(player, gameRef, firebase, userRef){
         })
 
 
+    }
+
+    function opponentName(data, player){
+
+        if (player === "X"){
+            var opponentRef = db.collection("players").doc(data.player2);
+        } else {
+            var opponentRef = db.collection("players").doc(data.player1);
+        }
+
+        opponentRef.onSnapshot(function(doc) {
+
+            var opponentName = doc.data().name;
+            show("opponent-display");
+            set("opponent-name", opponentName);
+        });
     }
     
 

@@ -54,7 +54,7 @@ export function findGame(db, firebase, database){
 
                         let gameRef = db.collection("games").doc(data.game);
 
-                        showtime(data.whichPlayer, gameRef, firebase, userRef);
+                        showtime(data.whichPlayer, gameRef, firebase, userRef, db);
 
                         hide("welcome");
                         show("game");
