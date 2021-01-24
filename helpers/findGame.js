@@ -73,7 +73,7 @@ function waitingDisplay(){
     hide("find-game")
 
     var welcomeMessage = document.getElementById("welcome-message");
-    welcomeMessage.innerHTML = "Waiting for another player";
+    welcomeMessage.innerHTML = "Searching for another player";
     hide("game");
     clear("board");
     //welcomeMessage.style.textAlign = "center";
