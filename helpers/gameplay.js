@@ -95,12 +95,15 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
       } else {
   
         if (Math.abs(horizontalRange) <= 1 && Math.abs(verticalRange) <= 1){
+          if (skipMode === false){
             say("You moved one square. Nice.");
               // board[destRow][destCol] = position
               // board[pieceRow][pieceCol] = E;
               success = true;
           //say("You may make multiple skip moves per turn, but only one normal move per turn.")
-  
+          } else {
+            say("Once you start skipping, you can ONLY do skip moves! No one-tile moves.")
+          }
         } else {
   
           var h = horizontalRange / 2;
@@ -269,6 +272,11 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
 
                 let valid = validMove(selection[0][0], selection[0][1], selection[1][0], selection[1][1]);
                 if (valid){
+                  /* so if the mood is valid, it will now define the global skipMode as true or false
+                  if false, we will go ahead and move the piece.
+                  If true, and it IS a skip-type move, we will change the background of the this first destination
+                  tile and add it to the selection and wait for the next thing.
+                  */
                   if (skipMode === false){
                     // For moving a single tile, just go ahead and move it -- don't wait for confirmation.
                     board[  selection[0][0]]   [   selection[0][1]] = E;
@@ -305,6 +313,12 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
               var current = selection[selection.length - 1];
               var last = selection[selection.length - 2]
               var initial = selection[0];
+              
+              // This block test to see if you are CONFIRMING your move,
+              // i.e., clicking on the same tile again.
+              // I also just added in a small feature that prevents you from "wasting" your turn
+              // by skipping back to the same tile.
+              // I'm not sure if this should be part of the game or not, so  I wrote it.
               if (current.toString() === last.toString()){
                 if (initial.toString() === current.toString()){
                  say("You can't waste your turn skipping back to the same tile.")
@@ -324,6 +338,10 @@ export function gameplay(currentPlayer, board, callback, movementAllowed, winner
                 }
 
               } else {
+                console.log("Turn not confirmed")
+                // This is the block where I need to make sure that the player
+                // can ONLY make skip-type moves.
+                // Actually, I can probably put this in validMove block.
                 valid = validMove(last[0], last[1], current[0], current[1]);
                 if (valid){
                   item.style.background = "orange";
